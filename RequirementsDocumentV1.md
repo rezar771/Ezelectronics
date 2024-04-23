@@ -57,13 +57,14 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 ## Interfaces
 
-\<describe here each interface in the context diagram>
-
-\<GUIs will be described graphically in a separate document>
-
-|   Actor   | Logical Interface | Physical Interface |
-| :-------: | :---------------: | :----------------: |
-| Actor x.. |                  |                    |
+|      Actor      |      Logical Interface      | Physical Interface |
+| :--------------: | :-------------------------: | :----------------: |
+|     Customer     |   the GUI of the website   |   PC/Smartphone   |
+|     Manager     |   the GUI of the website   |   PC/Smartphone   |
+| Payment service |             API             |      Internet      |
+| Shipping service | https://www.poste.it/  etc. |      Internet      |
+|  Business owner  |   the GUI of the website   |   PC/Smartphone   |
+|    Tech team    |   the GUI of the website   |         PC         |
 
 # Stories and personas
 
