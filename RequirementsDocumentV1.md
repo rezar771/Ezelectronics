@@ -1,12 +1,12 @@
 # Requirements Document - current EZElectronics
 
-Date:
+Date: 
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |        Change        |
-| :------------: | :------------------: |
-|      1.3      | Stories and personas |
+| Version number |                            Change                            |
+| :------------: | :-----------------------------------------------------------: |
+|      1.4      | Functional and non functional requirements + table of rights |
 
 # Contents
 
@@ -114,26 +114,43 @@ The manager of EZElectronics, wants to increase sales and remain competitive. He
 
 ## Functional Requirements
 
-\<In the form DO SOMETHING, or VERB NOUN, describe high level capabilities of the system>
+| ID            |                                                  Description                                                  |
+| :------------ | :-----------------------------------------------------------------------------------------------------------: |
+| **FR1** |                                           **Manage products**                                           |
+| FR1.1         |               Add a set of products or a single product, delete products from the product list               |
+| FR1.2         |                                            Mark a product as sold                                            |
+| FR1.3         |                            Retrieve a list of products (by model, category or id)                            |
+| **FR2** |                                            **Manage carts**                                            |
+| FR2.1         |                                   Create or delete a cart for a single user                                   |
+| FR2.2         |                                               Check out a cart                                               |
+| FR2.3         |                                      Retrieve the cart list from a user                                      |
+| FR2.4         |                                          Adds a product to the cart                                          |
+| **FR3** |                                  **Authorization and authentication**                                  |
+| FR3.1         |                                              Log in and log out                                              |
+| FR3.2         |                           Retrieves information about the currently logged in user                           |
+| **FR4** |                                            **Manage users**                                            |
+| FR4.1         | Create user with provided information like(username, PSW, ...)or delete user (a specific user or all of them) |
+| FR4.2         |                                 Retrieve a list of users (by username, role)                                 |
 
-\<they match to high level use cases>
+## Table of rights
 
-|  ID  | Description |
-| :---: | :---------: |
-|  FR1  |            |
-|  FR2  |            |
-| FRx.. |            |
+|                      | **FR1.1<br />FR1.2** | **FR1.3** | FR2.1<br />FR2.3<br />FR2.4 | **FR2.2** | **FR3.1<br />FR3.2** | FR4 |
+| :------------------: | :------------------------: | :-------------: | :-------------------------: | --------------- | -------------------------- | --- |
+|  **Manager**  |             Y             |        Y        |              Y              | N               | Y                          | Y   |
+|  **Customer**  |             N             |        Y        |              Y              | Y               | Y                          | N   |
+| **Tech admin** |             N             |        Y        |              Y              | N               | Y                          | N   |
 
 ## Non Functional Requirements
 
-\<Describe constraints on functional requirements>
-
-|   ID   | Type (efficiency, reliability, ..) | Description | Refers to |
-| :-----: | :--------------------------------: | :---------: | :-------: |
-|  NFR1  |                                    |            |          |
-|  NFR2  |                                    |            |          |
-|  NFR3  |                                    |            |          |
-| NFRx .. |                                    |            |          |
+|  ID  | Type (efficiency, reliability, ..) |                                        Description                                        | Refers to |
+| :--: | :--------------------------------: | :---------------------------------------------------------------------------------------: | :-------: |
+| NFR1 |             Usability             |            Application should be used with no specific training for the users            |  ALL FR  |
+| NFR2 |             Efficiency             |                        All functions should complete in < 0.5 sec                        |  ALL FR  |
+| NFR3 |            Reliability            | The frontend service must be always up, at least to serve an information page to the user |  ALL FR  |
+| NFR4 |          Maintainability          |             Adding or updating a function must always take no more than 16 ph             |  ALL FR  |
+| NFR5 |            Portability            |                      The site must be usable on all kind of devices                      |  ALL FR  |
+| NFR6 |              Security              | The user's password should be hashed. Only the hashed value may be stored in the database | FR3 - FR4 |
+| NFR7 |              Privacy              |              The data of a customer should not be disclosed outside the site              | FR3 - FR4 |
 
 # Use case diagram and use cases
 
