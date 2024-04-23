@@ -4,9 +4,9 @@ Date:
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |     Change     |
-| :------------: | :-------------: |
-|      1.1      | Context diagram |
+| Version number |        Change        |
+| :------------: | :------------------: |
+|      1.3      | Stories and personas |
 
 # Contents
 
@@ -68,11 +68,47 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 # Stories and personas
 
-\<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
+#### **Customer Persona**
 
-\<Persona is-an-instance-of actor>
+* **Name**: Alice Johnson
+* **Age**: 30
 
-\<stories will be formalized later as scenarios in use cases>
+* **Occupation**: Software Engineer
+* **Role**: Customer
+
+* **Background**: Alice is a frequent online shopper who likes technology gadgets. She prefers seamless experiences and is familiar with EZElectronics platforms.
+* **Goals**:
+
+    Find and purchase products quickly and easily.
+
+    View the contents of her shopping cart and complete the checkout process without delays.
+
+    Track payment status and view past purchases.
+
+#### Manager Persona
+
+* **Name**: Bob Stevens
+* **Age**: 45
+
+* **Occupation**: Store Manager
+* **Role**: Manager
+
+* **Background**: Bob is responsible for managing the online store. He has experience in retail and supervises customer orders.
+* **Goals**:
+
+    Add and delete products in the store and check availability.
+
+    View and manage customer carts, including marking them as paid.
+
+    Ensure smooth operation of the EZElectronics platform.
+
+**Customer Stories:**
+
+A young girl who has just enrolled in a new scientific university, looking at his course of study, realizes that he needs a new computer to follow the lectures and use all the software useful for his studies. She doesn't have much time to shop in the shop, so she looks for a convenient and reliable option online.
+
+**Manager Stories:**
+
+The manager of EZElectronics, wants to increase sales and remain competitive. He would like to keep track of products and sales efficiently, reach more customers and promote his products.
 
 # Functional and non functional requirements
 
