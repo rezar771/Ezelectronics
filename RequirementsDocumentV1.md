@@ -1,12 +1,12 @@
 # Requirements Document - current EZElectronics
 
-Date: 22/04/2024
+Date: 24/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |                            Change                            |
-| :------------: | :-----------------------------------------------------------: |
-|      1.4      | Functional and non functional requirements + table of rights |
+| Version number |                           Change                           |
+| :------------: | :---------------------------------------------------------: |
+|      1.5      | Fix cart part of Functional requirements + table of rights |
 
 # Contents
 
@@ -72,35 +72,31 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 * **Name**: Alice Johnson
 * **Age**: 30
-
 * **Occupation**: Software Engineer
 * **Role**: Customer
-
 * **Background**: Alice is a frequent online shopper who likes technology gadgets. She prefers seamless experiences and is familiar with EZElectronics platforms.
 * **Goals**:
 
-    Find and purchase products quickly and easily.
+  Find and purchase products quickly and easily.
 
-    View the contents of her shopping cart and complete the checkout process without delays.
+  View the contents of her shopping cart and complete the checkout process without delays.
 
-    Track payment status and view past purchases.
+  Track payment status and view past purchases.
 
 #### Manager Persona
 
 * **Name**: Bob Stevens
 * **Age**: 45
-
 * **Occupation**: Store Manager
 * **Role**: Manager
-
 * **Background**: Bob is responsible for managing the online store. He has experience in retail and supervises customer orders.
 * **Goals**:
 
-    Add and delete products in the store and check availability.
+  Add and delete products in the store and check availability.
 
-    View and manage customer carts, including marking them as paid.
+  View and manage customer carts, including marking them as paid.
 
-    Ensure smooth operation of the EZElectronics platform.
+  Ensure smooth operation of the EZElectronics platform.
 
 **Customer Stories:**
 
@@ -121,10 +117,11 @@ The manager of EZElectronics, wants to increase sales and remain competitive. He
 | FR1.2         |                                            Mark a product as sold                                            |
 | FR1.3         |                            Retrieve a list of products (by model, category or id)                            |
 | **FR2** |                                            **Manage carts**                                            |
-| FR2.1         |                                   Create or delete a cart for a single user                                   |
+| FR2.1         |                    Delete entire cart for a single user or delete a product from the cart                    |
 | FR2.2         |                                               Check out a cart                                               |
 | FR2.3         |                                      Retrieve the cart list from a user                                      |
 | FR2.4         |                                          Adds a product to the cart                                          |
+| FR2.5         |                                               Delete all carts                                               |
 | **FR3** |                                  **Authorization and authentication**                                  |
 | FR3.1         |                                              Log in and log out                                              |
 | FR3.2         |                           Retrieves information about the currently logged in user                           |
@@ -134,11 +131,11 @@ The manager of EZElectronics, wants to increase sales and remain competitive. He
 
 ## Table of rights
 
-|                      | **FR1.1<br />FR1.2** | **FR1.3** | FR2.1<br />FR2.3<br />FR2.4 | **FR2.2** | **FR3.1<br />FR3.2** | FR4 |
-| :------------------: | :------------------------: | :-------------: | :-------------------------: | --------------- | -------------------------- | --- |
-|  **Manager**  |             Y             |        Y        |              Y              | N               | Y                          | Y   |
-|  **Customer**  |             N             |        Y        |              Y              | Y               | Y                          | N   |
-| **Tech admin** |             N             |        Y        |              Y              | N               | Y                          | N   |
+|                      | **FR1.1<br />FR1.2** | **FR1.3** | FR2.1<br />FR2.3<br />FR2.4 | **FR2.2** | FR2.5 | FR3.1<br />FR3.2 | FR4 |
+| :------------------: | :------------------------: | :-------------: | :-------------------------: | --------------- | ----- | ---------------- | --- |
+|  **Manager**  |             Y             |        Y        |              Y              | N               | Y     | Y                | Y   |
+|  **Customer**  |             N             |        Y        |              Y              | Y               | N     | Y                | N   |
+| **Tech admin** |             N             |        Y        |              Y              | N               | Y     | Y                | N   |
 
 ## Non Functional Requirements
 
