@@ -4,9 +4,9 @@ Date: 24/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |             Change             |
-| :------------: | :-----------------------------: |
-|      1.6      | Fix Stakeholders and Interfaces |
+| Version number |   Change   |
+| :------------: | :---------: |
+|      1.7      | Fix stories |
 
 # Contents
 
@@ -39,15 +39,11 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 # Stakeholders
 
-| Stakeholder name |                                                                  Description                                                                  |
-| :--------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
-|     Manager     |                                                       Manages products and their supply                                                       |
-|     Customer     |                                  People who wants to buy electronics products such as laptops or smartphones                                  |
-| Payment service |                                                    Offers several ways to pay for products                                                    |
-| Payment service |                                                                                                                                              |
-|    Suppliers    |                                        Electronics companies who provide the electronics to the store                                        |
-| Shipping service |                                                    Offers different ways to ship products                                                    |
-|    Tech admin    | Software engineers and IT professionals responsible for developing, maintaining the system and ensuring the security and privacy of user data |
+| Stakeholder name |                                 Description                                 |
+| :--------------: | :-------------------------------------------------------------------------: |
+|     Manager     |                      Manages products and their supply                      |
+|     Customer     | People who wants to buy electronics products such as laptops or smartphones |
+| Payment service |                   Offers several ways to pay for products                   |
 
 # Context Diagram and interfaces
 
@@ -62,8 +58,6 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 |    Customer    | the GUI of the website |   PC/Smartphone   |
 |     Manager     | the GUI of the website |   PC/Smartphone   |
 | Payment service |          API          |      Internet      |
-| Business admin | the GUI of the website |   PC/Smartphone   |
-|   Tech admin   | the GUI of the website |         PC         |
 
 # Stories and personas
 
@@ -99,11 +93,11 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 **Customer Stories:**
 
-A young girl who has just enrolled in a new scientific university, looking at his course of study, realizes that he needs a new computer to follow the lectures and use all the software useful for his studies. She doesn't have much time to shop in the shop, so she looks for a convenient and reliable option online.
+Alice seeks a smooth and intuitive online shopping experience, with easy navigation, detailed product descriptions, quick addition of items to her cart, and hassle-free purchase completion.
 
 **Manager Stories:**
 
-The manager of EZElectronics, wants to increase sales and remain competitive. He would like to keep track of products and sales efficiently, reach more customers and promote his products.
+Bob leads an electronics store, managing stock, purchases, and product selection. Seeking efficiency, Bob desires an intuitive application for real-time stock monitoring and easy product management. Bob also prioritizes a user-friendly interface to streamline customer transactions.
 
 # Functional and non functional requirements
 
