@@ -4,9 +4,9 @@ Date: 24/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |                           Change                           |
-| :------------: | :---------------------------------------------------------: |
-|      1.5      | Fix cart part of Functional requirements + table of rights |
+| Version number |             Change             |
+| :------------: | :-----------------------------: |
+|      1.6      | Fix Stakeholders and Interfaces |
 
 # Contents
 
@@ -43,11 +43,11 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 | :--------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 |     Manager     |                                                       Manages products and their supply                                                       |
 |     Customer     |                                  People who wants to buy electronics products such as laptops or smartphones                                  |
-|  Business owner  |                            Company executives or stakeholders with a financial interest in the platform's success                            |
 | Payment service |                                                    Offers several ways to pay for products                                                    |
+| Payment service |                                                                                                                                              |
 |    Suppliers    |                                        Electronics companies who provide the electronics to the store                                        |
 | Shipping service |                                                    Offers different ways to ship products                                                    |
-|    Tech team    | Software engineers and IT professionals responsible for developing, maintaining the system and ensuring the security and privacy of user data |
+|    Tech admin    | Software engineers and IT professionals responsible for developing, maintaining the system and ensuring the security and privacy of user data |
 
 # Context Diagram and interfaces
 
@@ -57,14 +57,13 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 ## Interfaces
 
-|      Actor      |      Logical Interface      | Physical Interface |
-| :--------------: | :-------------------------: | :----------------: |
-|     Customer     |   the GUI of the website   |   PC/Smartphone   |
-|     Manager     |   the GUI of the website   |   PC/Smartphone   |
-| Payment service |             API             |      Internet      |
-| Shipping service | https://www.poste.it/  etc. |      Internet      |
-|  Business owner  |   the GUI of the website   |   PC/Smartphone   |
-|    Tech team    |   the GUI of the website   |         PC         |
+|      Actor      |   Logical Interface   | Physical Interface |
+| :-------------: | :--------------------: | :----------------: |
+|    Customer    | the GUI of the website |   PC/Smartphone   |
+|     Manager     | the GUI of the website |   PC/Smartphone   |
+| Payment service |          API          |      Internet      |
+| Business admin | the GUI of the website |   PC/Smartphone   |
+|   Tech admin   | the GUI of the website |         PC         |
 
 # Stories and personas
 
@@ -131,11 +130,11 @@ The manager of EZElectronics, wants to increase sales and remain competitive. He
 
 ## Table of rights
 
-|                      | **FR1.1<br />FR1.2** | **FR1.3** | FR2.1<br />FR2.3<br />FR2.4 | **FR2.2** | FR2.5 | FR3.1<br />FR3.2 | FR4 |
-| :------------------: | :------------------------: | :-------------: | :-------------------------: | --------------- | ----- | ---------------- | --- |
-|  **Manager**  |             Y             |        Y        |              Y              | N               | Y     | Y                | Y   |
-|  **Customer**  |             N             |        Y        |              Y              | Y               | N     | Y                | N   |
-| **Tech admin** |             N             |        Y        |              Y              | N               | Y     | Y                | N   |
+|                      | **FR1.1<br />FR1.2** | **FR1.3** | FR2.1<br />FR2.3<br />FR2.4 | **FR2.2** | FR2.5 | FR3 | FR4 |
+| :------------------: | :------------------------: | :-------------: | :-------------------------: | --------------- | ----- | --- | --- |
+|  **Manager**  |             Y             |        Y        |              Y              | N               | Y     | Y   | Y   |
+|  **Customer**  |             N             |        Y        |              Y              | Y               | N     | Y   | N   |
+| **Tech admin** |             N             |        Y        |              Y              | N               | Y     | Y   | N   |
 
 ## Non Functional Requirements
 
