@@ -4,9 +4,9 @@ Date: 27/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |        Change        |
-| :------------: | :------------------: |
-|      1.10      | Add Glossary diagram |
+| Version number |         Change         |
+| :------------: | :---------------------: |
+|      1.11      | Add Deployment Diagram |
 
 # Contents
 
@@ -461,12 +461,6 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ![1714347618181](image/RequirementsDocumentV1/1714347618181.png)
 
-# System Design
-
-\<describe here system design>
-
-\<must be consistent with Context diagram>
-
 # Deployment Diagram
 
-\<describe here deployment diagram >
+![1714347805237](image/RequirementsDocumentV1/1714347805237.png)
