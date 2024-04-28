@@ -1,12 +1,12 @@
 # Requirements Document - current EZElectronics
 
-Date: 24/04/2024
+Date: 27/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |   Change   |
-| :------------: | :---------: |
-|      1.7      | Fix stories |
+| Version number |                    Change                    |
+| :------------: | :-------------------------------------------: |
+|      1.8      | Fix functional requirements + table of rights |
 
 # Contents
 
@@ -103,32 +103,32 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ## Functional Requirements
 
-| ID            |                                                  Description                                                  |
-| :------------ | :-----------------------------------------------------------------------------------------------------------: |
-| **FR1** |                                           **Manage products**                                           |
-| FR1.1         |               Add a set of products or a single product, delete products from the product list               |
-| FR1.2         |                                            Mark a product as sold                                            |
-| FR1.3         |                            Retrieve a list of products (by model, category or id)                            |
-| **FR2** |                                            **Manage carts**                                            |
-| FR2.1         |                    Delete entire cart for a single user or delete a product from the cart                    |
-| FR2.2         |                                               Check out a cart                                               |
-| FR2.3         |                                      Retrieve the cart list from a user                                      |
-| FR2.4         |                                          Adds a product to the cart                                          |
-| FR2.5         |                                               Delete all carts                                               |
-| **FR3** |                                  **Authorization and authentication**                                  |
-| FR3.1         |                                              Log in and log out                                              |
-| FR3.2         |                           Retrieves information about the currently logged in user                           |
-| **FR4** |                                            **Manage users**                                            |
-| FR4.1         | Create user with provided information like(username, PSW, ...)or delete user (a specific user or all of them) |
-| FR4.2         |                                 Retrieve a list of users (by username, role)                                 |
+| ID            |                                       Description                                       |
+| :------------ | :--------------------------------------------------------------------------------------: |
+| **FR1** |                                **Manage products**                                |
+| FR1.1         |                             Add a product, delete a product                             |
+| FR1.2         |                                  Mark a product as sold                                  |
+| FR1.3         |                  Retrieve a list of products (by model, category or id)                  |
+| FR1.4         |               Registers the arrival of a set of products of the same model               |
+| **FR2** |                                  **Manage carts**                                  |
+| FR2.1         |            Removes a product from the current cart , Deletes the current cart            |
+| FR2.2         |                                     Check out a cart                                     |
+| FR2.3         |                                  View the current cart                                  |
+| FR2.4         |                                Adds a product to the cart                                |
+| FR2.5         |                             Returns the history of the carts                             |
+| **FR3** |                        **Authorization and authentication**                        |
+| FR3.1         |                                    Log in and log out                                    |
+| FR3.2         |                 Retrieves information about the currently logged in user                 |
+| **FR4** |                                  **Manage users**                                  |
+| FR4.1         |                                      Create a user                                      |
+| FR4.2         | Delete a user , retrieve a list of users by their role , retrieve a user by the username |
 
 ## Table of rights
 
-|                      | **FR1.1<br />FR1.2** | **FR1.3** | FR2.1<br />FR2.3<br />FR2.4 | **FR2.2** | FR2.5 | FR3 | FR4 |
-| :------------------: | :------------------------: | :-------------: | :-------------------------: | --------------- | ----- | --- | --- |
-|  **Manager**  |             Y             |        Y        |              Y              | N               | Y     | Y   | Y   |
-|  **Customer**  |             N             |        Y        |              Y              | Y               | N     | Y   | N   |
-| **Tech admin** |             N             |        Y        |              Y              | N               | Y     | Y   | N   |
+|                    | **FR1.1<br />FR1.2<br />FR1.4** | **FR1.3** | FR2.1<br />FR2.3 | **FR2.2<br />FR2.4** | FR2.5 | FR3 | FR4.1 | FR4.2 |
+| :----------------: | :-----------------------------------: | :-------------: | :--------------: | -------------------------- | ----- | --- | ----- | ----- |
+| **Manager** |                   Y                   |        Y        |        Y        | N                          | Y     | Y   | Y     | Y     |
+| **Customer** |                   N                   |        Y        |        Y        | Y                          | N     | Y   | Y     | N     |
 
 ## Non Functional Requirements
 
