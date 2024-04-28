@@ -4,9 +4,9 @@ Date: 27/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |               Change               |
-| :------------: | :--------------------------------: |
-|      1.9      | Add Use case diagram and use cases |
+| Version number |        Change        |
+| :------------: | :------------------: |
+|      1.10      | Add Glossary diagram |
 
 # Contents
 
@@ -459,9 +459,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 # Glossary
 
-\<use UML class diagram to define important terms, or concepts in the domain of the application, and their relationships>
-
-\<concepts must be used consistently all over the document, ex in use cases, requirements etc>
+![1714347618181](image/RequirementsDocumentV1/1714347618181.png)
 
 # System Design
 
