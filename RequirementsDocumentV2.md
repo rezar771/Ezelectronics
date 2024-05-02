@@ -4,9 +4,9 @@ Date: 29/04/2024
 
 Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |       Change       |
-| :------------: | :----------------: |
-|      1.3      | Adding Interfaces |
+| Version number |                      Change                      |
+| :------------: | :-----------------------------------------------: |
+|      1.4      | Added Stories and personas + initial FRs and NFRs |
 
 # Contents
 
@@ -68,36 +68,85 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 # Stories and personas
 
-\<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
+#### **Customer Persona**
 
-\<Persona is-an-instance-of actor>
+* **Name**: Alice Johnson
+* **Age**: 30
+* **Occupation**: Software Engineer
+* **Role**: Customer
+* **Background**: Alice is a frequent online shopper who likes technology gadgets. She prefers seamless experiences and is familiar with EZElectronics platforms.
+* **Goals**:
 
-\<stories will be formalized later as scenarios in use cases>
+  Find and purchase products quickly and easily.
+
+  View the contents of her shopping cart and complete the checkout process without delays. see the history of last purchases.
+
+  Track payment status and view past purchases.
+
+#### Manager Persona
+
+* **Name**: Bob Stevens
+* **Age**: 45
+* **Occupation**: Store Manager
+* **Role**: Manager
+* **Background**: Bob is responsible for managing the online store. He has experience in retail and supervises customer orders.
+* **Goals**:
+
+  Add, delete products in the store, check availability and mark them as paid.
+
+  Ensure smooth operation of the EZElectronics platform.
+
+**Customer Stories:**
+
+Alice seeks a smooth and intuitive online shopping experience, with easy navigation, detailed product descriptions, quick addition of items to her cart, and hassle-free purchase completion.
+
+**Manager Stories:**
+
+Bob leads an electronics store, managing stock, purchases, and product selection. Seeking efficiency, Bob desires an intuitive application for real-time stock monitoring and easy product management. Bob also prioritizes a user-friendly interface to streamline customer transactions.
 
 # Functional and non functional requirements
 
 ## Functional Requirements
 
-\<In the form DO SOMETHING, or VERB NOUN, describe high level capabilities of the system>
+| ID            |                                       Description                                       |
+| :------------ | :--------------------------------------------------------------------------------------: |
+| **FR1** |                                **Manage products**                                |
+| FR1.1         |                             Add a product, delete a product                             |
+| FR1.2         |                                  Mark a product as sold                                  |
+| FR1.3         |                    Retrieve a list of products (by model or category)                    |
+| FR1.4         |               Registers the arrival of a set of products of the same model               |
+| FR1.5         |                         Filter a list of products by price, name                         |
+| **FR2** |                                  **Manage carts**                                  |
+| FR2.1         |            Removes a product from the current cart , Deletes the current cart            |
+| FR2.2         |                                     Check out a cart                                     |
+| FR2.3         |                                  View the current cart                                  |
+| FR2.4         |                                Adds a product to the cart                                |
+| FR2.5         |                             Returns the history of the carts                             |
+| **FR3** |                        **Authorization and authentication**                        |
+| FR3.1         |                                    Log in and log out                                    |
+| FR3.2         |                 Retrieves information about the currently logged in user                 |
+| **FR4** |                                  **Manage users**                                  |
+| FR4.1         |                                      Create a user                                      |
+| FR4.2         | Delete a user , retrieve a list of users by their role , retrieve a user by the username |
 
-\<they match to high level use cases>
+## Table of rights
 
-|  ID  | Description |
-| :---: | :---------: |
-|  FR1  |            |
-|  FR2  |            |
-| FRx.. |            |
+|                    | **FR1.1<br />FR1.2<br />FR1.4** | **FR1.3** | FR2 | FR3 | FR4.1 | FR4.2 |
+| :----------------: | :-----------------------------------: | :-------------: | :-: | --- | ----- | ----- |
+| **Manager** |                   Y                   |        Y        |  Y  | Y   | Y     | Y     |
+| **Customer** |                   N                   |        Y        |  Y  | Y   | Y     | N     |
 
 ## Non Functional Requirements
 
-\<Describe constraints on functional requirements>
-
-|   ID   | Type (efficiency, reliability, ..) | Description | Refers to |
-| :-----: | :--------------------------------: | :---------: | :-------: |
-|  NFR1  |                                    |            |          |
-|  NFR2  |                                    |            |          |
-|  NFR3  |                                    |            |          |
-| NFRx .. |                                    |            |          |
+|  ID  | Type (efficiency, reliability, ..) |                                        Description                                        | Refers to |
+| :--: | :--------------------------------: | :---------------------------------------------------------------------------------------: | :-------: |
+| NFR1 |             Usability             |            Application should be used with no specific training for the users            |  ALL FR  |
+| NFR2 |             Efficiency             |                        All functions should complete in < 0.5 sec                        |  ALL FR  |
+| NFR3 |            Reliability            | The frontend service must be always up, at least to serve an information page to the user |  ALL FR  |
+| NFR4 |          Maintainability          |             Adding or updating a function must always take no more than 16 ph             |  ALL FR  |
+| NFR5 |            Portability            |                      The site must be usable on all kind of devices                      |  ALL FR  |
+| NFR6 |              Security              | The user's password should be hashed. Only the hashed value may be stored in the database | FR3 - FR4 |
+| NFR7 |              Privacy              |              The data of a customer should not be disclosed outside the site              | FR3 - FR4 |
 
 # Use case diagram and use cases
 
