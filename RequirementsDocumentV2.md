@@ -4,9 +4,9 @@ Date: 29/04/2024
 
 Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |                      Change                      |
-| :------------: | :-----------------------------------------------: |
-|      1.4      | Added Stories and personas + initial FRs and NFRs |
+| Version number |                 Change                 |
+| :------------: | :-------------------------------------: |
+|      1.5      | Added new FRs and fixed Table of rights |
 
 # Contents
 
@@ -122,19 +122,38 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 | FR2.3         |                                  View the current cart                                  |
 | FR2.4         |                                Adds a product to the cart                                |
 | FR2.5         |                             Returns the history of the carts                             |
+| FR2.6         |                                Apply a coupon on the cart                                |
 | **FR3** |                        **Authorization and authentication**                        |
 | FR3.1         |                                    Log in and log out                                    |
 | FR3.2         |                 Retrieves information about the currently logged in user                 |
+| FR3.3         |                                     Recover password                                     |
+| FR3.4         |                                  Edit login information                                  |
 | **FR4** |                                  **Manage users**                                  |
 | FR4.1         |                                      Create a user                                      |
 | FR4.2         | Delete a user , retrieve a list of users by their role , retrieve a user by the username |
+| **FR5** |                           **Compute domain statistics**                           |
+| FR5.1         |                       Compute average worth of sellings in a week                       |
+| FR5.2         |               Compute trend of sellings for a brand (what sells the most)               |
+| **FR6**      |                                  **Product tracking**                                  |
+| FR6.1         |                   Retrieve (approximately) the position of the product                   |
+| FR6.2         |                  Notify if the product it’s been sended by the market                  |
+| FR6.3         |                     Notify if the product it’s in delivering phase                     |
+| **FR7**      |                                   **Manage reviews**                                   |
+| FR7.1         |                                     Create a review                                     |
+| FR7.2         |                                 Accept or delete review                                 |
+| FR7.3         |                       Retrieve all published reviews for a product                       |
+| FR7.4         |                       Retrieve all suspended reviews for a product                       |
+| FR7.5         |                          Filter reviews by satisfaction rating                          |
+| **FR8**      |                                    **Manage coupon**                                    |
+| FR8.1         |             Create - Edit - Delete discount code, Search for a discount code             |
+| FR8.2         |                                 View all discount codes                                 |
 
 ## Table of rights
 
-|                    | **FR1.1<br />FR1.2<br />FR1.4** | **FR1.3** | FR2 | FR3 | FR4.1 | FR4.2 |
-| :----------------: | :-----------------------------------: | :-------------: | :-: | --- | ----- | ----- |
-| **Manager** |                   Y                   |        Y        |  Y  | Y   | Y     | Y     |
-| **Customer** |                   N                   |        Y        |  Y  | Y   | Y     | N     |
+|                    | **FR1.1<br />FR1.2<br />FR1.4** | **FR1.3<br />**FR1.5**** | FR2 | FR3 | FR4.1<br />**FR4.3** | FR4.2 | **FR5** | **FR6** | **FR7.1<br />**FR7.3<br />**FR7.5****** | **FR7.2<br />**FR7.4**** | **FR8** |
+| :----------------: | :-----------------------------------: | :----------------------------------: | :-: | --- | -------------------------- | ----- | ------------- | ------------- | --------------------------------------------------------- | ------------------------------------ | ------------- |
+| **Manager** |                   Y                   |                  Y                  |  Y  | Y   | Y                          | Y     | Y             | Y             | N                                                         | Y                                    | Y             |
+| **Customer** |                   N                   |                  Y                  |  Y  | Y   | Y                          | N     | N             | N             | Y                                                         | N                                    | N             |
 
 ## Non Functional Requirements
 
