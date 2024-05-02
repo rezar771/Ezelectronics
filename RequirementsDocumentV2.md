@@ -1,12 +1,12 @@
 # Requirements Document - future EZElectronics
 
-Date: 29/04/2024
+Date: 02/04/2024
 
 Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |         Change         |
-| :------------: | :--------------------: |
-|      1.6      | Added Use case diagram |
+| Version number |     Change     |
+| :------------: | :-------------: |
+|      1.7      | Added use cases |
 
 # Contents
 
@@ -173,46 +173,1127 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ![Use case diagram v2](image/RequirementsDocumentV2/Use case diagram v2.png)
 
-### Use case 1, UC1
+### Use case 1, UC1 - ***Add products : m**anager wants to add products to the database*
 
-| Actors Involved |                                                                      |
-| :--------------: | :------------------------------------------------------------------: |
-|   Precondition   | \<Boolean expression, must evaluate to true before the UC can start> |
-|  Post condition  |  \<Boolean expression, must evaluate to true after UC is finished>  |
-| Nominal Scenario |         \<Textual description of actions executed by the UC>         |
-|     Variants     |                      \<other normal executions>                      |
-|    Exceptions    |                        \<exceptions, errors >                        |
+| Actors Involved |                      **Manager**                      |
+| :--------------: | :---------------------------------------------------------: |
+|   Precondition   |           Manager has an account and is logged in           |
+|  Post condition  |                                                            |
+| Nominal Scenario |                           ap1,ap2                           |
+|     Variants     |                                                            |
+|    Exceptions    | ap3(the product already exist), ap4(wrong arrivalDate), ap5 |
 
-##### Scenario 1.1
+##### Scenario 1.1 - ap1
 
-\<describe here scenarios instances of UC1>
+|  Scenario 1.1  |                                                Add a single product                                                |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                     The manager has an account and is logged in                                     |
+| Post condition |                                    The new product is added to the product list                                    |
+|   *Step#*   |                                                   *Description*                                                   |
+|       1       |                                   The manager selects "Add a New Product" button                                   |
+|       2       | The manager enters the new product details (code, sellingPrice, model, category, arrivalDate, sellingDate, details) |
+|       3       |                                     The manager clicks on "Save Product" button                                     |
+|       4       |                        The system displays a success message indicating the product is saved                        |
 
-\<a scenario is a sequence of steps that corresponds to a particular execution of one use case>
+##### Scenario 1.2 - ap2
 
-\<a scenario is a more formal description of a story>
+|  Scenario 1.2  |                           **Register the arrival of a set of products of the same model**                           |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                        The manager has an account and is logged in                                        |
+| Post condition |                             The arrival of a set of products of the same model is registered                             |
+|   *Step#*   |                                                      *Description*                                                      |
+|       1       |                                    The manager selects "Add a set of Products" button                                    |
+|       2       | The manager enters the new product details ( quantity , sellingPrice, model, category, arrivalDate, sellingDate, details) |
+|       3       |                                        The manager clicks on "Save Product" button                                        |
+|       4       |                            The system displays a success message “the arrival is registered”                            |
 
-\<only relevant scenarios should be described>
+##### Scenario 1.3 - ap3
 
-|  Scenario 1.1  |                                                                            |
+|  Scenario 1.3  |                                         **Failed to add a single product**                                         |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |              The manager has an account and is logged in . The product's code already exist in the database              |
+| Post condition |                                  The new product failed to be added to the product list                                  |
+|   *Step#*   |                                                      *Description*                                                      |
+|       1       |                                      The manager selects "Add a New Product" button                                      |
+|       2       | The manager enters the new product details ( quantity , sellingPrice, model, category, arrivalDate, sellingDate, details) |
+|       3       |                                        The manager clicks on "Save Product" button                                        |
+|       4       |                          The system displays an error message “409- the product already exist”                          |
+
+##### Scenario 1.4 - ap4
+
+|  Scenario 1.4  |                                         **Failed to add a single product**                                         |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                  The manager has an account and is logged in . The arrivalDate is after the current date                  |
+| Post condition |                                  The new product failed to be added to the product list                                  |
+|   *Step#*   |                                                      *Description*                                                      |
+|       1       |                                      The manager selects "Add a New Product" button                                      |
+|       2       | The manager enters the new product details ( quantity , sellingPrice, model, category, arrivalDate, sellingDate, details) |
+|       3       |                                        The manager clicks on "Save Product" button                                        |
+|       4       |                       The system displays an error message “arrivalDateis after the current date”                       |
+
+##### Scenario 1.5 - ap5
+
+|  Scenario 1.5  |                      **Failed to register the arrival of a set of products of the same model**                      |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                        The manager has an account and is logged in                                        |
+| Post condition |                        The arrival of a set of products of the same model that failed to register                        |
+|   *Step#*   |                                                      *Description*                                                      |
+|       1       |                                      The manager selects "Add a New Product" button                                      |
+|       2       | The manager enters the new product details ( quantity , sellingPrice, model, category, arrivalDate, sellingDate, details) |
+|       3       |                                        The manager clicks on "Save Product" button                                        |
+|       4       |                       The system displays an error message “arrivalDateis after the current date”                       |
+
+### Use case 2, UC2 - ***Delete a product**: manager wants to delete products from the database***
+
+| Actors Involved |            **Manager**            |
+| :--------------: | :--------------------------------------: |
+|   Precondition   | Manager has an account and is logged in |
+|  Post condition  |                                          |
+| Nominal Scenario |                   dp1                   |
+|     Variants     |                                          |
+|    Exceptions    | d2(there is no such a product to delete) |
+
+##### Scenario 2.1 - dp1
+
+|  Scenario 2.1  |                            **Delete a product**                            |
+| :------------: | :------------------------------------------------------------------------------: |
+|  Precondition  | The manager has an account and is logged in, the product is in the product list |
+| Post condition |              The selected product is removed from the product list              |
+|   *Step#*   |                                 *Description*                                 |
+|       1       |                      The manager enters the product's code                      |
+|       2       |                 The system will return the corresponding product                 |
+|       3       |                   The manager clicks on the “delete” button                   |
+|       4       | The system removes the product from the product list and shows a success message |
+
+##### Scenario 2.2 - dp2
+
+|  Scenario 2.2  |                              **Failed to delete a product**                              |
+| :------------: | :--------------------------------------------------------------------------------------------: |
+|  Precondition  | The manager has an account and is logged in, the manager enters the product's code incorrectly |
+| Post condition |                                 The system raises an 404 error                                 |
+|   *Step#*   |                                        *Description*                                        |
+|       1       |                             The manager enters the product's code                             |
+|       2       |                        The system will return the corresponding product                        |
+|       3       |                          The manager clicks on the “delete” button                          |
+|       4       |                  The system shows an error message  “404-product not found”                  |
+
+### Use case 3, UC3 - ***Mark a product** **: m**anager wants to mark a product as sold*
+
+| Actors Involved |                                                **Manager**                                                |
+| :--------------: | :--------------------------------------------------------------------------------------------------------------: |
+|   Precondition   |                                     Manager has an account and is logged in                                     |
+|  Post condition  |                                                                                                                  |
+| Nominal Scenario |                                                       mp1                                                       |
+|     Variants     |                                                                                                                  |
+|    Exceptions    | mp2(product not exist),mp3(selling date>current date),mp4(selling date< arrival date),mp5(product has been sold) |
+
+##### Scenario 3.1 - mp1
+
+|  Scenario 3.1  |                         **Mark a product as sold**                         |
+| :------------: | :------------------------------------------------------------------------------: |
+|  Precondition  | The manager has an account and is logged in, and the product is marked as unsold |
+| Post condition |                    The product is marked as sold in the order                    |
+|   *Step#*   |                                 *Description*                                 |
+|       1       |                      The manager enters the product's code                      |
+|       2       |                  The system returns the product and its details                  |
+|       3       |     The manager marks the product as "sold" by entering “yes” in its field     |
+|       4       |                  The manager enter “selling date” (optional)                  |
+|       5       |                     The system displays a successful message                     |
+
+##### Scenario 3.2 - mp2
+
+|  Scenario 3.2  |                      **Failed to mark a product as sold-not found**                      |
+| :------------: | :---------------------------------------------------------------------------------------------: |
+|  Precondition  | The manager has an account and is logged in. The manager enters the product’s code incorrectly |
+| Post condition |                      The product failed to be marked as sold in the order                      |
+|   *Step#*   |                                         *Description*                                         |
+|       1       |                              The manager enters the product's code                              |
+|       2       |                    The system shows an error message 404-product not found"                    |
+
+##### Scenario 3.3 - mp3
+
+|  Scenario 3.3  |      **Failed to mark a product as sold- selling date>current date**      |
+| :------------: | :------------------------------------------------------------------------------: |
+|  Precondition  | The manager has an account and is logged in, and the product is marked as unsold |
+| Post condition |               The product failed to be marked as sold in the order               |
+|   *Step#*   |                                 *Description*                                 |
+|       1       |                      The manager enters the product's code                      |
+|       2       |                  The system returns the product and its details                  |
+|       3       |     The manager marks the product as "sold" by entering “yes” in its field     |
+|       4       |                  The manager enter “selling date” (optional)                  |
+|       5       |    The system shows an error message”sellingDate is after the current date”    |
+
+##### Scenario 3.4 - mp4
+
+|  Scenario 3.4  |     **Failed to mark a product as sold - selling date< arrival date**     |
+| :------------: | :------------------------------------------------------------------------------: |
+|  Precondition  | The manager has an account and is logged in, and the product is marked as unsold |
+| Post condition |               The product failed to be marked as sold in the order               |
+|   *Step#*   |                                 *Description*                                 |
+|       1       |                      The manager enters the product's code                      |
+|       2       |                  The system returns the product and its details                  |
+|       3       |     The manager marks the product as "sold" by entering “yes” in its field     |
+|       4       |                  The manager enter “selling date” (optional)                  |
+|       5       |   The system shows an error message”sellingDate is before the arrival date”   |
+
+##### Scenario 3.5 - mp5
+
+|  Scenario 3.5  |  **Failed to mark a product as sold - the product has been sold**  |
+| :------------: | :----------------------------------------------------------------------: |
+|  Precondition  |               The manager has an account and is logged in               |
+| Post condition |           The product failed to be marked as sold in the order           |
+|   *Step#*   |                             *Description*                             |
+|       1       |                  The manager enters the product's code                  |
+|       2       |              The system returns the product and its details              |
+|       3       | The manager marks the product as "sold" by entering “yes” in its field |
+|       4       | The system shows an error message “the product already has been sold” |
+
+### Use case 4, UC4 - ***View products** **: u**ser wants to see the products on the database*
+
+| Actors Involved |    **Manager or Customer**    |
+| :--------------: | :----------------------------------: |
+|   Precondition   | User has an account and is logged in |
+|  Post condition  |                                      |
+| Nominal Scenario |                 vp1                 |
+|     Variants     |               vp3,vp4               |
+|    Exceptions    |        vp2(product not found)        |
+
+##### Scenario 4.1 - vp1
+
+|  Scenario 4.1  |               **View all products**               |
+| :------------: | :------------------------------------------------------: |
+|  Precondition  |         The user has an account and is logged in         |
+| Post condition |               Returns the list of products               |
+|   *Step#*   |                     *Description*                     |
+|       1       |        The User selects “products” section page        |
+|       2       |    User filters by sold or unsold products (optional)    |
+|       3       | The system retrieve the list of products and its details |
+
+##### Scenario 4.2 - vp2
+
+|  Scenario 4.2  |        **Failed to view a specific product**        |
+| :------------: | :--------------------------------------------------------: |
+|  Precondition  |          The user has an account and is logged in          |
+| Post condition |                 The system raises an error                 |
+|   *Step#*   |                      *Description*                      |
+|       1       |         The User selects “products” section page         |
+|       2       |             The User is looking for a product             |
+|       3       | The system shows an error message “404-product not found" |
+
+##### Scenario 4.3 - vp3
+
+|  Scenario 4.3  |      **View a specific product by code**      |
+| :------------: | :--------------------------------------------------: |
+|  Precondition  |       The user has an account and is logged in       |
+| Post condition |                 Returns the product                 |
+|   *Step#*   |                   *Description*                   |
+|       1       |      The User selects “products” section page      |
+|       2       |  User searches for products that have not been sold  |
+|       3       | The system shows the details of the selected product |
+
+##### Scenario 4.4 - vp4
+
+|  Scenario 4.4  |         **View specific products - model and category**         |
+| :------------: | :--------------------------------------------------------------------: |
+|  Precondition  |                The user has an account and is logged in                |
+| Post condition |                      Returns the list of products                      |
+|   *Step#*   |                            *Description*                            |
+|       1       |             The User navigate to the “products” section             |
+|       2       |         The User enters one of these fields (model, category)         |
+|       3       |           User filters by sold or unsold products (optional)           |
+|       4       | The system retrieve the list of products corresponding the given Field |
+
+### Use case 5, UC5 - ***View the current cart**: **Customer wants to see the current cart***
+
+| Actors Involved |            **Customer**            |
+| :--------------: | :--------------------------------------: |
+|   Precondition   | Customer has an account and is logged in |
+|  Post condition  |                                          |
+| Nominal Scenario |                   vc1                   |
+|     Variants     |                                          |
+|    Exceptions    | d2(there is no such a product to delete) |
+
+##### Scenario 5.1 - vc1
+
+|  Scenario 5.1  |               View the current cart               |
+| :------------: | :-----------------------------------------------: |
+|  Precondition  |   The Customer has an account and is logged in   |
+| Post condition |           Returns the list of products           |
+|   *Step#*   |                  *Description*                  |
+|       1       |       The Customer selects “cart” section       |
+|       2       | The system retrieves the current cart and details |
+
+### Use case 6, UC6 - ***Add a product to the cart***: c*ustomer wants to add the products to the cart*
+
+| Actors Involved |            **Costumer**            |
+| :--------------: | :--------------------------------------: |
+|   Precondition   | Customer has an account and is logged in |
+|  Post condition  |                                          |
+| Nominal Scenario |                   ac1                   |
+|     Variants     |                                          |
+|    Exceptions    |               ac2,ac3,ac4               |
+
+##### Scenario 6.1 - ac1
+
+|  Scenario 6.1  |              **Add a product to the cart**              |
+| :------------: | :-----------------------------------------------------------: |
+|  Precondition  |         The customer has an account and is logged in         |
+| Post condition |              The products are added to the cart              |
+|   *Step#*   |                        *Description*                        |
+|       1       |          The customer navigates to the products page          |
+|       2       |      The customer choose the products that is available      |
+|       3       |              The customer Click on 'add to cart'              |
+|       4       | The system will increase the quantity of products in the cart |
+|       5       | The system displays the message 'Product added successfully' |
+
+##### Scenario 6.2 - ac2
+
+|  Scenario 6.2  |          **Failed to add a product to the cart - not found**          |
+| :------------: | :-------------------------------------------------------------------------: |
+|  Precondition  | The customer has an account and is logged in and unable to find the product |
+| Post condition |                     The products are added to the cart                     |
+|   *Step#*   |                               *Description*                               |
+|       1       |                 The customer navigates to the products page                 |
+|       2       |           The customer choose the products but it is unavailable           |
+|       3       |                     The customer Click on 'add to cart'                     |
+|       4       |     The system displays an error message “404- the product not found”     |
+
+##### Scenario 6.3 - ac3
+
+|  Scenario 6.3  |          **Failed to add a product to the cart - another cart**          |
+| :------------: | :-----------------------------------------------------------------------------: |
+|  Precondition  |   The customer has an account and is logged in and choose a duplicate product   |
+| Post condition |                       The products are added to the cart                       |
+|   *Step#*   |                                 *Description*                                 |
+|       1       |                   The customer navigates to the products page                   |
+|       2       |             The customer choose the products but it is unavailable             |
+|       3       |                       The customer Click on 'add to cart'                       |
+|       4       | The system displays the message '409- product that is already in another cart ' |
+
+##### Scenario 6.4 - ac4
+
+|  Scenario 6.4  |              **Failed to add a product to the cart - sold**              |
+| :------------: | :----------------------------------------------------------------------------: |
+|  Precondition  | The customer has an account and is logged in and choose an unavailable product |
+| Post condition |                       The products are added to the cart                       |
+|   *Step#*   |                                *Description*                                |
+|       1       |                  The customer navigates to the products page                  |
+|       2       |             The customer choose the products but it is unavailable             |
+|       3       |                      The customer Click on 'add to cart'                      |
+|       4       |     The system displays the message “409- product has already been sold”     |
+
+### Use case 7, UC7 - ***Removes a product from the cart**: customer wants to delete products from the cart*
+
+| Actors Involved |                                           Customer                                           |
+| :--------------: | :-------------------------------------------------------------------------------------------: |
+|   Precondition   |                           Customer has an account and is logged in                           |
+|  Post condition  |                                                                                              |
+| Nominal Scenario |                                              rc1                                              |
+|     Variants     |                                                                                              |
+|    Exceptions    | rc2 (product not found), rc3 (cart not found), rc4(product is unavailable), rc5(product sold) |
+
+##### Scenario 7.1 - rc1
+
+|  Scenario 7.1  |                                    **Removes a product from the cart**                                    |
+| :------------: | :-------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                   The customer is logged in and has at least one product in the shopping cart                   |
+| Post condition |                          The selected product has been removed from the shopping cart                          |
+|   *Step#*   |                                                 *Description*                                                 |
+|       1       |                          The customer browses through the list of products in the cart                          |
+|       2       |                       The customer Choose the product that wants to remove from the cart                       |
+|       3       |                              The customer Clicks on the 'remove from cart' button                              |
+|       4       | The system displays the message 'products removed successfully ' and updates the total and quantity of products |
+
+##### Scenario 7.2 - rc2
+
+|  Scenario 7.2  |     Failed to Remove a product from the cart- product not found     |
+| :------------: | :------------------------------------------------------------------: |
+|  Precondition  |           The customer is logged in and the cart is empty           |
+| Post condition |     The selected product has been removed from the shopping cart     |
+|   *Step#*   |                           *Description*                           |
+|       1       |    The customer browses through the list of products in the cart    |
+|       2       |  The customer Choose the product that wants to remove from the cart  |
+|       3       |         The customer Clicks on the 'remove from cart' button         |
+|       4       | The system displays an error  message “404- the product not found” |
+
+##### Scenario 7.3 - rc3
+
+|  Scenario 7.3  |      Failed to Remove a product from the cart- cart not found      |
+| :------------: | :----------------------------------------------------------------: |
+|  Precondition  |          The customer is logged in and did not add a cart          |
+| Post condition |    The selected product has been removed from the shopping cart    |
+|   *Step#*   |                          *Description*                          |
+|       1       |   The customer browses through the list of products in the cart   |
+|       2       | The customer Choose the product that wants to remove from the cart |
+|       3       |        The customer Clicks on the 'remove from cart' button        |
+|       4       | The system displays an error  message “404- the cart not found” |
+
+##### Scenario 7.4 - rc4
+
+|  Scenario 7.4  | **Failed to Remove a product from the cart- product is unavailable** |
 | :------------: | :------------------------------------------------------------------------: |
-|  Precondition  | \<Boolean expression, must evaluate to true before the scenario can start> |
-| Post condition |  \<Boolean expression, must evaluate to true after scenario is finished>  |
-|     Step#     |                                Description                                |
-|       1       |                                                                            |
-|       2       |                                                                            |
-|      ...      |                                                                            |
+|  Precondition  |              The customer is logged in and did not add a cart              |
+| Post condition |        The selected product has been removed from the shopping cart        |
+|   *Step#*   |                              *Description*                              |
+|       1       |       The customer browses through the list of products in the cart       |
+|       2       |     The customer Choose the product that wants to remove from the cart     |
+|       3       |            The customer Clicks on the 'remove from cart' button            |
+|       4       |   The system displays an error  message “404- product is unavailable”   |
 
-##### Scenario 1.2
+##### Scenario 7.5 - rc5
 
-##### Scenario 1.x
+|  Scenario 7.5  |     **Failed to Remove a product from the cart- product is sold**     |
+| :------------: | :--------------------------------------------------------------------------: |
+|  Precondition  |               The customer is logged in and did not add a cart               |
+| Post condition |         The selected product has been removed from the shopping cart         |
+|   *Step#*   |                               *Description*                               |
+|       1       |        The customer browses through the list of products in the cart        |
+|       2       |      The customer Choose the product that wants to remove from the cart      |
+|       3       |             The customer Clicks on the 'remove from cart' button             |
+|       4       | The system displays an error  message “404- product has already been sold” |
 
-### Use case 2, UC2
+### Use case 8, UC8 - ***Delete the current cart: **customer wants to delete the current cart*****
 
-..
+| Actors Involved |                 Customer                 |
+| :--------------: | :--------------------------------------: |
+|   Precondition   | Customer has an account and is logged in |
+|  Post condition  |                                          |
+| Nominal Scenario |                   dc1                   |
+|     Variants     |                                          |
+|    Exceptions    |                   dc2                   |
 
-### Use case x, UCx
+##### Scenario 8.1 - dc1
 
-..
+|  Scenario 8.1  |                                        **Delete the current cart**                                        |
+| :------------: | :-------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                   The customer is logged in and has at least one product in the shopping cart                   |
+| Post condition |                                            The cart has been deleted                                            |
+|   *Step#*   |                                                 *Description*                                                 |
+|       1       |                                     The customer navigate to the dashboard                                     |
+|       2       |                                      The customer Choose the cart section                                      |
+|       3       |                                 The customer Choose “delete the cart” button                                 |
+|       4       | The system displays the message 'the cart deleted successfully ' and updates the total and quantity of products |
+
+##### Scenario 8.2 - dc2
+
+|  Scenario 8.2  |                 **Failed to delete the current cart**                 |
+| :------------: | :-------------------------------------------------------------------------: |
+|  Precondition  | The customer is logged in and has at least one product in the shopping cart |
+| Post condition |                          The cart has been deleted                          |
+|   *Step#*   |                               *Description*                               |
+|       1       |                   The customer navigate to the dashboard                   |
+|       2       |                    The customer Choose the cart section                    |
+|       3       |               The customer Choose “delete the cart” button               |
+|       4       |        The system displays an error message “404- cart not found”        |
+
+### Use case 9, UC9 - ***Check out a cart**: **customer wants to check out the current cart***
+
+| Actors Involved |                              Customer                              |
+| :--------------: | :----------------------------------------------------------------: |
+|   Precondition   |              Customer has an account and is logged in              |
+|  Post condition  |                                                                    |
+| Nominal Scenario |                              ck1,ck4                              |
+|     Variants     |                                                                    |
+|    Exceptions    | ck2(cart not found), ck3(cart is empty), ck5(wrong discount code) |
+
+##### Scenario 9.1 - ck1
+
+|  Scenario 9.1  |                                   **Successful payment**                                   |
+| :------------: | :----------------------------------------------------------------------------------------------: |
+|  Precondition  |           The customer is logged in and has at least one product in the shopping cart           |
+| Post condition |                    The customer has bought all products in the shopping cart                    |
+|   *Step#*   |                                         *Description*                                         |
+|       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
+|       2       |                        The customer Clicks on 'proceed with order' button                        |
+|       3       |                           The system shows the methods of the payment                           |
+|       4       |                          The customer choose one method of the payment                          |
+|       5       |       The purchase is completed with the current date of purchase in the format YYYY-MM-DD       |
+|       6       |                         The products in the cart are marked as “sold”                         |
+|       7       |    The system shows the message successful payment' and a summary of details of the shopping    |
+
+##### Scenario 9.2 - ck2
+
+|  Scenario 9.2  |                     **Failed to complete the payment- cart not found**                     |
+| :------------: | :----------------------------------------------------------------------------------------------: |
+|  Precondition  |                                    The customer is logged in                                    |
+| Post condition |                    The customer has bought all products in the shopping cart                    |
+|   *Step#*   |                                         *Description*                                         |
+|       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
+|       2       |                        The customer Clicks on 'proceed with order' button                        |
+|       3       |                           The system shows the methods of the payment                           |
+|       4       |                          The customer choose one method of the payment                          |
+|  **5**  |                               The purchase has not been completed                               |
+|       6       |     The system displays an error message '404- Unsuccessful payment, the cart was not found     |
+
+##### Scenario 9.3 - ck3
+
+|  Scenario 9.3  |                     **Failed to complete the payment- cart is empty**                     |
+| :------------: | :----------------------------------------------------------------------------------------------: |
+|  Precondition  |                                    The customer is logged in                                    |
+| Post condition |                    The customer has bought all products in the shopping cart                    |
+|   *Step#*   |                                         *Description*                                         |
+|       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
+|       2       |                        The customer Clicks on 'proceed with order' button                        |
+|       3       |                           The system shows the methods of the payment                           |
+|       4       |                          The customer choose one method of the payment                          |
+|       5       |                                  The purchase has not completed                                  |
+|       6       |          The system displays an error message 'Unsuccessful payment, the cart is empty'          |
+
+### Use case 10, UC10 - ***Show the history of carts**: **customer wants to see the history of carts that have been paid***
+
+| Actors Involved |                 Customer                 |
+| :--------------: | :--------------------------------------: |
+|   Precondition   | Customer has an account and is logged in |
+|  Post condition  |                                          |
+| Nominal Scenario |                   sh1                   |
+|     Variants     |                                          |
+|    Exceptions    |                                          |
+
+##### Scenario 10.1 - sh1
+
+| Scenario 10.1 |                **History of past carts**                |
+| :------------: | :------------------------------------------------------------: |
+|  Precondition  |    The customer is logged in and has paid at least one cart    |
+| Post condition |                The list of past carts is shown                |
+|   *Step#*   |                        *Description*                        |
+|       1       |        The customer navigates to their profile section        |
+|       2       |        The customer Click in the "view orders" section        |
+|       3       | The system return a list of all past carts that have been paid |
+
+### Use case 11, UC11 - ***Retrieve users**: manager wants to reach a list of the users***
+
+| Actors Involved |                 Manager                 |
+| :--------------: | :-------------------------------------: |
+|   Precondition   | Manager has an account and is logged in |
+|  Post condition  |                                        |
+| Nominal Scenario |                  rur1                  |
+|     Variants     |                  rur2                  |
+|    Exceptions    | ck2(cart not found), ck3(cart is empty) |
+
+##### Scenario 11.1 - rur1
+
+| Scenario 11.1 |                                                  **Retrieve a list of Users**                                                  |
+| :------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                                Users should be exist in the database                                                |
+| Post condition | The list of all users is displayed to the manager, allowing for further management actions such as viewing detailed user information |
+|   *Step#*   |                                                           *Description*                                                           |
+|       1       |                                        The Manager navigates to the "User Management" section                                        |
+|       2       |                                   The Manager clicks on a button to retrieve the list of all users                                   |
+|       3       |          The system fetches and displays the list of users, including relevant information such as usernames, roles, and …          |
+
+##### Scenario 11.2 - ru2
+
+| Scenario 11.2 |                                                           **Retrieve a list of Users with a Specific Role**                                                           |
+| :------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                                                    Users should be exist in the database                                                                    |
+| Post condition | The system displays a list of users with the specified role, allowing the user to manage or interact with those users as needed. The system displays an appropriate message |
+|   *Step#*   |                                                                               *Description*                                                                               |
+|       1       |                                                              The Manager navigates to the user management page                                                              |
+|       2       |                                                     The Manager selects an existing role from a list (e.g., "customer")                                                     |
+|       3       |                                                       The system retrieves a list of users with that role and details                                                       |
+
+### Use case 12, UC12 - **Retrieve a user by username*: manager wants to reach a single user by its username*
+
+| Actors Involved |                 Manager                 |
+| :--------------: | :-------------------------------------: |
+|   Precondition   | Manager has an account and is logged in |
+|  Post condition  |                                        |
+| Nominal Scenario |                  ruu1                  |
+|     Variants     |                                        |
+|    Exceptions    |          ruu2(user not found)          |
+
+##### Scenario 12.1 - ruu1
+
+| Scenario 12.1 |                     **Find the user**                     |
+| :------------: | :--------------------------------------------------------------: |
+|  Precondition  |              Users should be exist in the database              |
+| Post condition |      The system displays a user with the specified username      |
+|   *Step#*   |                         *Description*                         |
+|       1       |        The Manager navigates to the user management page        |
+|       2       |               The Manager enters a unique username               |
+|       3       | The system retrieves a single user and its details as a response |
+
+##### Scenario 12.2 - ruu2
+
+| Scenario 12.2 |                                                                      **Failed to Find the user**                                                                      |
+| :------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                                                    Users should be exist in the database                                                                    |
+| Post condition | The system displays a list of users with the specified role, allowing the user to manage or interact with those users as needed. The system displays an appropriate message |
+|   *Step#*   |                                                                               *Description*                                                                               |
+|       1       |                                                              The Manager navigates to the user management page                                                              |
+|       2       |                                                                    The Manager enters a unique username                                                                    |
+|       3       |                                                        The system shows an error message “404- the user not found”                                                        |
+
+### Use case 13, UC13 - ***Delete a user**: **manager wants to delete an existing user by its username***
+
+| Actors Involved |                 Manager                 |
+| :--------------: | :-------------------------------------: |
+|   Precondition   | Manager has an account and is logged in |
+|  Post condition  |                                        |
+| Nominal Scenario |                   du1                   |
+|     Variants     |                                        |
+|    Exceptions    |          duu2(user not found)          |
+
+##### Scenario 13.1 - duu1
+
+| Scenario 13.1 |                                             **Successful delete**                                             |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                        Users should be exist in the database                                        |
+| Post condition | The specified user is deleted from the database, and their related information is no longer available in the system |
+|   *Step#*   |                                                   *Description*                                                   |
+|       1       |                                  The Manager navigates to the user management page                                  |
+|       2       |                                   The manager enters a username to find the user                                   |
+|       3       |                                     The system returns the user and its details                                     |
+|       4       |                                       The manager clicks on a "Delete" button                                       |
+|       5       |     The system deletes the user from the database and displays a success message “user deleted successfully”     |
+
+##### Scenario 13.2 - duu2
+
+| Scenario 13.2 |                                             **Failed to delete**                                             |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                        Users should be exist in the database                                        |
+| Post condition | The specified user is deleted from the database, and their related information is no longer available in the system |
+|   *Step#*   |                                                   *Description*                                                   |
+|       1       |                                  The Manager navigates to the user management page                                  |
+|       2       |                                   The manager enters a username to find the user                                   |
+|       3       |                                          The system fails to find the user                                          |
+|       4       |                          The system displays an error message “404- the user not found”                          |
+
+### Use case 14, UC14 - *Sign up: **user wants to create an account***
+
+| Actors Involved | User |
+| :--------------: | :--: |
+|   Precondition   |      |
+|  Post condition  |      |
+| Nominal Scenario |  s1  |
+|     Variants     |      |
+|    Exceptions    |  s2  |
+
+##### Scenario 14.1 - S1
+
+| Scenario 14.1 |                              **Create an Account**                              |
+| :------------: | :------------------------------------------------------------------------------------: |
+|  Precondition  |                                                                                        |
+| Post condition | The user account is successfully created, and the user is now registered in the system |
+|   *Step#*   |                                    *Description*                                    |
+|       1       |                        A new user navigates to the sign-up page                        |
+|       2       |                     The user submits the form to create an account                     |
+|       3       |                          The system validates the information                          |
+|       4       |      The system creates a new account for the user and displays a success message      |
+
+##### Scenario 14.2 - S2
+
+| Scenario 14.2 |                                     **Failed to create an Account**                                     |
+| :------------: | :------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                                                                                                |
+| Post condition | The user account is not created due to invalid data, and the system indicates where the corrections are needed |
+|   *Step#*   |                                                *Description*                                                |
+|       1       |                                    A new user navigates to the sign-up page                                    |
+|       2       |                              The user enters username that is already in database                              |
+|       3       |                                 The user submits the form to create an account                                 |
+|       4       |                                  The system fails to validate the information                                  |
+|                |              The system shows an error message “409- this user already exists in the database”              |
+
+### Use case 15, UC15 - *Authentication: the user wants to access the site*
+
+| Actors Involved |                     User                     |
+| :--------------: | :------------------------------------------: |
+|   Precondition   |                                              |
+|  Post condition  | Users access the site with their own profile |
+| Nominal Scenario |                   li1,lo1                   |
+|     Variants     |                                              |
+|    Exceptions    |                     li2                     |
+
+##### Scenario 15.1 - li1
+
+| Scenario 15.1 |                                      **Successful log-in**                                      |
+| :------------: | :---------------------------------------------------------------------------------------------------: |
+|  Precondition  | The user has registered with the system and has valid login credentials (e.g., username and password) |
+| Post condition |                  The user is logged into the system with their specific permissions                  |
+|   *Step#*   |                                            *Description*                                            |
+|       1       |                                 The user navigates to the login page                                 |
+|       2       |                               The user enters the username and password                               |
+|       3       |                                  The user clicks the "Login" button                                  |
+|       4       |                       The system verifies the credentials and creates a session                       |
+|       5       |            The system shows a welcoming message to the user and redirects to the home page            |
+
+##### Scenario 15.2 - li2
+
+| Scenario 15.2 |                      **Unsuccessful log-in**                      |
+| :------------: | :----------------------------------------------------------------------: |
+|  Precondition  | The user has registered with the system but enters incorrect credentials |
+| Post condition |      The user is not logged into the system. No session is created      |
+|   *Step#*   |                             *Description*                             |
+|       1       |                   The user navigates to the login page                   |
+|       2       |         The user enters their username and password incorrectly         |
+|       3       |                    The user clicks the "Login" button                    |
+|       4       |         The system checks the credentials and finds them invalid         |
+|       5       |         The system displays an error message ”User not found”         |
+
+##### Scenario 15.3 - lo1
+
+| Scenario 15.3 |                        **Successful log-out**                        |
+| :------------: | :-------------------------------------------------------------------------: |
+|  Precondition  |                     The user is logged into the system                     |
+| Post condition |                    The user is logged out of the system                    |
+|   *Step#*   |                               *Description*                               |
+|       1       |                 The user navigates to the account dashboard                 |
+|       2       |                   The user clicks on the "Logout" button                   |
+|       3       |  The system expires the user's session and clears any session-related data  |
+|       4       | The system shows a success message and redirects the user to the login page |
+
+### Use case 16, UC16 - ***Filter the products**: u**ser wants to filter the products based on name and price***
+
+| Actors Involved |                 User                 |
+| :--------------: | :----------------------------------: |
+|   Precondition   | User has an account and is logged in |
+|  Post condition  |                                      |
+| Nominal Scenario |               FP1,FP3               |
+|     Variants     |                 FP2                 |
+|    Exceptions    |                                      |
+
+##### Scenario 16.1 - FP1
+
+| Scenario 16.1 |             **Filter the products based on name**             |
+| :------------: | :-----------------------------------------------------------------: |
+|  Precondition  |             More than 1 product exists in the database             |
+| Post condition |       The products filtered correctly and showed to the user       |
+|   *Step#*   |                           *Description*                           |
+|       1       |               The user navigates to the product page               |
+|       2       |               The user browses the “filter” section               |
+|       3       |           The user enters the name of the desired product           |
+|       4       | The system finds the matching products and returns them to the user |
+
+##### Scenario 16.2 - FP2
+
+| Scenario 16.2 |                      **Failed to Filter the products based on name**                      |
+| :------------: | :---------------------------------------------------------------------------------------------: |
+|  Precondition  | More than 1 product exists in the database. The user enters the name of the product incorrectly |
+| Post condition |                   The system raises an error and fails to filter the products                   |
+|   *Step#*   |                                         *Description*                                         |
+|       1       |                             The user navigates to the product page                             |
+|       2       |                             The user browses the “filter” section                             |
+|       3       |                         The user enters the name of the desired product                         |
+|       4       |                The system shows an error message “404- the product not found”                |
+
+##### Scenario 16.3 - FP3
+
+| Scenario 16.3 |                  **Filter the products based on price**                  |
+| :------------: | :----------------------------------------------------------------------------: |
+|  Precondition  |                   More than 1 product exists in the database                   |
+| Post condition |             The products filtered correctly and showed to the user             |
+|   *Step#*   |                                *Description*                                |
+|       1       |                     The user navigates to the product page                     |
+|       2       |                    The user browses the “filter” section                    |
+|       3       |        The user selects the minimum and maximum price range they desire        |
+|       4       | The system displays a list of products that fall within the chosen price range |
+
+### Use case 17, UC17 - *C**ompute domain statistics**: m**anager wants to retrieve the statistics of the sales and what are the most sold brands for this week***
+
+| Actors Involved |                 Manager                 |
+| :--------------: | :-------------------------------------: |
+|   Precondition   | Manager has an account and is logged in |
+|  Post condition  |                                        |
+| Nominal Scenario |                   cas                   |
+|     Variants     |                   cts                   |
+|    Exceptions    |                                        |
+
+##### Scenario 17.1 - cas
+
+| Scenario 17.1 |     **Compute average worth of selling in a week**     |
+| :------------: | :-----------------------------------------------------------: |
+|  Precondition  |          The manager has an account and is logged in          |
+| Post condition |       The manager sees data about the week’s earnings       |
+|   *Step#*   |                        *Description*                        |
+|       1       |          The manager clicks on “statistics” button          |
+|       2       |         The manager clicks on the “earnings” button         |
+|       3       |         The manager selects the week of his interest         |
+|       4       | The system displays information about the earning of the week |
+
+##### Scenario 17.2 - cts
+
+| Scenario 17.2 |                     **Compute trend of selling for each brand**                     |
+| :------------: | :----------------------------------------------------------------------------------------: |
+|  Precondition  |                        The manager has an account and is logged in                        |
+| Post condition |               The manager retrieves a chart of the week's most sold products               |
+|   *Step#*   |                                      *Description*                                      |
+|       1       |                        The manager clicks on “statistics” button                        |
+|       2       |                          The manager clicks on “trends” button                          |
+|       3       |                        The manager selects the week of his interest                        |
+|       4       | The system shows a chart that shows how many unit have been sold of each product that week |
+
+### Use case 18, UC18 - *P**roduct tracking**: t**he customer wants to have informations on the status of the product***
+
+| Actors Involved |                                                Customer                                                |
+| :--------------: | :----------------------------------------------------------------------------------------------------: |
+|   Precondition   |                    Customer has an account and is logged in and purchased a product                    |
+|  Post condition  |                        Customer retrieve information about the product position                        |
+| Nominal Scenario |                                                  rpp                                                  |
+|     Variants     | nsm (Notify if it’s been sent by the market), npd (Notify if the product it’s in the delivery phase) |
+|    Exceptions    |                                                                                                        |
+
+##### Scenario 18.1 - rpp
+
+| Scenario 18.1 |         **Retrieve the position of the product**         |
+| :------------: | :-------------------------------------------------------------: |
+|  Precondition  |      The customer had bought a product and was delivering      |
+| Post condition | The user sees approximately where is the product in that moment |
+|   *Step#*   |                         *Description*                         |
+|       1       |                 The user goes the cart history                 |
+|       2       |   The user clicks on the cart containing the desired product   |
+|       3       |    The user clicks on the “track” button near the product    |
+|       4       |    The system displays information about the product status    |
+
+##### Scenario 18.2 - nsm
+
+| Scenario 18.2 |                                 Notify if it's been sent by the market                                 |
+| :------------: | :-----------------------------------------------------------------------------------------------------: |
+|  Precondition  | The customer is logged in and has purchased a product. The shipping service took charge of the shipment |
+| Post condition |                       The customer receive a notification about the product state                       |
+|   *Step#*   |                                             *Description*                                             |
+|       1       |                          The manager gives the product to the shipping service                          |
+|       2       |                        The manager search the customer who purchased the product                        |
+|       3       |                             The manager send a notification to the customer                             |
+|       4       |          The customer receive the notification and acknowledge that the product have been sent          |
+
+##### Scenario 18.3 - npd
+
+| Scenario 18.2 |                       **Notify if the product it's in the delivery phase**                       |
+| :------------: | :-----------------------------------------------------------------------------------------------------: |
+|  Precondition  | The customer is logged in and has purchased a product. The shipping service took charge of the shipment |
+| Post condition |                       The customer receive a notification about the product state                       |
+|   *Step#*   |                                             *Description*                                             |
+|       1       |                        The product is in a 15km radius from the delivery address                        |
+|       2       |                                    The product is tracked by the gps                                    |
+|       3       |                        A notification is sent by the application to the customer                        |
+|       4       |           The customer receive the notification and acknowledge that the product is arriving           |
+
+### Use case 19, UC19- ***Recover password**: the user wants to recover the password of his account*
+
+| Actors Involved |                             User                             |
+| :--------------: | :----------------------------------------------------------: |
+|   Precondition   |       The user has an account registered in the system       |
+|  Post condition  | The user has recovered or reset the password for his account |
+| Nominal Scenario |                             rp1                             |
+|     Variants     |                                                              |
+|    Exceptions    |                             rp2                             |
+
+##### Scenario 19.1 - rp1
+
+| Scenario 19.1 |                              Recover password                              |
+| :------------: | :-------------------------------------------------------------------------: |
+|  Precondition  |              The user has an account registered in the system              |
+| Post condition |        The user has recovered or reset the password for his account        |
+|   *Step#*   |                               *Description*                               |
+|       1       |                    The user navigates to the login page                    |
+|       2       |                The user clicks the "Recover password" button                |
+|       3       | The user writes down the email with which they had signed up for the system |
+|       4       |       The user clicks on the password recovery link within the email       |
+|       5       |            The system requests the user to enter a new password            |
+|       6       |               The user types in the new password and confirms               |
+|       7       |   The system displays a success message and redirects to the login screen   |
+
+##### Scenario 19.2 - rp2
+
+| Scenario 19.2 |                        Failed to recover password                        |
+| :------------: | :----------------------------------------------------------------------: |
+|  Precondition  |       The user does not have an account registered with the system       |
+| Post condition |                        An error message is shown                        |
+|   *Step#*   |                             *Description*                             |
+|       1       |                   The user navigates to the login page                   |
+|       2       |              The user clicks the "Recover password" button              |
+|       3       |                      The user writes his/her email                      |
+|       4       | The system displays an error message "User not registered in the system" |
+
+### Use case 20, UC20- ***Create a review**: the customer wants to create a review for a product*
+
+| Actors Involved |                      Customer                      |
+| :--------------: | :-------------------------------------------------: |
+|   Precondition   | The customer is logged in and purchased the product |
+|  Post condition  |          A review is added to the product          |
+| Nominal Scenario |                         cr1                         |
+|     Variants     |                                                    |
+|    Exceptions    |                                                    |
+
+##### Scenario 20.1 - cr1
+
+| Scenario 20.1 |                         **Create a review**                         |
+| :------------: | :------------------------------------------------------------------------: |
+|  Precondition  |            The customer is logged in and purchased the product            |
+| Post condition |                      A review is added to the product                      |
+|   *Step#*   |                              *Description*                              |
+|       1       |      The user clicks on "Add a review" next to the product purchased      |
+|       2       |           The user fills in with an evaluation and a description           |
+|       3       |                        The user clicks on "confirm"                        |
+|       4       |  The revision is added to the list of pending revisions for that product  |
+|       5       | The system displays a message "Review successfully added - in processing " |
+
+### Use case 21, UC21- *Accept or reject  a review: the manager decides whether to keep or delete a review made by a customer about the product*
+
+| Actors Involved |            Manager            |
+| :--------------: | :----------------------------: |
+|   Precondition   |    The Manager is logged in    |
+|  Post condition  | Review is published or deleted |
+| Nominal Scenario |            ar1,rr1            |
+|     Variants     |                                |
+|    Exceptions    |                                |
+
+##### Scenario 21.1 - adr1
+
+| Scenario 21.1 |                              Accept a review                              |
+| :------------: | :------------------------------------------------------------------------: |
+|  Precondition  |                          The Manager is logged in                          |
+| Post condition |                       Review is published or deleted                       |
+|   *Step#*   |                              *Description*                              |
+|       1       |                      The Manager clicks on a product                      |
+|       2       |            The Manager navigates to the pending reviews section            |
+|       3       |       The manager selects a review and clicks on "accept" the review       |
+|       4       | The system displays a success message "The review published  successfully" |
+
+##### Scenario 21.2 - rr1
+
+| Scenario 21.2 |                             Reject a review                             |
+| :------------: | :---------------------------------------------------------------------: |
+|  Precondition  |                        The Manager is logged in                        |
+| Post condition |                     Review is published or deleted                     |
+|   *Step#*   |                             *Description*                             |
+|       1       |                     The Manager clicks on a product                     |
+|       2       |          The Manager navigates to the pending reviews section          |
+|       3       |     The manager selects a review and clicks on "reject" the review     |
+|       4       | The system displays a success message "The review suspend successfully" |
+
+### Use case 22, UC22 - ***Retrieve all reviews for a product**: user views all reviews of a product*
+
+| Actors Involved |      Manager or Customer      |
+| :--------------: | :----------------------------: |
+|   Precondition   |       User is logged in       |
+|  Post condition  | A list of reviews is displayed |
+| Nominal Scenario |              rar1              |
+|     Variants     |              rar2              |
+|    Exceptions    |                                |
+
+##### Scenario 22.1 - rar1
+
+| Scenario 22.1 |           Retrieve all published reviews for a product           |
+| :------------: | :---------------------------------------------------------------: |
+|  Precondition  |                         User is logged in                         |
+| Post condition | A list of published reviews for the selected product is displayed |
+|   *Step#*   |                          *Description*                          |
+|       1       |                   The User clicks on a product                   |
+|       2       |                The User clicks on view all reviews                |
+|       3       |  The system return all published reviews for the chosen product  |
+
+##### Scenario 22.2 - rar2
+
+| Scenario 22.2 |      **Retrieve all suspended reviews for a product**      |
+| :------------: | :---------------------------------------------------------------: |
+|  Precondition  |                     The Manager is logged in                     |
+| Post condition | A list of suspended reviews for the selected product is displayed |
+|   *Step#*   |                          *Description*                          |
+|       1       |                  The Manager clicks on a product                  |
+|       2       |          The Manager goes to the pending reviews section          |
+|       3       |  The system return all suspended reviews for the chosen product  |
+
+### Use case 23, UC23- ***Filter reviews by satisfaction rating**: the user only views reviews of the chosen satisfaction rating*
+
+| Actors Involved |                                User                                |
+| :--------------: | :-----------------------------------------------------------------: |
+|   Precondition   |                        The User is logged in                        |
+|  Post condition  | A list of reviews of the chosen degree of satisfaction is displayed |
+| Nominal Scenario |                                fsr1                                |
+|     Variants     |                                                                    |
+|    Exceptions    |                                                                    |
+
+##### Scenario 23.1 - fsr1
+
+| Scenario 23.1 |                          Filter reviews by satisfaction rating                          |
+| :------------: | :--------------------------------------------------------------------------------------: |
+|  Precondition  |                                    User is logged in                                    |
+| Post condition |           A list of reviews of the chosen degree of satisfaction is displayed           |
+|   *Step#*   |                                     *Description*                                     |
+|       1       |                               The User clicks on a product                               |
+|       2       |                           The User clicks on view all reviews                           |
+|       3       | The user clicks on the filter of the satisfaction rating of the reviews they wish to see |
+
+### Use case 24,UC24 - *Create a **discount code**: manager creates discount code for products and carts*
+
+| Actors Involved |            Manager            |
+| :--------------: | :----------------------------: |
+|   Precondition   |      Manager is logged in      |
+|  Post condition  | A new discount code is created |
+| Nominal Scenario |              cdc1              |
+|     Variants     |                                |
+|    Exceptions    |              cdc2              |
+
+##### Scenario 24.1 - cdc1
+
+| Scenario 24.1 |                                            Create a**discount code**                                            |
+| :------------: | :-------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                                                 Manager is logged in                                                 |
+| Post condition |                                            A new discount code is created                                            |
+|   *Step#*   |                                                    *Description*                                                    |
+|       1       |                                 The manager navigates to the "discount codes" section                                 |
+|       2       |                                          Click on "create new discount code"                                          |
+|       3       | All information is added, such as: code, duration, discount percentage, value, products or carts to apply it to, etc. |
+|       4       |                                               The manager Click on save                                               |
+|       5       |                       The system displays a success message "discount code added successfully"                       |
+
+##### Scenario 24.2 - cdc2
+
+| Scenario 24.2 |               Failed to create a discount code - code already present               |
+| :------------: | :---------------------------------------------------------------------------------: |
+|  Precondition  |              Manager is logged in and the discount code already exists              |
+| Post condition |                                 An error is raised                                 |
+|   *Step#*   |                                   *Description*                                   |
+|       1       |                The manager navigates to the "discount codes" section                |
+|       2       |                   The manager Click on "create new discount code"                   |
+|       3       | All information is added, such as: code, duration, discount percentage, value, etc. |
+|       4       |                              The manager Click on save                              |
+|       5       |        The system displays the error message "discount code already present"        |
+
+### Use case 25, UC25- *Edit a **discount code**: the manager modifies the data of an existing discount code*
+
+| Actors Involved |                                Manager                                |
+| :--------------: | :-------------------------------------------------------------------: |
+|   Precondition   | Manager is logged in and the discount code is already in the database |
+|  Post condition  |                     The discount code is changed                     |
+| Nominal Scenario |                                 edc1                                 |
+|     Variants     |                                                                      |
+|    Exceptions    |                                                                      |
+
+##### Scenario 25.1 - edc1
+
+| Scenario 25.1 |                                             Edit a**discount code**                                             |
+| :------------: | :--------------------------------------------------------------------------------------------------------------------: |
+|  Precondition  |                       The Manager is logged in and the discount code is already in the database                       |
+| Post condition |                                              The discount code is changed                                              |
+|   *Step#*   |                                                    *Description*                                                    |
+|       1       |                                 The manager navigates to the "discount codes" section                                 |
+|       2       |                                       The manager  Click on "Edit discount code"                                       |
+|       3       | Some information can be changed, such as: duration, discount percentage, value, products or carts to apply it to, etc. |
+|       4       |                                               The manager  Click on save                                               |
+|       5       |                     The system displays the success message "discount code changed successfully."                     |
+
+### Use case 26,UC26 - *Delete a **discount code**: manager deletes an existing discount code*
+
+| Actors Involved |                                  Manager                                  |
+| :--------------: | :-----------------------------------------------------------------------: |
+|   Precondition   | The Manager is logged in and the discount code is already in the database |
+|  Post condition  |                       The discount code is deleted                       |
+| Nominal Scenario |                                   ddc1                                   |
+|     Variants     |                                                                          |
+|    Exceptions    |                                                                          |
+
+##### Scenario 26.1 - ddc1
+
+| Scenario 26.1 |                        Delete a**discount code**                        |
+| :------------: | :---------------------------------------------------------------------------: |
+|  Precondition  |   The Manager is logged in and the discount code is already in the database   |
+| Post condition |                         The discount code is deleted                         |
+|   *Step#*   |                                *Description*                                |
+|       1       |               The manager goes to the "discount codes" section               |
+|       2       |                  The manager Click on "Delete discount code"                  |
+|       3       | The system displays the success message "discount code deleted successfully." |
+
+### Use case 27, UC27- Search for a discount code: the manager can search for a discount code in the database
+
+| Actors Involved |          Manager          |
+| :--------------: | :------------------------: |
+|   Precondition   |  The Manager is logged in  |
+|  Post condition  | The discount code is found |
+| Nominal Scenario |            sdc1            |
+|     Variants     |                            |
+|    Exceptions    |            sdc2            |
+
+##### Scenario 27.1 - sdc1
+
+| Scenario 27.1 |                      Search for a discount code                      |
+| :------------: | :------------------------------------------------------------------: |
+|  Precondition  |                       The Manager is logged in                       |
+| Post condition |                      The discount code is found                      |
+|   *Step#*   |                           *Description*                           |
+|       1       |        The manager navigates to the "discount codes" section        |
+|       2       |        The manager enters the discount code in the search bar        |
+|       3       |                     The manager Clicks on search                     |
+|       4       | The system returns All the information of the searched discount code |
+
+##### Scenario 27.2 - sdc1
+
+| Scenario 27.2 |    Failed to search for a discount code -code not present    |
+| :------------: | :-----------------------------------------------------------: |
+|  Precondition  |   Manager is logged in and the searched code does not exist   |
+| Post condition |                      An error is raised                      |
+|   *Step#*   |                        *Description*                        |
+|       1       |     The manager navigates to the "discount codes" section     |
+|       2       |    The manager enters the discount code in the search bar    |
+|       3       |                 The manager Clicks on search                 |
+|       4       | The system displays An error message "No discount code found" |
+
+### Use case 28, UC28- ***View all discount codes**: a list of all the discount codes in the database is displayed*
+
+| Actors Involved |                  Manager                  |
+| :--------------: | :---------------------------------------: |
+|   Precondition   |           Manager is logged in           |
+|  Post condition  | A list of all discount codes is displayed |
+| Nominal Scenario |                   vdc1                   |
+|     Variants     |                                          |
+|    Exceptions    |                                          |
+
+##### Scenario 28.1 - vdc1
+
+| Scenario 28.1 |                View all discount codes                |
+| :------------: | :---------------------------------------------------: |
+|  Precondition  |                 Manager is logged in                 |
+| Post condition |       A list of all discount codes is displayed       |
+|   *Step#*   |                    *Description*                    |
+|       1       | The manager navigates to the "discount codes" section |
+|       2       | The system returns all active coupons and its details |
+
+### Use case 29, UC29 - **Apply a coupon on the cart**: c**ustomer wants to apply a coupon on the current cart**
+
+| Actors Involved |                      Customer                      |
+| :--------------: | :-------------------------------------------------: |
+|   Precondition   |      Customer has an account and is logged in      |
+|  Post condition  |                                                    |
+| Nominal Scenario |                         ac1                         |
+|     Variants     |                                                    |
+|    Exceptions    | ac2(wrong discount code),ac3(the coupon is expired) |
+
+##### Scenario 29.1 - ac1
+
+| Scenario 29.1 |                                **Apply a coupon on the cart**                                |
+| :------------: | :-------------------------------------------------------------------------------------------------: |
+|  Precondition  | The customer is logged in and has at least one product in the shopping cart and has a valid coupon |
+| Post condition |                                   The coupon applied successfully                                   |
+|   *Step#*   |                                           *Description*                                           |
+|       1       |  The customer navigates to the “cart” and review the the sum of prices and the list of products  |
+|       2       |                         The customer Clicks on 'proceed with order' button                         |
+|       3       |                     The customer enters the coupon code in the designated field                     |
+|       4       | The system displays a success message and updates the displayed total price to reflect the discount |
+
+##### Scenario 29.2 - ac2
+
+| Scenario 29.2 |                           **Failed to apply the coupon on the cart**                           |
+| :------------: | :---------------------------------------------------------------------------------------------------: |
+|  Precondition  | The customer is logged in and has at least one product in the shopping cart and has an invalid coupon |
+| Post condition |                                                                                                      |
+|   *Step#*   |                                            *Description*                                            |
+|       1       |   The customer navigates to the “cart” and review the the sum of prices and the list of products   |
+|       2       |                          The customer Clicks on 'proceed with order' button                          |
+|       3       |                      The customer enters the coupon code in the designated field                      |
+|       4       |                   The system displays an error message( "404-The coupon not found")                   |
+
+##### Scenario 29.3 - ac3
+
+| Scenario 29.2 |                           **Failed to apply the coupon on the cart**                           |
+| :------------: | :---------------------------------------------------------------------------------------------------: |
+|  Precondition  | The customer is logged in and has at least one product in the shopping cart and has an invalid coupon |
+| Post condition |                                                                                                      |
+|   *Step#*   |                                            *Description*                                            |
+|       1       |   The customer navigates to the “cart” and review the the sum of prices and the list of products   |
+|       2       |                          The customer Clicks on 'proceed with order' button                          |
+|       3       |                      The customer enters the coupon code in the designated field                      |
+|       4       |                    The system displays an error message( "The coupon is expired")                    |
 
 # Glossary
 
