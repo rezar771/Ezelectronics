@@ -842,7 +842,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       3       |  The system expires the user's session and clears any session-related data  |
 |       4       | The system shows a success message and redirects the user to the login page |
 
-### Use case 16, UC16 - ***Filter the products**: u**ser wants to filter the products based on name and price***
+### Use case 16, UC16 - ***Filter the products**: user wants to filter the products based on name and price***
 
 | Actors Involved |                 User                 |
 | :--------------: | :----------------------------------: |
@@ -1300,12 +1300,6 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 \<use UML class diagram to define important terms, or concepts in the domain of the application, and their relationships>
 
 \<concepts must be used consistently all over the document, ex in use cases, requirements etc>
-
-# System Design
-
-\<describe here system design>
-
-\<must be consistent with Context diagram>
 
 # Deployment Diagram
 
