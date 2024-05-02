@@ -1,12 +1,12 @@
 # Requirements Document - future EZElectronics
 
-Date:
+Date: 29/04/2024
 
 Version: V1 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number | Change |
-| :------------: | :----: |
-|                |        |
+| Version number |       Change       |
+| :------------: | :-----------------: |
+|      1.0      | Adding Stakeholder |
 
 # Contents
 
@@ -39,9 +39,17 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 # Stakeholders
 
-| Stakeholder name | Description |
-| :--------------: | :---------: |
-| Stakeholder x..  |             |
+| Stakeholder name |                                                                  Description                                                                  |
+| :--------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
+|     Manager     |                                                       Manages products and their supply                                                       |
+|     Customer     |                                  People who wants to buy electronics products such as laptops or smartphones                                  |
+| Payment service |                                                    Offers several ways to pay for products                                                    |
+|  Business owner  |                            Company executives or stakeholders with a financial interest in the platform's success                            |
+|    Suppliers    |                                        Electronics companies who provide the electronics to the store                                        |
+|    Tech team    | Software engineers and IT professionals responsible for developing, maintaining the system and ensuring the security and privacy of user data |
+| Shipment service |              Services offered by companies or suppliers that specialize in moving and delivering goods from one point to another              |
+|  Marketing team  |                             People interested in the success of advertising campaigns and online brand visibility                             |
+|   Competitors   |                                                      Rivals in the electronics industry                                                      |
 
 # Context Diagram and interfaces
 
@@ -59,7 +67,7 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 |   Actor   | Logical Interface | Physical Interface |
 | :-------: | :---------------: | :----------------: |
-| Actor x.. |                   |                    |
+| Actor x.. |                  |                    |
 
 # Stories and personas
 
@@ -77,22 +85,22 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 \<they match to high level use cases>
 
-|  ID   | Description |
+|  ID  | Description |
 | :---: | :---------: |
-|  FR1  |             |
-|  FR2  |             |
-| FRx.. |             |
+|  FR1  |            |
+|  FR2  |            |
+| FRx.. |            |
 
 ## Non Functional Requirements
 
 \<Describe constraints on functional requirements>
 
-|   ID    | Type (efficiency, reliability, ..) | Description | Refers to |
+|   ID   | Type (efficiency, reliability, ..) | Description | Refers to |
 | :-----: | :--------------------------------: | :---------: | :-------: |
-|  NFR1   |                                    |             |           |
-|  NFR2   |                                    |             |           |
-|  NFR3   |                                    |             |           |
-| NFRx .. |                                    |             |           |
+|  NFR1  |                                    |            |          |
+|  NFR2  |                                    |            |          |
+|  NFR3  |                                    |            |          |
+| NFRx .. |                                    |            |          |
 
 # Use case diagram and use cases
 
@@ -104,10 +112,10 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 ### Use case 1, UC1
 
-| Actors Involved  |                                                                      |
+| Actors Involved |                                                                      |
 | :--------------: | :------------------------------------------------------------------: |
 |   Precondition   | \<Boolean expression, must evaluate to true before the UC can start> |
-|  Post condition  |  \<Boolean expression, must evaluate to true after UC is finished>   |
+|  Post condition  |  \<Boolean expression, must evaluate to true after UC is finished>  |
 | Nominal Scenario |         \<Textual description of actions executed by the UC>         |
 |     Variants     |                      \<other normal executions>                      |
 |    Exceptions    |                        \<exceptions, errors >                        |
@@ -125,11 +133,11 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 |  Scenario 1.1  |                                                                            |
 | :------------: | :------------------------------------------------------------------------: |
 |  Precondition  | \<Boolean expression, must evaluate to true before the scenario can start> |
-| Post condition |  \<Boolean expression, must evaluate to true after scenario is finished>   |
-|     Step#      |                                Description                                 |
-|       1        |                                                                            |
-|       2        |                                                                            |
-|      ...       |                                                                            |
+| Post condition |  \<Boolean expression, must evaluate to true after scenario is finished>  |
+|     Step#     |                                Description                                |
+|       1       |                                                                            |
+|       2       |                                                                            |
+|      ...      |                                                                            |
 
 ##### Scenario 1.2
 
