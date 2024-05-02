@@ -4,9 +4,9 @@ Date: 02/04/2024
 
 Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |     Change     |
-| :------------: | :-------------: |
-|      1.7      | Added use cases |
+| Version number |          Change          |
+| :------------: | :-----------------------: |
+|      1.8      | Adding Deployment Diagram |
 
 # Contents
 
