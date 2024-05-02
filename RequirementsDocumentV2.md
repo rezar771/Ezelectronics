@@ -4,9 +4,9 @@ Date: 29/04/2024
 
 Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |                 Change                 |
-| :------------: | :-------------------------------------: |
-|      1.5      | Added new FRs and fixed Table of rights |
+| Version number |         Change         |
+| :------------: | :--------------------: |
+|      1.6      | Added Use case diagram |
 
 # Contents
 
@@ -134,17 +134,17 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 | **FR5** |                           **Compute domain statistics**                           |
 | FR5.1         |                       Compute average worth of sellings in a week                       |
 | FR5.2         |               Compute trend of sellings for a brand (what sells the most)               |
-| **FR6**      |                                  **Product tracking**                                  |
+| **FR6** |                                **Product tracking**                                |
 | FR6.1         |                   Retrieve (approximately) the position of the product                   |
 | FR6.2         |                  Notify if the product it’s been sended by the market                  |
 | FR6.3         |                     Notify if the product it’s in delivering phase                     |
-| **FR7**      |                                   **Manage reviews**                                   |
+| **FR7** |                                 **Manage reviews**                                 |
 | FR7.1         |                                     Create a review                                     |
 | FR7.2         |                                 Accept or delete review                                 |
 | FR7.3         |                       Retrieve all published reviews for a product                       |
 | FR7.4         |                       Retrieve all suspended reviews for a product                       |
 | FR7.5         |                          Filter reviews by satisfaction rating                          |
-| **FR8**      |                                    **Manage coupon**                                    |
+| **FR8** |                                 **Manage coupon**                                 |
 | FR8.1         |             Create - Edit - Delete discount code, Search for a discount code             |
 | FR8.2         |                                 View all discount codes                                 |
 
@@ -171,9 +171,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ## Use case diagram
 
-\<define here UML Use case diagram UCD summarizing all use cases, and their relationships>
-
-\<next describe here each use case in the UCD>
+![Use case diagram v2](image/RequirementsDocumentV2/Use case diagram v2.png)
 
 ### Use case 1, UC1
 
