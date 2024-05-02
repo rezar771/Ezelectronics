@@ -1303,4 +1303,4 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 # Deployment Diagram
 
-\<describe here deployment diagram >
+![Deployment Diagram](image/RequirementsDocumentV2/Deployment Diagram v2.png)
