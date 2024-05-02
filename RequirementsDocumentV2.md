@@ -2,11 +2,11 @@
 
 Date: 29/04/2024
 
-Version: V1 - description of EZElectronics in FUTURE form (as proposed by the team)
+Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |       Change       |
-| :------------: | :-----------------: |
-|      1.0      | Adding Stakeholder |
+| Version number |         Change         |
+| :------------: | :---------------------: |
+|      1.1      | Adding Context Diagram |
 
 # Contents
 
@@ -55,9 +55,7 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 ## Context Diagram
 
-\<Define here Context diagram using UML use case diagram>
-
-\<actors are a subset of stakeholders>
+![Context diagram v2](image/RequirementsDocumentV2/Context diagram v2.png)
 
 ## Interfaces
 
