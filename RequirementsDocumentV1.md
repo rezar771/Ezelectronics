@@ -4,9 +4,9 @@ Date: 29/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number | Change |
-| :------------: | :----: |
-|      1.12      |  Fix  |
+| Version number |        Change        |
+| :------------: | :------------------: |
+|      1.13      | Fix Context Diagram |
 
 # Contents
 
@@ -52,7 +52,7 @@ EZElectronics (read EaSy Electronics) is a software application designed to help
 
 ## Context Diagram
 
-![Context diagram v1](image/RequirementsDocumentV1/Context diagram v1.png "Context diagram v1")
+![Context diagram v1](image/RequirementsDocumentV1/Context diagram v1.png)
 
 ## Interfaces
 
