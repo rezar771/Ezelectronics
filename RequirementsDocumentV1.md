@@ -26,7 +26,7 @@ Version: V1 - description of EZElectronics in CURRENT form (as received by teach
   - [Non Functional Requirements](#non-functional-requirements)
 - [Use case diagram and use cases](#use-case-diagram-and-use-cases)
   - [Use case diagram](#use-case-diagram)
-    - [Use case 1, UC1 - Add products : manager wants to add products to the database](#use-case-1-uc1---add-products--manager-wants-to-add-products-to-the-database)
+    - [Use case 1, UC1 Add products : manager wants to add products to the database](#use-case-1-uc1-add-products--manager-wants-to-add-products-to-the-database)
       - [Scenario 1.1 - ap1](#scenario-11---ap1)
       - [Scenario 1.2 - ap2](#scenario-12---ap2)
         - [Scenario 1.3 - ap3](#scenario-13---ap3)
@@ -203,7 +203,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ![Use case diagram v1](image/RequirementsDocumentV1/Use case diagram v1.png)
 
-### Use case 1, UC1 - Add products : manager wants to add products to the database
+### Use case 1, UC1 Add products : manager wants to add products to the database
 
 | Actors Involved |                      **Manager**                      |
 | :--------------: | :---------------------------------------------------------: |
