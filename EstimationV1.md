@@ -52,7 +52,7 @@ Consider the EZElectronics  project in CURRENT version (as given by the teachers
 
 # Summary
 
-Report here the results of the three estimation approaches. The  estimates may differ. Discuss here the possible reasons for the difference
+Estimation by size is considered while all the people working in parallel 8 hours a day, so it would be obvious if more effort is done in less days using this method. On the other hand, estimating by product and activity can result in a more accurate effort number and the duration is real due to working with a part-time method.
 
 |                                    | Estimated effort | Estimated duration |
 | ---------------------------------- | ---------------- | ------------------ |
