@@ -1,12 +1,12 @@
 # Requirements Document - future EZElectronics
 
-Date: 03/04/2024
+Date: 05/04/2024
 
 Version: V2 - description of EZElectronics in FUTURE form (as proposed by the team)
 
-| Version number |     Change     |
-| :------------: | :-------------: |
-|      1.9      | Adding Glossary |
+| Version number | Change |
+| :------------: | :----: |
+|      1.10      |  Fix  |
 
 # Contents
 
@@ -106,24 +106,22 @@ Version: V2 - description of EZElectronics in FUTURE form (as proposed by the te
     - [Use case 22, UC22 - *Retrieve all reviews for a product: user views all reviews of a product*](#use-case-22-uc22-retrieve-all-reviews-for-a-product-user-views-all-reviews-of-a-product)
       - [Scenario 22.1 - rar1](#scenario-221-rar1)
       - [Scenario 22.2 - rar2](#scenario-222-rar2)
-    - [Use case 23, UC23- *Filter reviews by satisfaction rating: the user only views reviews of the chosen satisfaction rating*](#use-case-23-uc23-filter-reviews-by-satisfaction-rating-the-user-only-views-reviews-of-the-chosen-satisfaction-rating)
-      - [Scenario 23.1 - fsr1](#scenario-231-fsr1)
-    - [Use case 24,UC24 - *Create a discount code: manager creates discount code for products and carts*](#use-case-24uc24-create-a-discount-code-manager-creates-discount-code-for-products-and-carts)
-      - [Scenario 24.1 - cdc1](#scenario-241-cdc1)
-      - [Scenario 24.2 - cdc2](#scenario-242-cdc2)
-    - [Use case 25, UC25- *Edit a discount code: the manager modifies the data of an existing discount code*](#use-case-25-uc25-edit-a-discount-code-the-manager-modifies-the-data-of-an-existing-discount-code)
-      - [Scenario 25.1 - edc1](#scenario-251-edc1)
-    - [Use case 26,UC26 - *Delete a discount code: manager deletes an existing discount code*](#use-case-26uc26-delete-a-discount-code-manager-deletes-an-existing-discount-code)
-      - [Scenario 26.1 - ddc1](#scenario-261-ddc1)
-    - [Use case 27, UC27- *Search for a discount code: the manager can search for a discount code in the database*](#use-case-27-uc27-search-for-a-discount-code-the-manager-can-search-for-a-discount-code-in-the-database)
-      - [Scenario 27.1 - sdc1](#scenario-271-sdc1)
-      - [Scenario 27.2 - sdc1](#scenario-272-sdc1)
-    - [Use case 28, UC28- *View all discount codes: a list of all the discount codes in the database is displayed*](#use-case-28-uc28-view-all-discount-codes-a-list-of-all-the-discount-codes-in-the-database-is-displayed)
-      - [Scenario 28.1 - vdc1](#scenario-281-vdc1)
-    - [Use case 29, UC29 - *Apply a coupon on the cart: customer wants to apply a coupon on the current cart*](#use-case-29-uc29-apply-a-coupon-on-the-cart-customer-wants-to-apply-a-coupon-on-the-current-cart)
-      - [Scenario 29.1 - ac1](#scenario-291-ac1)
-      - [Scenario 29.2 - ac2](#scenario-292-ac2)
-      - [Scenario 29.3 - ac3](#scenario-293-ac3)
+    - [Use case 23,UC23 - *Create a discount code: manager creates discount code for products and carts*](#use-case-23uc23-create-a-discount-code-manager-creates-discount-code-for-products-and-carts)
+      - [Scenario 23.1 - cdc1](#scenario-231-cdc1)
+      - [Scenario 23.2 - cdc2](#scenario-232-cdc2)
+    - [Use case 24, UC24- *Edit a discount code: the manager modifies the data of an existing discount code*](#use-case-24-uc24-edit-a-discount-code-the-manager-modifies-the-data-of-an-existing-discount-code)
+      - [Scenario 24.1 - edc1](#scenario-241-edc1)
+    - [Use case 25,UC25 - *Delete a discount code: manager deletes an existing discount code*](#use-case-25uc25-delete-a-discount-code-manager-deletes-an-existing-discount-code)
+      - [Scenario 25.1 - ddc1](#scenario-251-ddc1)
+    - [Use case 26, UC26- *Search for a discount code: the manager can search for a discount code in the database*](#use-case-26-uc26-search-for-a-discount-code-the-manager-can-search-for-a-discount-code-in-the-database)
+      - [Scenario 26.1 - sdc1](#scenario-261-sdc1)
+      - [Scenario 26.2 - sdc1](#scenario-262-sdc1)
+    - [Use case 27, UC27- *View all discount codes: a list of all the discount codes in the database is displayed*](#use-case-27-uc27-view-all-discount-codes-a-list-of-all-the-discount-codes-in-the-database-is-displayed)
+      - [Scenario 27.1 - vdc1](#scenario-271-vdc1)
+    - [Use case 28, UC28 - *Apply a coupon on the cart: customer wants to apply a coupon on the current cart*](#use-case-28-uc28-apply-a-coupon-on-the-cart-customer-wants-to-apply-a-coupon-on-the-current-cart)
+      - [Scenario 28.1 - ac1](#scenario-281-ac1)
+      - [Scenario 28.2 - ac2](#scenario-282-ac2)
+      - [Scenario 28.3 - ac3](#scenario-283-ac3)
 - [Glossary](#glossary)
 - [Deployment Diagram](#deployment-diagram)
 
@@ -237,17 +235,16 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 | FR7.2         |                                 Accept or delete review                                 |
 | FR7.3         |                       Retrieve all published reviews for a product                       |
 | FR7.4         |                       Retrieve all suspended reviews for a product                       |
-| FR7.5         |                          Filter reviews by satisfaction rating                          |
 | **FR8** |                                 **Manage coupon**                                 |
 | FR8.1         |             Create - Edit - Delete discount code, Search for a discount code             |
 | FR8.2         |                                 View all discount codes                                 |
 
 ## Table of rights
 
-|                    | **FR1.1<br />FR1.2<br />FR1.4** | **FR1.3<br />FR1.5** | FR2 | FR3 | **FR4.1<br />FR4.3** | **FR4.2** | **FR5** | **FR6** | **FR7.1<br />FR7.3<br />FR7.5** | **FR7.2<br />FR7.4** | **FR8** |
-| :----------------: | :-----------------------------------: | :------------------------: | :-: | --- | -------------------------- | --------------- | ------------- | ------------- | ------------------------------------- | -------------------------- | ------------- |
-| **Manager** |                   Y                   |             Y             |  Y  | Y   | Y                          | Y               | Y             | Y             | N                                     | Y                          | Y             |
-| **Customer** |                   N                   |             Y             |  Y  | Y   | Y                          | N               | N             | N             | Y                                     | N                          | N             |
+|                    | **FR1.1<br />FR1.2<br />FR1.4** | **FR1.3<br />FR1.5** | FR2 | FR3 | **FR4.1<br />FR4.3** | **FR4.2** | **FR5** | **FR6** | **FR7.1<br />FR7.3** | **FR7.2<br />FR7.4** | **FR8** |
+| :----------------: | :-----------------------------------: | :------------------------: | :-: | --- | -------------------------- | --------------- | ------------- | ------------- | -------------------------- | -------------------------- | ------------- |
+| **Manager** |                   Y                   |             Y             |  Y  | Y   | Y                          | Y               | Y             | Y             | N                          | Y                          | Y             |
+| **Customer** |                   N                   |             Y             |  Y  | Y   | Y                          | N               | N             | N             | Y                          | N                          | N             |
 
 ## Non Functional Requirements
 
@@ -1188,28 +1185,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       2       |          The Manager goes to the pending reviews section          |
 |       3       |  The system return all suspended reviews for the chosen product  |
 
-### Use case 23, UC23- *Filter reviews by satisfaction rating: the user only views reviews of the chosen satisfaction rating*
-
-| Actors Involved |                                User                                |
-| :--------------: | :-----------------------------------------------------------------: |
-|   Precondition   |                        The User is logged in                        |
-|  Post condition  | A list of reviews of the chosen degree of satisfaction is displayed |
-| Nominal Scenario |                                fsr1                                |
-|     Variants     |                                                                    |
-|    Exceptions    |                                                                    |
-
-##### Scenario 23.1 - fsr1
-
-| Scenario 23.1 |                          Filter reviews by satisfaction rating                          |
-| :------------: | :--------------------------------------------------------------------------------------: |
-|  Precondition  |                                    User is logged in                                    |
-| Post condition |           A list of reviews of the chosen degree of satisfaction is displayed           |
-|   *Step#*   |                                     *Description*                                     |
-|       1       |                               The User clicks on a product                               |
-|       2       |                           The User clicks on view all reviews                           |
-|       3       | The user clicks on the filter of the satisfaction rating of the reviews they wish to see |
-
-### Use case 24,UC24 - *Create a discount code: manager creates discount code for products and carts*
+### Use case 23,UC23 - *Create a discount code: manager creates discount code for products and carts*
 
 | Actors Involved |            Manager            |
 | :--------------: | :----------------------------: |
@@ -1219,9 +1195,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |     Variants     |                                |
 |    Exceptions    |              cdc2              |
 
-##### Scenario 24.1 - cdc1
+##### Scenario 23.1 - cdc1
 
-| Scenario 24.1 |                                           **Create a discount code**                                           |
+| Scenario 23.1 |                                           **Create a discount code**                                           |
 | :------------: | :-------------------------------------------------------------------------------------------------------------------: |
 |  Precondition  |                                                 Manager is logged in                                                 |
 | Post condition |                                            A new discount code is created                                            |
@@ -1232,9 +1208,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       4       |                                               The manager Click on save                                               |
 |       5       |                       The system displays a success message "discount code added successfully"                       |
 
-##### Scenario 24.2 - cdc2
+##### Scenario 23.2 - cdc2
 
-| Scenario 24.2 |               Failed to create a discount code - code already present               |
+| Scenario 23.2 |               Failed to create a discount code - code already present               |
 | :------------: | :---------------------------------------------------------------------------------: |
 |  Precondition  |              Manager is logged in and the discount code already exists              |
 | Post condition |                                 An error is raised                                 |
@@ -1245,7 +1221,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       4       |                              The manager Click on save                              |
 |       5       |        The system displays the error message "discount code already present"        |
 
-### Use case 25, UC25- *Edit a discount code: the manager modifies the data of an existing discount code*
+### Use case 24, UC24- *Edit a discount code: the manager modifies the data of an existing discount code*
 
 | Actors Involved |                                Manager                                |
 | :--------------: | :-------------------------------------------------------------------: |
@@ -1255,9 +1231,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |     Variants     |                                                                      |
 |    Exceptions    |                                                                      |
 
-##### Scenario 25.1 - edc1
+##### Scenario 24.1 - edc1
 
-| Scenario 25.1 |                                                  Edit a discount code                                                  |
+| Scenario 24.1 |                                                  Edit a discount code                                                  |
 | :------------: | :--------------------------------------------------------------------------------------------------------------------: |
 |  Precondition  |                       The Manager is logged in and the discount code is already in the database                       |
 | Post condition |                                              The discount code is changed                                              |
@@ -1268,7 +1244,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       4       |                                               The manager  Click on save                                               |
 |       5       |                     The system displays the success message "discount code changed successfully."                     |
 
-### Use case 26,UC26 - *Delete a discount code: manager deletes an existing discount code*
+### Use case 25,UC25 - *Delete a discount code: manager deletes an existing discount code*
 
 | Actors Involved |                                  Manager                                  |
 | :--------------: | :-----------------------------------------------------------------------: |
@@ -1278,9 +1254,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |     Variants     |                                                                          |
 |    Exceptions    |                                                                          |
 
-##### Scenario 26.1 - ddc1
+##### Scenario 25.1 - ddc1
 
-| Scenario 26.1 |                       **Delete a discount code**                       |
+| Scenario 25.1 |                       **Delete a discount code**                       |
 | :------------: | :---------------------------------------------------------------------------: |
 |  Precondition  |   The Manager is logged in and the discount code is already in the database   |
 | Post condition |                         The discount code is deleted                         |
@@ -1289,7 +1265,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       2       |                  The manager Click on "Delete discount code"                  |
 |       3       | The system displays the success message "discount code deleted successfully." |
 
-### Use case 27, UC27- *Search for a discount code: the manager can search for a discount code in the database*
+### Use case 26, UC26- *Search for a discount code: the manager can search for a discount code in the database*
 
 | Actors Involved |          Manager          |
 | :--------------: | :------------------------: |
@@ -1299,9 +1275,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |     Variants     |                            |
 |    Exceptions    |            sdc2            |
 
-##### Scenario 27.1 - sdc1
+##### Scenario 26.1 - sdc1
 
-| Scenario 27.1 |                      Search for a discount code                      |
+| Scenario 26.1 |                      Search for a discount code                      |
 | :------------: | :------------------------------------------------------------------: |
 |  Precondition  |                       The Manager is logged in                       |
 | Post condition |                      The discount code is found                      |
@@ -1311,9 +1287,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       3       |                     The manager Clicks on search                     |
 |       4       | The system returns All the information of the searched discount code |
 
-##### Scenario 27.2 - sdc1
+##### Scenario 26.2 - sdc1
 
-| Scenario 27.2 |    Failed to search for a discount code -code not present    |
+| Scenario 26.2 |    Failed to search for a discount code -code not present    |
 | :------------: | :-----------------------------------------------------------: |
 |  Precondition  |   Manager is logged in and the searched code does not exist   |
 | Post condition |                      An error is raised                      |
@@ -1323,7 +1299,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       3       |                 The manager Clicks on search                 |
 |       4       | The system displays An error message "No discount code found" |
 
-### Use case 28, UC28- *View all discount codes: a list of all the discount codes in the database is displayed*
+### Use case 27, UC27- *View all discount codes: a list of all the discount codes in the database is displayed*
 
 | Actors Involved |                  Manager                  |
 | :--------------: | :---------------------------------------: |
@@ -1333,9 +1309,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |     Variants     |                                          |
 |    Exceptions    |                                          |
 
-##### Scenario 28.1 - vdc1
+##### Scenario 27.1 - vdc1
 
-| Scenario 28.1 |                View all discount codes                |
+| Scenario 27.1 |                View all discount codes                |
 | :------------: | :---------------------------------------------------: |
 |  Precondition  |                 Manager is logged in                 |
 | Post condition |       A list of all discount codes is displayed       |
@@ -1343,7 +1319,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       1       | The manager navigates to the "discount codes" section |
 |       2       | The system returns all active coupons and its details |
 
-### Use case 29, UC29 - *Apply a coupon on the cart: customer wants to apply a coupon on the current cart*
+### Use case 28, UC28 - *Apply a coupon on the cart: customer wants to apply a coupon on the current cart*
 
 | Actors Involved |                      Customer                      |
 | :--------------: | :-------------------------------------------------: |
@@ -1353,9 +1329,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |     Variants     |                                                    |
 |    Exceptions    | ac2(wrong discount code),ac3(the coupon is expired) |
 
-##### Scenario 29.1 - ac1
+##### Scenario 28.1 - ac1
 
-| Scenario 29.1 |                                **Apply a coupon on the cart**                                |
+| Scenario 28.1 |                                **Apply a coupon on the cart**                                |
 | :------------: | :-------------------------------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart and has a valid coupon |
 | Post condition |                                   The coupon applied successfully                                   |
@@ -1365,9 +1341,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       3       |                     The customer enters the coupon code in the designated field                     |
 |       4       | The system displays a success message and updates the displayed total price to reflect the discount |
 
-##### Scenario 29.2 - ac2
+##### Scenario 28.2 - ac2
 
-| Scenario 29.2 |                           **Failed to apply the coupon on the cart**                           |
+| Scenario 28.2 |                           **Failed to apply the coupon on the cart**                           |
 | :------------: | :---------------------------------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart and has an invalid coupon |
 | Post condition |                                          An error is raised                                          |
@@ -1377,9 +1353,9 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |       3       |                      The customer enters the coupon code in the designated field                      |
 |       4       |                   The system displays an error message( "404-The coupon not found")                   |
 
-##### Scenario 29.3 - ac3
+##### Scenario 28.3 - ac3
 
-| Scenario 29.2 |                           **Failed to apply the coupon on the cart**                           |
+| Scenario 28.2 |                           **Failed to apply the coupon on the cart**                           |
 | :------------: | :---------------------------------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart and has an invalid coupon |
 | Post condition |                                          An error is raised                                          |
