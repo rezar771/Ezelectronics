@@ -4,9 +4,9 @@ Date: 29/04/2024
 
 Version: V1 - description of EZElectronics in CURRENT form (as received by teachers)
 
-| Version number |   Change   |
-| :------------: | :--------: |
-|      1.14      | Fix Index |
+| Version number |             Change             |
+| :------------: | :----------------------------: |
+|      1.15      | Fixed the glossary description |
 
 # Contents
 
@@ -18,8 +18,8 @@ Version: V1 - description of EZElectronics in CURRENT form (as received by teach
   - [Context Diagram](#context-diagram)
   - [Interfaces](#interfaces)
 - [Stories and personas](#stories-and-personas)
-      - [Customer Persona](#customer-persona)
-      - [Manager Persona](#manager-persona)
+  - [Customer Persona](#customer-persona)
+  - [Manager Persona](#manager-persona)
 - [Functional and non functional requirements](#functional-and-non-functional-requirements)
   - [Functional Requirements](#functional-requirements)
   - [Table of rights](#table-of-rights)
@@ -33,57 +33,57 @@ Version: V1 - description of EZElectronics in CURRENT form (as received by teach
         - [Scenario 1.4 - ap4](#scenario-14-ap4)
         - [Scenario 1.5 - ap5](#scenario-15-ap5)
     - [Use case 2, UC2 - *Delete a product: manager wants to delete products from the database*](#use-case-2-uc2-delete-a-product-manager-wants-to-delete-products-from-the-database)
-        - [Scenario 2.1 - dp1](#scenario-21-dp1)
-        - [Scenario 2.2 - dp2](#scenario-22-dp2)
+      - [Scenario 2.1 - dp1](#scenario-21-dp1)
+      - [Scenario 2.2 - dp2](#scenario-22-dp2)
     - [Use case 3, UC3 - *Mark a product: manager wants to mark a product as sold*](#use-case-3-uc3-mark-a-product-manager-wants-to-mark-a-product-as-sold)
-        - [Scenario 3.1 - mp1](#scenario-31-mp1)
-        - [Scenario 3.2 - mp2](#scenario-32-mp2)
-        - [Scenario 3.3 - mp3](#scenario-33-mp3)
-        - [Scenario 3.4 - mp4](#scenario-34-mp4)
-        - [Scenario 3.5 - mp5](#scenario-35-mp5)
+      - [Scenario 3.1 - mp1](#scenario-31-mp1)
+      - [Scenario 3.2 - mp2](#scenario-32-mp2)
+      - [Scenario 3.3 - mp3](#scenario-33-mp3)
+      - [Scenario 3.4 - mp4](#scenario-34-mp4)
+      - [Scenario 3.5 - mp5](#scenario-35-mp5)
     - [Use case 4, UC4 - *View products: user wants to see the products on the database*](#use-case-4-uc4-view-products-user-wants-to-see-the-products-on-the-database)
-        - [Scenario 4.1 - vp1](#scenario-41-vp1)
-        - [Scenario 4.2 - vp2](#scenario-42-vp2)
-        - [Scenario 4.3 - vp3](#scenario-43-vp3)
-        - [Scenario 4.4 - vp4](#scenario-44-vp4)
+      - [Scenario 4.1 - vp1](#scenario-41-vp1)
+      - [Scenario 4.2 - vp2](#scenario-42-vp2)
+      - [Scenario 4.3 - vp3](#scenario-43-vp3)
+      - [Scenario 4.4 - vp4](#scenario-44-vp4)
     - [Use case 5, UC5 - *View the current cart: Customer wants to see the current cart*](#use-case-5-uc5-view-the-current-cart-customer-wants-to-see-the-current-cart)
-        - [Scenario 5.1 - vc1](#scenario-51-vc1)
+      - [Scenario 5.1 - vc1](#scenario-51-vc1)
     - [Use case 6, UC6 - *Add a product to the cart: customer wants to add the products to the cart*](#use-case-6-uc6-add-a-product-to-the-cart-customer-wants-to-add-the-products-to-the-cart)
-        - [Scenario 6.1 - ac1](#scenario-61-ac1)
-        - [Scenario 6.2 - ac2](#scenario-62-ac2)
-        - [Scenario 6.3 - ac3](#scenario-63-ac3)
-        - [Scenario 6.4 - ac4](#scenario-64-ac4)
+      - [Scenario 6.1 - ac1](#scenario-61-ac1)
+      - [Scenario 6.2 - ac2](#scenario-62-ac2)
+      - [Scenario 6.3 - ac3](#scenario-63-ac3)
+      - [Scenario 6.4 - ac4](#scenario-64-ac4)
     - [Use case 7, UC7 - *Removes a product from the cart: customer wants to delete products from the cart*](#use-case-7-uc7-removes-a-product-from-the-cart-customer-wants-to-delete-products-from-the-cart)
-        - [Scenario 7.1 - rc1](#scenario-71-rc1)
-        - [Scenario 7.2 - rc2](#scenario-72-rc2)
-        - [Scenario 7.3 - rc3](#scenario-73-rc3)
-        - [Scenario 7.4 - rc4](#scenario-74-rc4)
-        - [Scenario 7.5 - rc5](#scenario-75-rc5)
+      - [Scenario 7.1 - rc1](#scenario-71-rc1)
+      - [Scenario 7.2 - rc2](#scenario-72-rc2)
+      - [Scenario 7.3 - rc3](#scenario-73-rc3)
+      - [Scenario 7.4 - rc4](#scenario-74-rc4)
+      - [Scenario 7.5 - rc5](#scenario-75-rc5)
     - [Use case 8, UC8 - *Delete the current cart: customer wants to delete the current cart*](#use-case-8-uc8-delete-the-current-cart-customer-wants-to-delete-the-current-cart)
-        - [Scenario 8.1 - dc1](#scenario-81-dc1)
-        - [Scenario 8.2 - dc2](#scenario-82-dc2)
+      - [Scenario 8.1 - dc1](#scenario-81-dc1)
+      - [Scenario 8.2 - dc2](#scenario-82-dc2)
     - [Use case 9, UC9 - *Check out a cart: customer wants to check out the current cart*](#use-case-9-uc9-check-out-a-cart-customer-wants-to-check-out-the-current-cart)
-        - [Scenario 9.1 - ck1](#scenario-91-ck1)
-        - [Scenario 9.2 - ck2](#scenario-92-ck2)
-        - [Scenario 9.3 - ck3](#scenario-93-ck3)
+      - [Scenario 9.1 - ck1](#scenario-91-ck1)
+      - [Scenario 9.2 - ck2](#scenario-92-ck2)
+      - [Scenario 9.3 - ck3](#scenario-93-ck3)
     - [Use case 10, UC10 - *Show the history of carts: customer wants to see the history of carts that have been paid*](#use-case-10-uc10-show-the-history-of-carts-customer-wants-to-see-the-history-of-carts-that-have-been-paid)
-        - [Scenario 10.1 - sh1](#scenario-101-sh1)
+      - [Scenario 10.1 - sh1](#scenario-101-sh1)
     - [Use case 11, UC11 - *Retrieve users: manager wants to reach a list of the users*](#use-case-11-uc11-retrieve-users-manager-wants-to-reach-a-list-of-the-users)
-        - [Scenario 11.1 - rur1](#scenario-111-rur1)
-        - [Scenario 11.2 - ru2](#scenario-112-ru2)
+      - [Scenario 11.1 - rur1](#scenario-111-rur1)
+      - [Scenario 11.2 - ru2](#scenario-112-ru2)
     - [Use case 12, UC12 - **Retrieve a user by username*: manager wants to reach a single user by its username*](#use-case-12-uc12-retrieve-a-user-by-username-manager-wants-to-reach-a-single-user-by-its-username)
-        - [Scenario 12.1 - ruu1](#scenario-121-ruu1)
-        - [Scenario 12.2 - ruu2](#scenario-122-ruu2)
+      - [Scenario 12.1 - ruu1](#scenario-121-ruu1)
+      - [Scenario 12.2 - ruu2](#scenario-122-ruu2)
     - [Use case 13, UC13 - *Delete a user: manager wants to delete an existing user by its username*](#use-case-13-uc13-delete-a-user-manager-wants-to-delete-an-existing-user-by-its-username)
-        - [Scenario 13.1 - duu1](#scenario-131-duu1)
-        - [Scenario 13.2 - duu2](#scenario-132-duu2)
+      - [Scenario 13.1 - duu1](#scenario-131-duu1)
+      - [Scenario 13.2 - duu2](#scenario-132-duu2)
     - [Use case 14, UC14 - *Sign up: user wants to create an account*](#use-case-14-uc14-sign-up-user-wants-to-create-an-account)
-        - [Scenario 14.1 - S1](#scenario-141-s1)
-        - [Scenario 14.2 - S2](#scenario-142-s2)
+      - [Scenario 14.1 - S1](#scenario-141-s1)
+      - [Scenario 14.2 - S2](#scenario-142-s2)
     - [Use case 15, UC15 - *Authentication: the user wants to access the site*](#use-case-15-uc15-authentication-the-user-wants-to-access-the-site)
-        - [Scenario 15.1 - li1](#scenario-151-li1)
-        - [Scenario 15.2 - li2](#scenario-152-li2)
-        - [Scenario 15.3 - lo1](#scenario-153-lo1)
+      - [Scenario 15.1 - li1](#scenario-151-li1)
+      - [Scenario 15.2 - li2](#scenario-152-li2)
+      - [Scenario 15.3 - lo1](#scenario-153-lo1)
 - [Glossary](#glossary)
 - [Deployment Diagram](#deployment-diagram)
 
@@ -481,7 +481,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 6.2  |          **Failed to add a product to the cart - not found**          |
 | :------------: | :-------------------------------------------------------------------------: |
 |  Precondition  | The customer has an account and is logged in and unable to find the product |
-| Post condition |                     The system raises an error                     |
+| Post condition |                         The system raises an error                         |
 |   *Step#*   |                               *Description*                               |
 |       1       |                 The customer navigates to the products page                 |
 |       2       |           The customer choose the products but it is unavailable           |
@@ -493,7 +493,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 6.3  |          **Failed to add a product to the cart - another cart**          |
 | :------------: | :-----------------------------------------------------------------------------: |
 |  Precondition  |   The customer has an account and is logged in and choose a duplicate product   |
-| Post condition |                       The system raises an error                       |
+| Post condition |                           The system raises an error                           |
 |   *Step#*   |                                 *Description*                                 |
 |       1       |                   The customer navigates to the products page                   |
 |       2       |             The customer choose the products but it is unavailable             |
@@ -505,7 +505,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 6.4  |              **Failed to add a product to the cart - sold**              |
 | :------------: | :----------------------------------------------------------------------------: |
 |  Precondition  | The customer has an account and is logged in and choose an unavailable product |
-| Post condition |                       The system raises an error                       |
+| Post condition |                           The system raises an error                           |
 |   *Step#*   |                                *Description*                                |
 |       1       |                  The customer navigates to the products page                  |
 |       2       |             The customer choose the products but it is unavailable             |
@@ -539,7 +539,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.2  |     Failed to remove a product from the cart- product not found     |
 | :------------: | :------------------------------------------------------------------: |
 |  Precondition  |           The customer is logged in and the cart is empty           |
-| Post condition |     The system raises an error     |
+| Post condition |                      The system raises an error                      |
 |   *Step#*   |                           *Description*                           |
 |       1       |    The customer browses through the list of products in the cart    |
 |       2       |  The customer Choose the product that wants to remove from the cart  |
@@ -551,7 +551,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.3  |      Failed to Remove a product from the cart- cart not found      |
 | :------------: | :----------------------------------------------------------------: |
 |  Precondition  |          The customer is logged in and did not add a cart          |
-| Post condition |    The system raises an error    |
+| Post condition |                     The system raises an error                     |
 |   *Step#*   |                          *Description*                          |
 |       1       |   The customer browses through the list of products in the cart   |
 |       2       | The customer Choose the product that wants to remove from the cart |
@@ -563,7 +563,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.4  | **Failed to Remove a product from the cart- product is unavailable** |
 | :------------: | :------------------------------------------------------------------------: |
 |  Precondition  |              The customer is logged in and did not add a cart              |
-| Post condition |        The system raises an error        |
+| Post condition |                         The system raises an error                         |
 |   *Step#*   |                              *Description*                              |
 |       1       |       The customer browses through the list of products in the cart       |
 |       2       |     The customer Choose the product that wants to remove from the cart     |
@@ -575,7 +575,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.5  |     **Failed to Remove a product from the cart- product is sold**     |
 | :------------: | :--------------------------------------------------------------------------: |
 |  Precondition  |               The customer is logged in and did not add a cart               |
-| Post condition |         The system raises an error         |
+| Post condition |                          The system raises an error                          |
 |   *Step#*   |                               *Description*                               |
 |       1       |        The customer browses through the list of products in the cart        |
 |       2       |      The customer Choose the product that wants to remove from the cart      |
@@ -609,7 +609,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 8.2  |                 **Failed to delete the current cart**                 |
 | :------------: | :-------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart |
-| Post condition |                          The system raises an error                          |
+| Post condition |                         The system raises an error                         |
 |   *Step#*   |                               *Description*                               |
 |       1       |                   The customer navigate to the dashboard                   |
 |       2       |                    The customer Choose the cart section                    |
@@ -646,7 +646,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 9.2  |                     **Failed to complete the payment- cart not found**                     |
 | :------------: | :----------------------------------------------------------------------------------------------: |
 |  Precondition  |                                    The customer is logged in                                    |
-| Post condition |                    The system raises an error                    |
+| Post condition |                                    The system raises an error                                    |
 |   *Step#*   |                                         *Description*                                         |
 |       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
 |       2       |                        The customer Clicks on 'proceed with order' button                        |
@@ -660,7 +660,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 9.3  |                     **Failed to complete the payment- cart is empty**                     |
 | :------------: | :----------------------------------------------------------------------------------------------: |
 |  Precondition  |                                    The customer is logged in                                    |
-| Post condition |                    The system raises an error                    |
+| Post condition |                                    The system raises an error                                    |
 |   *Step#*   |                                         *Description*                                         |
 |       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
 |       2       |                        The customer Clicks on 'proceed with order' button                        |
@@ -745,14 +745,14 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ##### Scenario 12.2 - ruu2
 
-| Scenario 12.2 |                                                                      **Failed to Find the user**                                                                      |
-| :------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|  Precondition  |                                                                    Users should be exist in the database                                                                    |
-| Post condition | The system raises an error |
-|   *Step#*   |                                                                               *Description*                                                                               |
-|       1       |                                                              The Manager navigates to the user management page                                                              |
-|       2       |                                                                    The Manager enters a unique username                                                                    |
-|       3       |                                                        The system shows an error message “404- the user not found”                                                        |
+| Scenario 12.2 |               **Failed to Find the user**               |
+| :------------: | :-----------------------------------------------------------: |
+|  Precondition  |             Users should be exist in the database             |
+| Post condition |                  The system raises an error                  |
+|   *Step#*   |                        *Description*                        |
+|       1       |       The Manager navigates to the user management page       |
+|       2       |             The Manager enters a unique username             |
+|       3       | The system shows an error message “404- the user not found” |
 
 ### Use case 13, UC13 - *Delete a user: manager wants to delete an existing user by its username*
 
@@ -779,15 +779,15 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ##### Scenario 13.2 - duu2
 
-| Scenario 13.2 |                                             **Failed to delete**                                             |
-| :------------: | :-----------------------------------------------------------------------------------------------------------------: |
-|  Precondition  |                                        Users should be exist in the database                                        |
-| Post condition | The system raises an error |
-|   *Step#*   |                                                   *Description*                                                   |
-|       1       |                                  The Manager navigates to the user management page                                  |
-|       2       |                                   The manager enters a username to find the user                                   |
-|       3       |                                          The system fails to find the user                                          |
-|       4       |                          The system displays an error message “404- the user not found”                          |
+| Scenario 13.2 |                    **Failed to delete**                    |
+| :------------: | :--------------------------------------------------------------: |
+|  Precondition  |              Users should be exist in the database              |
+| Post condition |                    The system raises an error                    |
+|   *Step#*   |                         *Description*                         |
+|       1       |        The Manager navigates to the user management page        |
+|       2       |          The manager enters a username to find the user          |
+|       3       |                The system fails to find the user                |
+|       4       | The system displays an error message “404- the user not found” |
 
 ### Use case 14, UC14 - *Sign up: user wants to create an account*
 
@@ -875,6 +875,13 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 # Glossary
 
 ![Glossary v1](image/RequirementsDocumentV1/Glossary v1.png)
+
+* **USER :** Person with credentials (username and password) who can sign up to the site
+  * **Customer** : Person that wants to purchase electronics
+  * **Manager** : Person that manage products in the store
+* **PRODUCT :** **Electronic device sold by the store**
+* **CART** : Personal area of a Customer where he can group products and pay them all at once
+* **PAYMENT METHOD** : Method used for the payment such as debit/credit card
 
 # Deployment Diagram
 
