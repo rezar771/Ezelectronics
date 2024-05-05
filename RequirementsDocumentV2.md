@@ -545,7 +545,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 6.2  |          **Failed to add a product to the cart - not found**          |
 | :------------: | :-------------------------------------------------------------------------: |
 |  Precondition  | The customer has an account and is logged in and unable to find the product |
-| Post condition |                     The products are added to the cart                     |
+| Post condition |                             An error is raised                             |
 |   *Step#*   |                               *Description*                               |
 |       1       |                 The customer navigates to the products page                 |
 |       2       |           The customer choose the products but it is unavailable           |
@@ -557,7 +557,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 6.3  |          **Failed to add a product to the cart - another cart**          |
 | :------------: | :-----------------------------------------------------------------------------: |
 |  Precondition  |   The customer has an account and is logged in and choose a duplicate product   |
-| Post condition |                       The products are added to the cart                       |
+| Post condition |                               An error is raised                               |
 |   *Step#*   |                                 *Description*                                 |
 |       1       |                   The customer navigates to the products page                   |
 |       2       |             The customer choose the products but it is unavailable             |
@@ -569,7 +569,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 6.4  |              **Failed to add a product to the cart - sold**              |
 | :------------: | :----------------------------------------------------------------------------: |
 |  Precondition  | The customer has an account and is logged in and choose an unavailable product |
-| Post condition |                       The products are added to the cart                       |
+| Post condition |                               An error is raised                               |
 |   *Step#*   |                                *Description*                                |
 |       1       |                  The customer navigates to the products page                  |
 |       2       |             The customer choose the products but it is unavailable             |
@@ -603,7 +603,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.2  |     Failed to Remove a product from the cart- product not found     |
 | :------------: | :------------------------------------------------------------------: |
 |  Precondition  |           The customer is logged in and the cart is empty           |
-| Post condition |     The selected product has been removed from the shopping cart     |
+| Post condition |                          An error is raised                          |
 |   *Step#*   |                           *Description*                           |
 |       1       |    The customer browses through the list of products in the cart    |
 |       2       |  The customer Choose the product that wants to remove from the cart  |
@@ -615,7 +615,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.3  |      Failed to Remove a product from the cart- cart not found      |
 | :------------: | :----------------------------------------------------------------: |
 |  Precondition  |          The customer is logged in and did not add a cart          |
-| Post condition |    The selected product has been removed from the shopping cart    |
+| Post condition |                         An error is raised                         |
 |   *Step#*   |                          *Description*                          |
 |       1       |   The customer browses through the list of products in the cart   |
 |       2       | The customer Choose the product that wants to remove from the cart |
@@ -627,7 +627,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.4  | **Failed to Remove a product from the cart- product is unavailable** |
 | :------------: | :------------------------------------------------------------------------: |
 |  Precondition  |              The customer is logged in and did not add a cart              |
-| Post condition |        The selected product has been removed from the shopping cart        |
+| Post condition |                             An error is raised                             |
 |   *Step#*   |                              *Description*                              |
 |       1       |       The customer browses through the list of products in the cart       |
 |       2       |     The customer Choose the product that wants to remove from the cart     |
@@ -639,7 +639,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 7.5  |     **Failed to Remove a product from the cart- product is sold**     |
 | :------------: | :--------------------------------------------------------------------------: |
 |  Precondition  |               The customer is logged in and did not add a cart               |
-| Post condition |         The selected product has been removed from the shopping cart         |
+| Post condition |                              An error is raised                              |
 |   *Step#*   |                               *Description*                               |
 |       1       |        The customer browses through the list of products in the cart        |
 |       2       |      The customer Choose the product that wants to remove from the cart      |
@@ -673,7 +673,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 8.2  |                 **Failed to delete the current cart**                 |
 | :------------: | :-------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart |
-| Post condition |                          The cart has been deleted                          |
+| Post condition |                             An error is raised                             |
 |   *Step#*   |                               *Description*                               |
 |       1       |                   The customer navigate to the dashboard                   |
 |       2       |                    The customer Choose the cart section                    |
@@ -710,7 +710,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 9.2  |                     **Failed to complete the payment- cart not found**                     |
 | :------------: | :----------------------------------------------------------------------------------------------: |
 |  Precondition  |                                    The customer is logged in                                    |
-| Post condition |                    The customer has bought all products in the shopping cart                    |
+| Post condition |                                        An error is raised                                        |
 |   *Step#*   |                                         *Description*                                         |
 |       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
 |       2       |                        The customer Clicks on 'proceed with order' button                        |
@@ -724,7 +724,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 |  Scenario 9.3  |                     **Failed to complete the payment- cart is empty**                     |
 | :------------: | :----------------------------------------------------------------------------------------------: |
 |  Precondition  |                                    The customer is logged in                                    |
-| Post condition |                    The customer has bought all products in the shopping cart                    |
+| Post condition |                                        An error is raised                                        |
 |   *Step#*   |                                         *Description*                                         |
 |       1       | The customer navigates to the “cart” and review the the sum of prices and the list of products |
 |       2       |                        The customer Clicks on 'proceed with order' button                        |
@@ -809,14 +809,14 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ##### Scenario 12.2 - ruu2
 
-| Scenario 12.2 |                                                                      **Failed to Find the user**                                                                      |
-| :------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|  Precondition  |                                                                    Users should be exist in the database                                                                    |
-| Post condition | The system displays a list of users with the specified role, allowing the user to manage or interact with those users as needed. The system displays an appropriate message |
-|   *Step#*   |                                                                               *Description*                                                                               |
-|       1       |                                                              The Manager navigates to the user management page                                                              |
-|       2       |                                                                    The Manager enters a unique username                                                                    |
-|       3       |                                                        The system shows an error message “404- the user not found”                                                        |
+| Scenario 12.2 |               **Failed to Find the user**               |
+| :------------: | :-----------------------------------------------------------: |
+|  Precondition  |             Users should be exist in the database             |
+| Post condition |                      An error is raised                      |
+|   *Step#*   |                        *Description*                        |
+|       1       |       The Manager navigates to the user management page       |
+|       2       |             The Manager enters a unique username             |
+|       3       | The system shows an error message “404- the user not found” |
 
 ### Use case 13, UC13 - *Delete a user: manager wants to delete an existing user by its username*
 
@@ -843,15 +843,15 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ##### Scenario 13.2 - duu2
 
-| Scenario 13.2 |                                             **Failed to delete**                                             |
-| :------------: | :-----------------------------------------------------------------------------------------------------------------: |
-|  Precondition  |                                        Users should be exist in the database                                        |
-| Post condition | The specified user is deleted from the database, and their related information is no longer available in the system |
-|   *Step#*   |                                                   *Description*                                                   |
-|       1       |                                  The Manager navigates to the user management page                                  |
-|       2       |                                   The manager enters a username to find the user                                   |
-|       3       |                                          The system fails to find the user                                          |
-|       4       |                          The system displays an error message “404- the user not found”                          |
+| Scenario 13.2 |                    **Failed to delete**                    |
+| :------------: | :--------------------------------------------------------------: |
+|  Precondition  |              Users should be exist in the database              |
+| Post condition |                        An error is raised                        |
+|   *Step#*   |                         *Description*                         |
+|       1       |        The Manager navigates to the user management page        |
+|       2       |          The manager enters a username to find the user          |
+|       3       |                The system fails to find the user                |
+|       4       | The system displays an error message “404- the user not found” |
 
 ### Use case 14, UC14 - *Sign up: user wants to create an account*
 
@@ -1030,10 +1030,10 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 | Scenario 18.1 |         **Retrieve the position of the product**         |
 | :------------: | :-------------------------------------------------------------: |
-|  Precondition  |      The customer had bought a product and was delivering      |
+|  Precondition  |       The customer had bought a product and is delivering       |
 | Post condition | The user sees approximately where is the product in that moment |
 |   *Step#*   |                         *Description*                         |
-|       1       |                 The user goes the cart history                 |
+|       1       |                The user goes to the cart history                |
 |       2       |   The user clicks on the cart containing the desired product   |
 |       3       |    The user clicks on the “track” button near the product    |
 |       4       |    The system displays information about the product status    |
@@ -1052,7 +1052,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 
 ##### Scenario 18.3 - npd
 
-| Scenario 18.2 |                       **Notify if the product it's in the delivery phase**                       |
+| Scenario 18.2 |                        **Notify if the product is in the delivery phase**                        |
 | :------------: | :-----------------------------------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has purchased a product. The shipping service took charge of the shipment |
 | Post condition |                       The customer receive a notification about the product state                       |
@@ -1370,7 +1370,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 | Scenario 29.2 |                           **Failed to apply the coupon on the cart**                           |
 | :------------: | :---------------------------------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart and has an invalid coupon |
-| Post condition |                                                                                                      |
+| Post condition |                                          An error is raised                                          |
 |   *Step#*   |                                            *Description*                                            |
 |       1       |   The customer navigates to the “cart” and review the the sum of prices and the list of products   |
 |       2       |                          The customer Clicks on 'proceed with order' button                          |
@@ -1382,7 +1382,7 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 | Scenario 29.2 |                           **Failed to apply the coupon on the cart**                           |
 | :------------: | :---------------------------------------------------------------------------------------------------: |
 |  Precondition  | The customer is logged in and has at least one product in the shopping cart and has an invalid coupon |
-| Post condition |                                                                                                      |
+| Post condition |                                          An error is raised                                          |
 |   *Step#*   |                                            *Description*                                            |
 |       1       |   The customer navigates to the “cart” and review the the sum of prices and the list of products   |
 |       2       |                          The customer Clicks on 'proceed with order' button                          |
@@ -1392,6 +1392,15 @@ Bob leads an electronics store, managing stock, purchases, and product selection
 # Glossary
 
 ![Glossary_v2](image/RequirementsDocumentV2/Glossary_v2.png)
+
+* **USER :** Person with credentials (username and password) who can sign up to the site
+  * **Customer** : Person that wants to purchase electronics
+  * **Manager** : Person that manage products in the store
+* **PRODUCT :** **Electronic device sold by the store**
+* **CART** : Personal area of a Customer where he can group products and pay them all at once
+* **PAYMENT METHOD** : Method used for the payment such as debit/credit card
+* **REVIEW** : Evaluation written by a specific customer about a specific product
+* **COUPON** : Discount code applicable to a cart
 
 # Deployment Diagram
 
