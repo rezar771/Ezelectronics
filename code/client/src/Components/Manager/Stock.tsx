@@ -14,7 +14,6 @@ function Stock() {
     const [showModal, setShowModal] = useState(false)
     const [quantityIncrease, setQuantityIncrease] = useState(0)
     const [quantitySold, setQuantitySold] = useState(0)
-    const [changeDate, setChangeDate] = useState("")
     const [error, setError] = useState("")
     const navigate = useNavigate()
     const [models, setModels] = useState<string[]>([])
@@ -83,7 +82,7 @@ function Stock() {
 
     const recordQuantityIncrease = async (model: string) => {
         try {
-            await API.changeProductQuantity(model, quantityIncrease, changeDate)
+            await API.changeProductQuantity(model, quantityIncrease, null)
             let updatedProducts = await API.getProducts(null, null, null)
             setProducts(updatedProducts)
             setCurrentProduct(null)
@@ -91,7 +90,6 @@ function Stock() {
             setQuantityIncrease(0)
             setQuantitySold(0)
             setUpdateToast(true)
-            setChangeDate("")
             setTimeout(() => {
                 setUpdateToast(false)
             }, 3000)
@@ -104,7 +102,7 @@ function Stock() {
 
     const recordQuantitySold = async (model: string) => {
         try {
-            await API.sellProduct(model, quantitySold, changeDate)
+            await API.sellProduct(model, quantitySold, null)
             let updatedProducts = await API.getProducts(null, null, null)
             setProducts(updatedProducts)
             setCurrentProduct(null)
@@ -112,7 +110,6 @@ function Stock() {
             setQuantityIncrease(0)
             setQuantitySold(0)
             setSellToast(true)
-            setChangeDate("")
             setTimeout(() => {
                 setSellToast(false)
             }, 3000)
@@ -248,7 +245,7 @@ function Stock() {
 
                     </ButtonGroup>
                 </Row>
-                {!available && <Row style={{ margin: 0, padding: 0 }} className="justify-content-center">
+                {products.length > 0 && !available && <Row style={{ margin: 0, padding: 0 }} className="justify-content-center">
                     <Col sm md lg className="mt-2" style={{ textAlign: "center" }}>
                         {(!filterCategory && !filterModel) && <span className="title" style={{ color: "gray" }}>No filters active</span>}
                         {filterCategory && <span className="title" style={{ color: "green" }}>Filtering by category: <b>{filterCategory}</b></span>}
@@ -291,7 +288,7 @@ function Stock() {
                             </Dropdown.Menu>
                         </Dropdown>
                     </ButtonGroup>
-                    {available && <Row style={{ margin: 0, padding: 0 }} className="justify-content-center">
+                    {products.length > 0 && available && <Row style={{ margin: 0, padding: 0 }} className="justify-content-center">
                         <Col sm md lg className="mt-2" style={{ textAlign: "center" }}>
                             {(!availableCategory && !availableModel) && <span className="title" style={{ color: "gray" }}>Viewing all available products</span>}
                             {availableCategory && <span className="title" style={{ color: "green" }}>Filtering available products by category: <b>{filterCategory}</b></span>}
@@ -353,10 +350,7 @@ function Stock() {
                 </Alert>}
             </Container>
 
-            {currentProduct && <Modal show={showModal} onHide={() => {
-                setError("")
-                setShowModal(false)
-            }}>
+            {currentProduct && <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Product Operations</Modal.Title>
                 </Modal.Header>
@@ -368,10 +362,6 @@ function Stock() {
                                     <Form.Label>Current quantity: {currentProduct?.quantity}</Form.Label>
                                     <Form.Control className="mt-3" type="number" placeholder="Enter quantity increase" onChange={(event) => setQuantityIncrease(parseInt(event.target.value))} />
                                 </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Arrival date</Form.Label>
-                                    <Form.Control value={changeDate} className="mt-3" type="date" placeholder="Enter arrival date" max={new Date().toISOString().split('T')[0]} onChange={(event) => setChangeDate(event.target.value)} />
-                                </Form.Group>
                             </Form>
                             <Button variant="outline-success" onClick={() => recordQuantityIncrease(currentProduct.model)} >Record quantity increase</Button>
                         </Tab>
@@ -380,10 +370,6 @@ function Stock() {
                                 <Form.Group className="mb-3">
                                     <Form.Label>Current quantity: {currentProduct?.quantity}</Form.Label>
                                     <Form.Control className="mt-3" type="number" placeholder="Enter quantity sold" onChange={(event) => setQuantitySold(parseInt(event.target.value))} />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Selling date</Form.Label>
-                                    <Form.Control value={changeDate} className="mt-3" type="date" placeholder="Enter arrival date" max={new Date().toISOString().split('T')[0]} onChange={(event) => setChangeDate(event.target.value)} />
                                 </Form.Group>
                             </Form>
                             <Button variant="outline-success" onClick={() => recordQuantitySold(currentProduct?.model)} >Record quantity sold</Button>
@@ -394,10 +380,7 @@ function Stock() {
                     </Alert>}
                 </Modal.Body>
             </Modal>}
-            {currentProduct && <Modal show={showDelete} onHide={() => {
-                setError("")
-                setShowDelete(false)
-            }}>
+            {currentProduct && <Modal show={showDelete} onHide={() => setShowDelete(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete product</Modal.Title>
                 </Modal.Header>
@@ -425,10 +408,7 @@ function Stock() {
                     <Button variant="outline-secondary" onClick={() => setShowDelete(false)} >Cancel</Button>
                 </Modal.Body>
             </Modal>}
-            <Modal show={deleteAll} onHide={() => {
-                setError("")
-                setDeleteAll(false)
-            }}>
+            <Modal show={deleteAll} onHide={() => setDeleteAll(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete all products</Modal.Title>
                 </Modal.Header>
@@ -454,10 +434,7 @@ function Stock() {
                     <Button variant="outline-secondary" onClick={() => setDeleteAll(false)} >Cancel</Button>
                 </Modal.Body>
             </Modal>
-            {currentModel && <Offcanvas show={showReviews} onHide={() => {
-                setError("")
-                setShowReviews(false)
-            }}>
+            {currentModel && <Offcanvas show={showReviews} onHide={() => setShowReviews(false)}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Reviews of {currentModel}</Offcanvas.Title>
                     {reviews.length > 0 && <Button variant="danger" onClick={() => setDeleteReviews(true)} >Delete reviews </Button>}
@@ -486,10 +463,7 @@ function Stock() {
                         </>}
                 </Offcanvas.Body>
             </Offcanvas>}
-            {currentModel && <Modal show={deleteReviews} onHide={() => {
-                setError("")
-                setDeleteReviews(false)
-            }}>
+            {currentModel && <Modal show={deleteReviews} onHide={() => setDeleteReviews(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete reviews</Modal.Title>
                 </Modal.Header>
@@ -516,10 +490,7 @@ function Stock() {
                     <Button variant="outline-secondary" onClick={() => setDeleteReviews(false)} >Cancel</Button>
                 </Modal.Body>
             </Modal>}
-            <Modal show={deleteAllReviews} onHide={() => {
-                setError("")
-                setDeleteAllReviews(false)
-            }}>
+            <Modal show={deleteAllReviews} onHide={() => setDeleteAllReviews(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete all reviews</Modal.Title>
                 </Modal.Header>
