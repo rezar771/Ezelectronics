@@ -68,6 +68,7 @@ class ProductRoutes {
       body("arrivalDate")
         .optional({ checkFalsy: true })
         .isDate({ format: "YYYY-MM-DD" }),
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -100,6 +101,7 @@ class ProductRoutes {
       body("changeDate")
         .optional({ checkFalsy: true })
         .isDate({ format: "YYYY-MM-DD" }),
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -131,6 +133,7 @@ class ProductRoutes {
       body("sellingDate")
         .optional({ checkFalsy: true })
         .isDate({ format: "YYYY-MM-DD" }),
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
