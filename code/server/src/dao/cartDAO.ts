@@ -548,68 +548,86 @@ class CartDAO {
   getAllCarts(): Promise<Cart[]> {
     return new Promise<Cart[]>((resolve, reject) => {
       try {
-        // Query to retrieve all carts
-        const getAllCartsSql = `
-            SELECT cartId, customer, paid, paymentDate, SUM(cost*amount) as totalCost
+        const customerCarts: Cart[] = [];
+        // Query to retrieve paid carts for the customer
+        const getCustomerCartsSql = `
+                SELECT cartId, customer, paid, paymentDate, SUM(cost*amount) as totalCost
             FROM carts
             GROUP BY cartId
-        `;
-        db.all(getAllCartsSql, (err: Error | null, rows: any[]) => {
+            `;
+
+        db.all(getCustomerCartsSql, (err: Error | null, cartRows: any[]) => {
           if (err) {
             reject(err);
             return;
           }
 
-          const getCartProductsSql = `SELECT model,amount,cost
-                            FROM carts
-                            WHERE cartId = ? AND customer = ? `;
+          const cartPromises = cartRows.map((cartRow: any) => {
+            return new Promise<void>((resolve, reject) => {
+              const cart: Cart = {
+                customer: cartRow.customer,
+                paid: cartRow.paid,
+                paymentDate: cartRow.paymentDate,
+                total: 0,
+                products: [],
+              };
 
-          const customerCarts: Cart[] = rows.map((cartRow: any) => {
-            // Map each row to a Cart object
-            const cart: Cart = {
-              customer: cartRow.customer,
-              paid: cartRow.paid,
-              paymentDate: cartRow.paymentDate,
-              total: cartRow.totalCost,
-              products: [], // Array to store products for this cart
-            };
-            db.all(
-              getCartProductsSql,
-              [cartRow.cartId, cartRow.customer],
-              (err: Error | null, productRows: any[]) => {
-                if (err) {
-                  reject(err);
-                  return;
+              const getCartProductsSql = `SELECT * FROM carts WHERE cartId=?`;
+              db.all(
+                getCartProductsSql,
+                [cartRow.cartId],
+                (err: Error | null, rows: any[]) => {
+                  if (err) {
+                    reject(err);
+                    return;
+                  }
+
+                  const productPromises = rows.map((row: any) => {
+                    return new Promise<void>((resolve, reject) => {
+                      const productsSql = `SELECT * FROM products WHERE model = ?`;
+                      db.get(
+                        productsSql,
+                        [row.model],
+                        (err: Error | null, productRow: any) => {
+                          if (err) {
+                            reject(err);
+                            return;
+                          }
+
+                          const product = new ProductInCart(
+                            productRow.model,
+                            row.amount,
+                            productRow.category,
+                            productRow.sellingPrice
+                          );
+                          cart.total += row.cost * row.amount;
+                          cart.products.push(product);
+                          resolve();
+                        }
+                      );
+                    });
+                  });
+
+                  Promise.all(productPromises)
+                    .then(() => {
+                      customerCarts.push(cart);
+                      resolve();
+                    })
+                    .catch((err) => {
+                      reject(err);
+                    });
                 }
-                // Map each product row to a ProductInCart object and push it to the products array of the cart
-                const getCategoryProductsSql = `SELECT category
-                            FROM products
-                            WHERE model = ?`;
-                productRows.forEach((productRow: any) => {
-                  db.get(
-                    getCategoryProductsSql,
-                    [productRow.model],
-                    (err: Error | null, categoryRow: any) => {
-                      if (err) {
-                        reject(err);
-                        return;
-                      }
-                      const product: ProductInCart = {
-                        model: productRow.model,
-                        quantity: productRow.amount,
-                        category: categoryRow,
-                        price: productRow.cost,
-                      };
-                      cart.products.push(product);
-                    }
-                  );
-                });
-              }
-            );
-            return cart;
+              );
+            });
           });
 
-          resolve(customerCarts);
+          Promise.all(cartPromises)
+            .then(() => {
+              resolve(customerCarts);
+            })
+            .catch((err) => {
+              reject(err);
+            });
         });
       } catch (error) {
         reject(error);

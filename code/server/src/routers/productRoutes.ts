@@ -65,7 +65,9 @@ class ProductRoutes {
       body("quantity").isInt({ min: 1 }),
       body("details").optional().isString(),
       body("sellingPrice").isFloat({ gt: 0 }),
-      body("arrivalDate").optional().isDate({ format: "YYYY-MM-DD" }),
+      body("arrivalDate")
+        .optional({ checkFalsy: true })
+        .isDate({ format: "YYYY-MM-DD" }),
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -96,8 +98,7 @@ class ProductRoutes {
       param("model").notEmpty(),
       body("quantity").isInt({ min: 1 }),
       body("changeDate")
-        .optional()
-        .if((value: any) => value !== null)
+        .optional({ checkFalsy: true })
         .isDate({ format: "YYYY-MM-DD" }),
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
@@ -128,8 +129,7 @@ class ProductRoutes {
       param("model").notEmpty(),
       body("quantity").isInt({ min: 1 }),
       body("sellingDate")
-        .optional()
-        .if((value: any) => value !== null)
+        .optional({ checkFalsy: true })
         .isDate({ format: "YYYY-MM-DD" }),
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
