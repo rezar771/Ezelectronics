@@ -165,16 +165,11 @@ class ProductRoutes {
       "/",
       query("grouping").optional().isString().isIn([null, "category", "model"]),
       query("category")
-        .optional()
         .if(query("grouping").equals("category"))
-        .exists()
         .notEmpty()
-        .isIn(["Smartphone", "Laptop", "Appliance"]),
-      query("model")
-        .optional()
-        .if(query("grouping").equals("model"))
         .exists()
-        .notEmpty(),
+        .isIn(["Smartphone", "Laptop", "Appliance"]),
+      query("model").if(query("grouping").equals("model")).exists().notEmpty(),
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -200,17 +195,11 @@ class ProductRoutes {
       "/available",
       query("grouping").optional().isString().isIn([null, "category", "model"]),
       query("category")
-        .optional()
-        .isString()
         .if(query("grouping").equals("category"))
         .exists()
         .notEmpty()
         .isIn(["Smartphone", "Laptop", "Appliance"]),
-      query("model")
-        .optional()
-        .if(query("grouping").equals("model"))
-        .exists()
-        .notEmpty(),
+      query("model").if(query("grouping").equals("model")).exists().notEmpty(),
       this.authenticator.isLoggedIn,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
