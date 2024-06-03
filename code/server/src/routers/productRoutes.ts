@@ -170,6 +170,7 @@ class ProductRoutes {
         .exists()
         .isIn(["Smartphone", "Laptop", "Appliance"]),
       query("model").if(query("grouping").equals("model")).exists().notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -181,7 +182,6 @@ class ProductRoutes {
             next(err);
           })
     );
-
     /**
      * Route for retrieving all available products.
      * It requires the user to be logged in.
@@ -220,6 +220,7 @@ class ProductRoutes {
      */
     this.router.delete(
       "/",
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -238,6 +239,7 @@ class ProductRoutes {
     this.router.delete(
       "/:model",
       param("model").notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
