@@ -66,12 +66,10 @@ class ProductDAO {
     return new Promise<number>((resolve, reject) => {
       try {
         // Check if changeDate is after the current date
-
         if (changeDate && new Date(changeDate) > new Date()) {
           reject(new DateError());
           return;
         }
-
         if (!changeDate) {
           changeDate = new Date().toISOString().slice(0, 10);
         }
