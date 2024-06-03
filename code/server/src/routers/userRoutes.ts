@@ -83,6 +83,7 @@ class UserRoutes {
      */
     this.router.get(
       "/",
+      this.authService.isLoggedIn,
       this.authService.isAdmin,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -101,6 +102,7 @@ class UserRoutes {
     this.router.get(
       "/roles/:role",
       param("role").isString().isIn(["Customer", "Manager", "Admin"]),
+      this.authService.isLoggedIn,
       this.authService.isAdmin,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>

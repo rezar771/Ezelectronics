@@ -49,6 +49,7 @@ class CartRoutes {
      */
     this.router.get(
       "/",
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -72,6 +73,7 @@ class CartRoutes {
     this.router.post(
       "/",
       body("model").notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -91,6 +93,7 @@ class CartRoutes {
      */
     this.router.patch(
       "/",
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -109,6 +112,7 @@ class CartRoutes {
      */
     this.router.get(
       "/history",
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -127,6 +131,7 @@ class CartRoutes {
     this.router.delete(
       "/products/:model",
       param("model").notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -146,6 +151,7 @@ class CartRoutes {
      */
     this.router.delete(
       "/current",
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -162,6 +168,7 @@ class CartRoutes {
      */
     this.router.delete(
       "/",
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -178,6 +185,7 @@ class CartRoutes {
      */
     this.router.get(
       "/all",
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>

@@ -38,6 +38,7 @@ class ReviewRoutes {
       param("model").notEmpty(),
       body("score").isInt({ min: 1, max: 5 }),
       body("comment").notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -84,6 +85,7 @@ class ReviewRoutes {
     this.router.delete(
       "/:model",
       param("model").notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isCustomer,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -105,6 +107,7 @@ class ReviewRoutes {
     this.router.delete(
       "/:model/all",
       param("model").notEmpty(),
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
@@ -121,6 +124,7 @@ class ReviewRoutes {
      */
     this.router.delete(
       "/",
+      this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
