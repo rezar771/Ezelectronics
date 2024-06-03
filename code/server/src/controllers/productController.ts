@@ -106,7 +106,7 @@ class ProductController {
    * @returns A Promise that resolves to `true` if all products have been successfully deleted.
    */
   async deleteAllProducts() /**:Promise <Boolean> */ {
-    return this.dao.deleteAllProducts;
+    return this.dao.deleteAllProducts();
   }
 
   /**
