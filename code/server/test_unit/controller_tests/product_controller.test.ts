@@ -42,7 +42,7 @@ test("registerProducts-success", async () => {
 // change product quantity
 test("change product quantity - change product quantity with success", async () => {
     const controller = new ProductController()
-    jest.spyOn(ProductDAO.prototype, "changeProductQuantity").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductDAO.prototype, "changeProductQuantity").mockResolvedValueOnce(20);
 
     const newQuantity = 20
     const changeDate = "2024-05-27"
@@ -67,7 +67,7 @@ test("change product quantity - change product quantity with success", async () 
 // sell product
 test("sell product - sell product with success", async () => {
     const controller = new ProductController()
-    jest.spyOn(ProductDAO.prototype, "sellProduct").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductDAO.prototype, "sellProduct").mockResolvedValueOnce(15);
 
     const sellingQuantity = 5
     const sellingDate = "2024-05-27"
@@ -92,7 +92,7 @@ test("sell product - sell product with success", async () => {
 test("get products - get products by category with success", async () => {
     const controller = new ProductController()
 
-    jest.spyOn(ProductDAO.prototype, "getProducts").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductDAO.prototype, "getProducts").mockResolvedValueOnce([]);
 
     const response = await controller.getProducts(
         "category",
@@ -113,7 +113,7 @@ test("get products - get products by category with success", async () => {
 test("get products - get products by model with success", async () => {
     const controller = new ProductController()
 
-    jest.spyOn(ProductDAO.prototype, "getProducts").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductDAO.prototype, "getProducts").mockResolvedValueOnce([]);
 
     const response = await controller.getProducts(
         "model",
@@ -135,7 +135,7 @@ test("get products - get products by model with success", async () => {
 test("get available products - get available products by category with success", async () => {
     const controller = new ProductController()
 
-    jest.spyOn(ProductDAO.prototype, "getAvailableProducts").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductDAO.prototype, "getAvailableProducts").mockResolvedValueOnce([]);
 
     const response = await controller.getAvailableProducts(
         "category",
@@ -156,7 +156,7 @@ test("get available products - get available products by category with success",
 test("get available products - get available products by model with success", async () => {
     const controller = new ProductController()
 
-    jest.spyOn(ProductDAO.prototype, "getAvailableProducts").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductDAO.prototype, "getAvailableProducts").mockResolvedValueOnce([]);
 
     const response = await controller.getAvailableProducts(
         "model",

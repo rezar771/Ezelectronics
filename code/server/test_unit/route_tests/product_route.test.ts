@@ -1,4 +1,4 @@
-import { test, expect, jest } from "@jest/globals"
+import { test, expect, jest ,beforeEach,afterEach} from "@jest/globals"
 import request from "supertest"
 import { app } from "../../index"
 import Authenticator from "../../src/routers/auth"
@@ -138,7 +138,7 @@ test("change product quantity-user not logged in-401", async () => {
     const changeDate = "2024-05-27"
 
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => res.status(401).json({error: "Unauthenticated user", status: 401}))
-    jest.spyOn(ProductController.prototype, "changeProductQuantity").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "changeProductQuantity").mockRejectedValueOnce(error)
 
     const response = await request(app).patch(baseURL + "/products/model").send({model: testProd.model, quantity: 20, changeDate: "2024-05-27"})
 
@@ -152,7 +152,7 @@ test("change product quantity-user not a manager or admin", async () => {
 
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => res.status(401).json({error: "User is not a manager or admin", status: 401}))
-    jest.spyOn(ProductController.prototype, "changeProductQuantity").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "changeProductQuantity").mockRejectedValueOnce(error)
 
     const response = await request(app).patch(baseURL + "/products/model").send({model: testProd.model, quantity: 20, changeDate: "2024-05-27"})
 
@@ -169,7 +169,7 @@ test("change product quantity- quantity is null - 422", async () => {
 
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "changeProductQuantity").mockResolvedValueOnce( undefined)
+    jest.spyOn(ProductController.prototype, "changeProductQuantity").mockRejectedValueOnce(error)
 
     const response = await request(app).patch(baseURL + "/products/model").send({model: testProd.model, quantity: newQuantity, changeDate: changeDate})
 
@@ -188,7 +188,7 @@ test("sell product -200", async () => {
 
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "sellProduct").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "sellProduct").mockResolvedValueOnce(1)
 
     const response = await request(app).patch(baseURL + "/products/model/sell").send({model: testProd.model, quantity: sellingQuantity, date: sellingDate})
     expect(response.status).toBe(200)
@@ -217,7 +217,7 @@ test("sell product -503", async () => {
 
 test("sell product-user not logged in-401", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => res.status(401).json({error: "Unauthenticated user", status: 401}))
-    jest.spyOn(ProductController.prototype, "sellProduct").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "sellProduct").mockRejectedValueOnce(error)
 
     const response = await request(app).patch(baseURL + "/products/model/sell").send({model: testProd.model, quantity: 5, date: "2024-05-27"})
     expect(response.status).toBe(401)
@@ -230,7 +230,7 @@ test("sell product-user not logged in-401", async () => {
 test("user not a manager or admin", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => res.status(401).json({error: "User is not a manager", status: 401}))
-    jest.spyOn(ProductController.prototype, "sellProduct").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "sellProduct").mockRejectedValueOnce(error)
 
     const response = await request(app).patch(baseURL + "/products/model/sell").send({model: testProd.model, quantity: 5, date: "2024-05-27"})
     expect(response.status).toBe(401)
@@ -244,7 +244,7 @@ test("user not a manager or admin", async () => {
 test("sell product - quantity is null- 422", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "sellProduct").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "sellProduct").mockRejectedValueOnce(error)
 
     const response = await request(app).patch(baseURL + "/products/model/sell").send({model: testProd.model, quantity: 0, date: "2024-05-27"})
     expect(response.status).toBe(422)
@@ -259,7 +259,7 @@ test("sell product - quantity is null- 422", async () => {
 test("get all products - 200", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "getProducts").mockResolvedValueOnce(undefined)  // simulate that testProd is returned
+    jest.spyOn(ProductController.prototype, "getProducts").mockResolvedValueOnce([])  // simulate that testProd is returned
 
     const response = await request(app).get(baseURL + "/products")  // instead of send, use query to send the parameters
     expect(response.status).toBe(200)
@@ -320,7 +320,7 @@ test("get products by category-200", async () => {
 test("get products - user is not an admin or manager-401", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => res.status(401).json({error: "User is not an admin or manager", status: 401}))
-    jest.spyOn(ProductController.prototype, "getProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "getProducts").mockRejectedValueOnce(error)
 
     const response = await request(app).get(baseURL + `/products?grouping=category&category=${testProd.category}`)
     expect(response.status).toBe(401)
@@ -349,7 +349,7 @@ test("get products - category is null-422", async () => {
 test("get products - model is null-422", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "getProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "getProducts").mockRejectedValueOnce(error)
 
     const response = await request(app).get(baseURL + `/products?grouping=model`)    // model is null
     expect(response.status).toBe(422)
@@ -364,7 +364,7 @@ test("get products - model is null-422", async () => {
 // get available products
 test("get available products - get available products by category with success-200", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())// user must be customer
-    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockResolvedValueOnce([])
 
     const response = await request(app).get(baseURL + `/products/available?grouping=category&category=${testProd.category}`)
     expect(response.status).toBe(200)
@@ -402,7 +402,7 @@ test("get available products - get available products by model with success", as
 
 test("get available products - not logged in", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => res.status(401).json({error: "Unauthenticated user", status: 401}))
-    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockRejectedValueOnce(error)
 
     const response = await request(app).get(baseURL + `/products/available?grouping=category&category=${testProd.category}`)
     expect(response.status).toBe(401)
@@ -414,7 +414,7 @@ test("get available products - not logged in", async () => {
 
 test("get available products - category is null", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockRejectedValueOnce(error)
 
     const response = await request(app).get(baseURL + `/products/available?grouping=category`)    // category is null
     expect(response.status).toBe(422)
@@ -426,7 +426,7 @@ test("get available products - category is null", async () => {
 
 test("get available products - model is null", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "getAvailableProducts").mockRejectedValueOnce(error)
 
     const response = await request(app).get(baseURL + `/products/available?grouping=model`)    // model is null
     expect(response.status).toBe(422)
@@ -441,7 +441,7 @@ test("get available products - model is null", async () => {
 test("delete all products - delete all products with success", async () => {
     jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next())
-    jest.spyOn(ProductController.prototype, "deleteAllProducts").mockResolvedValueOnce(undefined)
+    jest.spyOn(ProductController.prototype, "deleteAllProducts").mockResolvedValueOnce(true)
 
     const response = await request(app).delete(baseURL + "/products")
     expect(response.status).toBe(200)
@@ -469,7 +469,7 @@ test("delete all products - not logged in", async () => {
         res.status(401).json({ error: "Unauthenticated user", status: 401 });
     });
     jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => next());
-    jest.spyOn(ProductController.prototype, "deleteAllProducts").mockResolvedValueOnce(undefined);
+    jest.spyOn(ProductController.prototype, "deleteAllProducts").mockRejectedValueOnce(error)
 
     const response = await request(app).delete(baseURL + "/products");
     expect(response.status).toBe(401);
@@ -482,7 +482,7 @@ test("delete all products - not logged in", async () => {
 test("delete all products - not an admin or manager-401", async () => {
     const isLoggedInMock = jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next());
     const isAdminOrManagerMock = jest.spyOn(Authenticator.prototype, "isAdminOrManager").mockImplementationOnce((req, res, next) => res.status(401).json({ error: "User is not an admin or manager", status: 401 }));
-    jest.spyOn(ProductController.prototype, "deleteAllProducts").mockResolvedValueOnce(true);
+    jest.spyOn(ProductController.prototype, "deleteAllProducts").mockResolvedValueOnce(false);
 
     const response = await request(app).delete(baseURL + "/products");
     expect(response.status).toBe(401);

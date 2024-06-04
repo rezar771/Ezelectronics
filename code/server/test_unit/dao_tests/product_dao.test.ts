@@ -1,4 +1,4 @@
-import {test, expect, jest, describe, beforeAll, afterAll} from "@jest/globals"
+import {test, expect, jest, describe, beforeAll, afterAll,beforeEach,afterEach} from "@jest/globals"
 import ProductDAO from "../../src/dao/productDAO"
 import db from "../../src/db/db"
 import { Database, FULL } from "sqlite3"
@@ -23,7 +23,12 @@ describe("ProductDAO", () => {
     afterAll(() => {
         // Cleanup after all tests
     })
-
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+    afterEach(() => {
+        jest.resetAllMocks();  // Reset all mocks after each test
+    });
 //register products
     test("register product - production registration with success", async () => {
         const mockGET = jest.spyOn(db, "get").mockImplementation((sql, params, callback) => {
