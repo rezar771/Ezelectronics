@@ -5,6 +5,7 @@ import { Cart, ProductInCart } from "../components/cart";
 import {
   ProductNotFoundError,
   EmptyProductStockError,
+  ProductSoldError,
 } from "../errors/productError";
 import {
   CartNotFoundError,
@@ -118,7 +119,7 @@ class CartDAO {
 
             if (productRow.quantity === 0) {
               // If the product's quantity is 0, return a 409 error
-              reject(new EmptyProductStockError());
+              reject(new ProductSoldError());
               return;
             }
 
