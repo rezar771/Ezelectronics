@@ -130,6 +130,34 @@ test("Returns all reviews -200 ", async () => {
     expect(ReviewController.prototype.getProductReviews).toHaveBeenCalledWith(testModel)
     jest.clearAllMocks()
 })
+test("Returns all reviews -error handling ", async () => {
+    const testModel = "testModel"
+    const testReviews = [
+        {
+            model: testModel,
+            user: "testUser",
+            score: 5,
+            comment: "testComment",
+            date: "2021-10-10"
+        },
+        {
+            model: testModel,
+            user: "testUser2",
+            score: 4,
+            comment: "testComment2",
+            date: "2021-10-11"
+        }
+    ]
+    const error = new Error("Database error");
+    jest.spyOn(ReviewController.prototype, 'getProductReviews').mockRejectedValueOnce(error);
+    jest.spyOn(Authenticator.prototype, "isLoggedIn").mockImplementationOnce((req, res, next) => next())
+    const response = await request(app).get(`${baseURL}/testModel`)
+    expect(response.status).toBe(503);
+    expect(response.body).toEqual({ error: 'Internal Server Error', status: 503 });
+    expect(ReviewController.prototype.getProductReviews).toHaveBeenCalledTimes(1)
+    expect(ReviewController.prototype.getProductReviews).toHaveBeenCalledWith(testModel)
+    jest.clearAllMocks()
+})
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //delete a review from a product:
 test("delete a review-200", async () => {
@@ -154,6 +182,30 @@ test("delete a review-200", async () => {
         testReview.user)
     jest.clearAllMocks()
 })
+test("delete a review-error handling", async () => {
+    const testReview = {
+        model: "testModel",
+        user: "testUser",
+    }
+    const error = new Error("Database error");
+    jest.spyOn(ReviewController.prototype, 'deleteReview').mockRejectedValueOnce(error);
+    jest.spyOn(Authenticator.prototype, 'isCustomer').mockImplementationOnce((req, res, next) => {
+        req.user = testReview.user;
+        next();
+    })
+    jest.spyOn(Authenticator.prototype, 'isLoggedIn').mockImplementationOnce((req, res, next) => {
+        req.user = testReview.user;
+        next();
+    })
+    const response = await request(app).delete(`${baseURL}/testModel`).send(testReview)
+    expect(response.status).toBe(503);
+    expect(response.body).toEqual({ error: 'Internal Server Error', status: 503 });
+    expect(ReviewController.prototype.deleteReview).toHaveBeenCalledTimes(1)
+    expect(ReviewController.prototype.deleteReview).toHaveBeenCalledWith(
+        testReview.model,
+        testReview.user)
+    jest.clearAllMocks()
+})
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Test for the route that deletes all reviews of a product
 test("delete all reviews of a product - 200", async () => {
@@ -165,6 +217,22 @@ test("delete all reviews of a product - 200", async () => {
     const response = await request(app).delete(`${baseURL}/${testModel}/all`);
 
     expect(response.status).toBe(200);
+    expect(ReviewController.prototype.deleteReviewsOfProduct).toHaveBeenCalledTimes(1);
+    expect(ReviewController.prototype.deleteReviewsOfProduct).toHaveBeenCalledWith(testModel);
+
+    jest.clearAllMocks();
+});
+test("delete all reviews of a product - error handling-503", async () => {
+    const testModel = "testModel";
+    const error = new Error("Database error");
+    jest.spyOn(ReviewController.prototype, 'deleteReviewsOfProduct').mockRejectedValueOnce(error);
+    jest.spyOn(Authenticator.prototype, 'isLoggedIn').mockImplementationOnce((req, res, next) => next());
+    jest.spyOn(Authenticator.prototype, 'isAdminOrManager').mockImplementationOnce((req, res, next) => next());
+
+    const response = await request(app).delete(`${baseURL}/${testModel}/all`);
+
+    expect(response.status).toBe(503);
+    expect(response.body).toEqual({ error: 'Internal Server Error', status: 503 });
     expect(ReviewController.prototype.deleteReviewsOfProduct).toHaveBeenCalledTimes(1);
     expect(ReviewController.prototype.deleteReviewsOfProduct).toHaveBeenCalledWith(testModel);
 

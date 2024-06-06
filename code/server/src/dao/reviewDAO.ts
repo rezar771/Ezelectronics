@@ -126,7 +126,7 @@ class ReviewDAO {
           return;
         }
         if (!row) {
-          reject(new Error("Product not found"));
+          reject(new ProductNotFoundError());
           return;
         }
 
@@ -143,7 +143,7 @@ class ReviewDAO {
               return;
             }
             if (!row) {
-              reject(new ProductNotFoundError());
+              reject(new NoReviewProductError());
               return;
             }
 
@@ -158,11 +158,6 @@ class ReviewDAO {
               function (err: Error | null) {
                 if (err) {
                   reject(err);
-                  return;
-                }
-
-                if (this.changes === 0) {
-                  reject(new NoReviewProductError());
                   return;
                 }
 

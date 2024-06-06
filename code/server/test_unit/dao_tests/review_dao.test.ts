@@ -1,5 +1,5 @@
 import { Database } from "sqlite3"
-import {test, expect, jest, describe, beforeAll, afterAll} from "@jest/globals";
+import {test, expect, jest, describe, beforeAll, afterAll,beforeEach,afterEach} from "@jest/globals";
 import ReviewDAO from "../../src/dao/reviewDAO";
 import db from "../../src/db/db";
 import { User, Role } from "../../src/components/user";
@@ -15,6 +15,12 @@ describe("reviewDAO", () => {
     afterAll(() => {
         // Cleanup after all tests
     })
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+    afterEach(() => {
+        jest.resetAllMocks();  // Reset all mocks after each test
+    });
 //add review : test if the product exists
     test("addReview should return undefined", async () => {
         const mockGET = jest.spyOn(db, "get").mockImplementation((sql, params, callback) => {
@@ -154,19 +160,13 @@ describe("reviewDAO", () => {
     });
     test("addReview should reject if there is an error in the try block", async () => {
         const mockGET = jest.spyOn(db, "get").mockImplementation((sql, params, callback) => {
-            if (sql.includes("FROM products")) {
-                callback(new Error("Database error"), null);
-            }
-            return {} as Database;
+            throw new Error("Unexpected Error");
         });
 
         const reviewDAO = new ReviewDAO();
         const user = new User("testUser", "Test", "User", Role.CUSTOMER, "123 Test St", "2000-01-01");
 
-        await expect(reviewDAO.addReview("testModel", user, 5, "Great product!")).rejects.toThrow("Database error");
-
-        expect(mockGET).toHaveBeenCalledTimes(1);
-        expect(mockGET).toHaveBeenCalledWith(expect.any(String), ["testModel"], expect.any(Function));
+        await expect(reviewDAO.addReview("testModel", user, 5, "Great product!")).rejects.toThrow("Unexpected Error");
 
         mockGET.mockRestore();
     });
@@ -273,7 +273,7 @@ describe("reviewDAO", () => {
 
         mockGET.mockRestore();
     });
-    test("deleteReview should reject with 'Product not found' error if the product does not exist", async () => {
+    test("deleteReview should reject with ProductNotFoundError error if the product does not exist", async () => {
         const mockGET = jest.spyOn(db, "get").mockImplementation((sql, params, callback) => {
             if (sql.includes("FROM products")) {
                 callback(null, null); // Simulate product not found
@@ -284,7 +284,7 @@ describe("reviewDAO", () => {
         const reviewDAO = new ReviewDAO();
         const user = new User("testUser", "Test", "User", Role.CUSTOMER, "123 Test St", "2000-01-01");
 
-        await expect(reviewDAO.deleteReview("testModel", user)).rejects.toThrow("Product not found");
+        await expect(reviewDAO.deleteReview("testModel", user)).rejects.toThrow(ProductNotFoundError);
 
         expect(mockGET).toHaveBeenCalledTimes(1);
         expect(mockGET).toHaveBeenCalledWith(expect.any(String), ["testModel"], expect.any(Function));
@@ -312,6 +312,28 @@ describe("reviewDAO", () => {
 
         mockGET.mockRestore();
     });
+    test("deleteReview should reject with NoReviewProductError if the user has no review for the product", async () => {
+        const mockGET = jest.spyOn(db, "get").mockImplementation((sql, params, callback) => {
+            if (sql.includes("FROM products")) {
+                callback(null, { model: "testModel" });
+            } else if (sql.includes("FROM reviews")) {
+                callback(null, null);
+            }
+            return {} as Database;
+        });
+    
+        const reviewDAO = new ReviewDAO();
+        const user = new User("testUser", "Test", "User", Role.CUSTOMER, "123 Test St", "2000-01-01");
+    
+        await expect(reviewDAO.deleteReview("testModel", user)).rejects.toThrow(NoReviewProductError);
+    
+        expect(mockGET).toHaveBeenCalledTimes(2);
+        expect(mockGET).toHaveBeenCalledWith(expect.any(String), ["testModel"], expect.any(Function));
+        expect(mockGET).toHaveBeenCalledWith(expect.any(String), ["testModel", "testUser"], expect.any(Function));
+    
+        mockGET.mockRestore();
+    });
+    
     test("deleteReview should reject if there is a database error when deleting the review", async () => {
         const mockGET = jest.spyOn(db, "get").mockImplementation((sql, params, callback) => {
             if (sql.includes("FROM products")) {
@@ -446,4 +468,16 @@ describe("reviewDAO", () => {
         mockRUN.mockRestore();
     });
 
+});
+test("deleteAllReviews should reject if there is a database error when deleting the reviews", async () => {
+    const runMock = jest.spyOn(db, 'run').mockImplementation((sql, callback) => {
+        callback(new Error("Database error"));
+            return {} as Database;
+      });
+  
+      const reviewDAO = new ReviewDAO();
+      await expect(reviewDAO.deleteAllReviews()).rejects.toThrow('Database error');
+  
+      // Restore the original function after the test
+      runMock.mockRestore();
 });
