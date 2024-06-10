@@ -84,13 +84,13 @@ describe("Product routes integration tests", () => {
                 .send(product)
                 .expect(409);
         });
-/*        test("It should return 400 if the arrival date is after the current date", async () => {
+        test("It should return 400 if the arrival date is after the current date", async () => {
             await request(app)
                 .post(`${routePath}/products`)
                 .set("Cookie", adminCookie)
-                .send({ ...product, model: "iPhone15", arrivalDate: "2024-01-01" })
+                .send({ ...product, model: "iPhone15", arrivalDate: "2025-01-01" })
                 .expect(400);
-        });*/
+        });
     });
 //____________________________________________________________________________________________________________________
     describe("PATCH /products/:model", () => {
