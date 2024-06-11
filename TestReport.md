@@ -33,7 +33,15 @@
 
 | Test case name | Object(s) tested | Test level | Technique used |
 | :------------: | :--------------: | :--------: | :------------: |
-|                |                  |            |                |
+|Product routes  | Product routes   |       Unit |   BB/ boundary |
+|Product controller|Product controller|Unit|	BB/ eq partitioning|
+|Product DAO|Product DAO|Unit|WB/ statement coverage|
+|Review routes|Review routes|Unit|BB/ boundary|
+|Review controller|Review controller|Unit|BB/ eq partitioning|
+|Review DAO|Review DAO|Unit|WB/ statement coverage|
+|Product|Product|Integration|	BB/ boundary|
+|Review|Review|Integration|BB/ eq partitioning|
+
 
 # Coverage
 
@@ -43,9 +51,21 @@
 
 | Functional Requirement or scenario | Test(s) |
 | :--------------------------------: | :-----: |
-|                FRx                 |         |
-|                FRy                 |         |
-|                ...                 |         |
+FR3.1	|ProductControllerTest, ProductDaoTest
+FR3.2	|ProductControllerTest, ProductDaoTest
+FR3.3	|ProductControllerTest, ProductDaoTest
+FR3.4	|ProductRoutesTest, ProductControllerTest
+FR3.4.1|ProductRoutesTest, ProductControllerTest
+FR3.5	|ProductRoutesTest, ProductControllerTest
+FR3.5.1|	ProductRoutesTest, ProductControllerTest
+FR3.7	|ProductControllerTest, ProductDaoTest
+FR3.8	|ProductControllerTest, ProductDaoTest
+FR4.1	|ReviewControllerTest, ReviewDaoTest
+FR4.2	|ReviewRoutesTest, ReviewControllerTest
+FR4.3	|ReviewControllerTest, ReviewDaoTest
+FR4.4	|ReviewControllerTest, ReviewDaoTest
+FR4.5|	ReviewControllerTest, ReviewDaoTest
+
 
 ## Coverage white box
 
