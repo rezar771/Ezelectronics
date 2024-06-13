@@ -1,16 +1,12 @@
-import { test, describe, expect, jest,beforeAll, afterAll, afterEach     } from "@jest/globals"
+import { test, describe, expect, jest, afterEach     } from "@jest/globals"
 import CartDao from "../../src/dao/cartDAO"
 import { CartNotFoundError, EmptyCartError, ProductNotInCartError } from "../../src/errors/cartError";
 import { ProductNotFoundError, ProductSoldError, EmptyProductStockError } from "../../src/errors/productError";
 import db from "../../src/db/db";
-import { Database } from "sqlite3";
 import { Cart, ProductInCart } from "../../src/components/cart";
-import { resolve } from "node:path";
-import exp from "node:constants";
 import { Category } from "../../src/components/product";
-import { rejects } from "node:assert";
 import { Role, User } from "../../src/components/user";
-import { Domain } from "node:domain";
+
 
 jest.mock("../../src/db/db", () => ({
     all: jest.fn(),
