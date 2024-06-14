@@ -30,38 +30,50 @@ The integration testing approach adopted here follows a mixed strategy that comb
      - File: `product_controller.test.ts`
    - **ReviewController Unit Tests**: Ensure the `ReviewController` methods (`addReview`, `getProductReviews`, `deleteReview`, `deleteReviewsOfProduct`, `deleteAllReviews`) function correctly in isolation.
      - File: `review_controller.test.ts`
+   - **UserController Unit Tests**: Ensure the `UserController` methods (`createUser`, `getUsers`, `getUsersByRole`, `getUserByUsername`, `deleteUser`, `deleteAll`,`updateUserInfo`) function correctly in isolation.
+     - File: `user_controller.test.ts`
    - **ProductDAO Unit Tests**: Verify the `ProductDAO` methods handle database operations correctly, such as registering products, changing product quantity, selling products, and deleting products.
      - File: `product_dao.test.ts`
    - **ReviewDAO Unit Tests**: Verify the `ReviewDAO` methods handle database operations correctly, such as adding reviews, getting product reviews, and deleting reviews.
      - File: `review_dao.test.ts`
+   - **UserDAO Unit Tests**: Verify the `UserDao` methods handle database operations correctly, such as creating users, getting users, deleting users and updating users.
+     - File: `user_dao.test.ts`     
 
 2. **Step 2: Route Testing for API Endpoints**
    - **Product Routes Testing**: Test the API endpoints for product-related operations (`POST /products`, `PATCH /products/:model`, `PATCH /products/:model/sell`, `GET /products`, `DELETE /products`, etc.) to ensure correct integration with the `ProductController`.
      - File: `product_route.test.ts`
    - **Review Routes Testing**: Test the API endpoints for review-related operations (`POST /reviews/:model`, `GET /reviews/:model`, `DELETE /reviews/:model`, `DELETE /reviews/:model/all`, `DELETE /reviews`) to ensure correct integration with the `ReviewController`.
      - File: `review_route.test.ts`
+   - **User Routes Testing**: Test the API endpoints for user-related operations (`POST /users`, `GET /users`, `GET /users/roles/:role`, `GET /users/:username`, `DELETE /users/:username`, `DELETE /users`, `PATCH /users/:username`) to ensure correct integration with the `UserController`.
+     - File: `user.test.ts`     
 
 3. **Step 3: Full Integration Testing**
    - **Product Integration Tests**: Conduct full integration tests to validate the end-to-end functionality of product-related operations, starting from user creation and authentication to product creation, modification, and deletion.
      - File: `product_integration.test.ts`
    - **Review Integration Tests**: Conduct full integration tests to validate the end-to-end functionality of review-related operations, including adding reviews, fetching reviews, and deleting reviews.
      - File: `review_integration.test.ts`
+   - **User Integration Tests**: Conduct full integration tests to validate the end-to-end functionality of user-related operations, starting from user creation and authentication to modification, retrieval and deletion.
+     - File: `user_integration.test.ts`     
 
 ## Detailed Integration Sequence:
 
 1. **Unit Testing**:
    - Step 1: `ProductController` Unit Tests
    - Step 2: `ReviewController` Unit Tests
-   - Step 3: `ProductDAO` Unit Tests
-   - Step 4: `ReviewDAO` Unit Tests
+   - Step 3: `UserController` Unit Tests
+   - Step 4: `ProductDAO` Unit Tests
+   - Step 5: `ReviewDAO` Unit Tests
+   - Step 6: `UserDao` Unit Tests
 
 2. **Route Testing**:
-   - Step 5: `product_route.test.ts` (API endpoints for product operations)
-   - Step 6: `review_route.test.ts` (API endpoints for review operations)
+   - Step 7: `product_route.test.ts` (API endpoints for product operations)
+   - Step 8: `review_route.test.ts` (API endpoints for review operations)
+   - Step 9: `user_route.test.ts` (API endpoints for user operations)
 
 3. **Full Integration Testing**:
-   - Step 7: `product_integration.test.ts` (Full integration tests for product operations)
-   - Step 8: `review_integration.test.ts` (Full integration tests for review operations)
+   - Step 10: `product_integration.test.ts` (Full integration tests for product operations)
+   - Step 11: `review_integration.test.ts` (Full integration tests for review operations)
+   - Step 11: `user_integration.test.ts` (Full integration tests for user operations)
 
 This integration sequence ensures that each component is individually tested for correctness before being tested together with other components in the API routes and, finally, the complete system through integration tests.
 
@@ -176,18 +188,19 @@ This integration sequence ensures that each component is individually tested for
 <Report in the following table the coverage of functional requirements and scenarios(from official requirements) >
 
 
-| Functional Requirement or scenario       | Test(s)                                                                                  |
-| :--------------------------------------: | :-------------------------------------------------------------------------------------: |
-| Creating a user                          | `creating user`, `create user - 200`, `create user - user already in db - 409`          |
-| Retrieving all users                     | `get all users`, `get all users - route`, `get all users - user not admin - 401`        |
-| Retrieving users by role                 | `get users by role`, `get users by role - route`, `get users by role - user not admin - 401` |
-| Retrieving a user by username            | `get users by username`, `get user by username - route`, `get user by username - user not admin - 401` |
-| Deleting a user                          | `delete a user`, `delete a user - route`, `delete a user - 503`                         |
-| Deleting all users                       | `delete all users`, `delete all users - route`                                          |
-| Updating user info                       | `update user info`, `update a user`, `update a user - user not found - 404`, `update a user - username does not match - 401`, `update a user - birthdate error - 400` |
-| User login                               | `login`, `POST ezelectronics/sessions`                                                  |
-| Getting current user session             | `get current session`, `GET ezelectronics/sessions/current`                             |
-| Logging out                              | `logout`, `DELETE ezelectronics/sessions/current`                                       |
+| Functional Requirement or scenario       | Test(s)                                                                                               |
+| :--------------------------------------: | :-------------------------------------------------------------------------------------:               |
+| 1: Manange account                       |                                                                                                       |
+| 1.1: User login                               | login, POST ezelectronics/sessions                                                               |
+| 1.2: Logging out                              | logout, DELETE ezelectronics/sessions/current                                                    |
+| 1.3: Creating a user                          | creating user, create user - 200, create user - user already in db - 409                         |
+| 2: Manange users                              |                                                                                                  |
+| 2.1: Retrieving all users                     | get all users, get all users - route, get all users - user not admin - 401                       |
+| 2.2: Retrieving users by role                 | get users by role, get users by role - route, get users by role - user not admin - 401           |
+| 2.3: Retrieving a user by username            | get users by username, get user by username - route, get user by username - user not admin - 401 |
+| 2.4: Updating user info                       | update user info, update a user, update a user - user not found - 404, update a user - username does not match - 401, update a user - birthdate error - 400 |
+| 2.5: Deleting a user                          | delete a user, delete a user - route, delete a user - 503                                   |
+| 2.6: Deleting all users                       | delete all users, delete all users - route                                                  |
 | FR3: Manage products                                         |                                                                              |
 | FR3.1: Register a set of new products                        | registerProducts-success, POST /products - 200, POST /products - 422          |
 | FR3.2: Update the quantity of a product                      | change product quantity with success, PATCH /products/:model - 200, PATCH /products/:model - 404 |
