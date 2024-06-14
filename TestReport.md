@@ -19,30 +19,59 @@
 
 # Integration approach
 
-    <Write here the integration sequence you adopted, in general terms (top down, bottom up, mixed) and as sequence
+## Product and review part done by Mona Poursnaeil
 
-    (ex: step1: unit A, step 2: unit A+B, step 3: unit A+B+C, etc)>
+## General Integration Sequence:
 
-    <Some steps may  correspond to unit testing (ex step1 in ex above)>
+The integration testing approach adopted here follows a mixed strategy that combines unit testing, API route testing, and full integration testing. The sequence integrates various components gradually to ensure individual units work correctly before integrating them into larger subsystems and eventually the complete system.
 
-    <One step will  correspond to API testing, or testing unit route.js>
+1. **Step 1: Unit Testing of Individual Components**
+   - **ProductController Unit Tests**: Ensure the `ProductController` methods (`registerProducts`, `changeProductQuantity`, `sellProduct`, `getProducts`, `getAvailableProducts`, `deleteAllProducts`, `deleteProduct`) function correctly in isolation.
+     - File: `product_controller.test.ts`
+   - **ReviewController Unit Tests**: Ensure the `ReviewController` methods (`addReview`, `getProductReviews`, `deleteReview`, `deleteReviewsOfProduct`, `deleteAllReviews`) function correctly in isolation.
+     - File: `review_controller.test.ts`
+   - **ProductDAO Unit Tests**: Verify the `ProductDAO` methods handle database operations correctly, such as registering products, changing product quantity, selling products, and deleting products.
+     - File: `product_dao.test.ts`
+   - **ReviewDAO Unit Tests**: Verify the `ReviewDAO` methods handle database operations correctly, such as adding reviews, getting product reviews, and deleting reviews.
+     - File: `review_dao.test.ts`
+
+2. **Step 2: Route Testing for API Endpoints**
+   - **Product Routes Testing**: Test the API endpoints for product-related operations (`POST /products`, `PATCH /products/:model`, `PATCH /products/:model/sell`, `GET /products`, `DELETE /products`, etc.) to ensure correct integration with the `ProductController`.
+     - File: `product_route.test.ts`
+   - **Review Routes Testing**: Test the API endpoints for review-related operations (`POST /reviews/:model`, `GET /reviews/:model`, `DELETE /reviews/:model`, `DELETE /reviews/:model/all`, `DELETE /reviews`) to ensure correct integration with the `ReviewController`.
+     - File: `review_route.test.ts`
+
+3. **Step 3: Full Integration Testing**
+   - **Product Integration Tests**: Conduct full integration tests to validate the end-to-end functionality of product-related operations, starting from user creation and authentication to product creation, modification, and deletion.
+     - File: `product_integration.test.ts`
+   - **Review Integration Tests**: Conduct full integration tests to validate the end-to-end functionality of review-related operations, including adding reviews, fetching reviews, and deleting reviews.
+     - File: `review_integration.test.ts`
+
+## Detailed Integration Sequence:
+
+1. **Unit Testing**:
+   - Step 1: `ProductController` Unit Tests
+   - Step 2: `ReviewController` Unit Tests
+   - Step 3: `ProductDAO` Unit Tests
+   - Step 4: `ReviewDAO` Unit Tests
+
+2. **Route Testing**:
+   - Step 5: `product_route.test.ts` (API endpoints for product operations)
+   - Step 6: `review_route.test.ts` (API endpoints for review operations)
+
+3. **Full Integration Testing**:
+   - Step 7: `product_integration.test.ts` (Full integration tests for product operations)
+   - Step 8: `review_integration.test.ts` (Full integration tests for review operations)
+
+This integration sequence ensures that each component is individually tested for correctness before being tested together with other components in the API routes and, finally, the complete system through integration tests.
+
+
 
 # Tests
 
 <in the table below list the test cases defined For each test report the object tested, the test level (API, integration, unit) and the technique used to define the test case (BB/ eq partitioning, BB/ boundary, WB/ statement coverage, etc)> <split the table if needed>
 
-| Test case name | Object(s) tested | Test level | Technique used |
-| :------------: | :--------------: | :--------: | :------------: |
-|Product routes  | Product routes   |       Unit |   BB/ boundary |
-|Product controller|Product controller|Unit|	BB/ eq partitioning|
-|Product DAO|Product DAO|Unit|WB/ statement coverage|
-|Review routes|Review routes|Unit|BB/ boundary|
-|Review controller|Review controller|Unit|BB/ eq partitioning|
-|Review DAO|Review DAO|Unit|WB/ statement coverage|
-|Product|Product|Integration|	BB/ boundary|
-|Review|Review|Integration|BB/ eq partitioning|
 
-/////////////////////////////////////////////////////////////////////
 
 | Test case name                      | Object(s) tested              | Test level   | Technique used                               |
 | :---------------------------------: | :---------------------------: | :----------: | :------------------------------:             |
@@ -68,6 +97,75 @@
 | login                               | POST /sessions route, Authenticator | Integration | BB/equivalence partitioning             |
 | get current session                 | GET /sessions/current route, Authenticator | Integration | BB/equivalence partitioning      |
 | logout                              | DELETE /sessions/current route, Authenticator | Integration | BB/equivalence partitioning   |
+| registerProducts-success                           | ProductController                      | Unit          | WB/ statement coverage      |
+| change product quantity with success               | ProductController                      | Unit          | WB/ statement coverage      |
+| sell product with success                          | ProductController                      | Unit          | WB/ statement coverage      |
+| get products by category with success              | ProductController                      | Unit          | WB/ statement coverage      |
+| get products by model with success                 | ProductController                      | Unit          | WB/ statement coverage      |
+| get available products by category with success    | ProductController                      | Unit          | WB/ statement coverage      |
+| get available products by model with success       | ProductController                      | Unit          | WB/ statement coverage      |
+| delete all products with success                   | ProductController                      | Unit          | WB/ statement coverage      |
+| delete product with success                        | ProductController                      | Unit          | WB/ statement coverage      |
+| addReview                                           | ReviewController                       | Unit          | WB/ statement coverage      |
+| getProductReviews                                  | ReviewController                       | Unit          | WB/ statement coverage      |
+| deleteReview                                       | ReviewController                       | Unit          | WB/ statement coverage      |
+| deleteReviewsOfProduct                             | ReviewController                       | Unit          | WB/ statement coverage      |
+| deleteAllReviews                                   | ReviewController                       | Unit          | WB/ statement coverage      |
+| register product with success                      | ProductDAO                             | Unit          | WB/ statement coverage      |
+| register product already exists                    | ProductDAO                             | Unit          | WB/ statement coverage      |
+| register product with null details                 | ProductDAO                             | Unit          | WB/ statement coverage      |
+| register product with null arrivalDate             | ProductDAO                             | Unit          | WB/ statement coverage      |
+| change product quantity with success               | ProductDAO                             | Unit          | WB/ statement coverage      |
+| change product quantity - product not found        | ProductDAO                             | Unit          | WB/ statement coverage      |
+| change quantity - change date before arrival date  | ProductDAO                             | Unit          | WB/ statement coverage      |
+| change quantity - decrease product quantity        | ProductDAO                             | Unit          | WB/ statement coverage      |
+| sell product with success                          | ProductDAO                             | Unit          | WB/ statement coverage      |
+| sellProduct - product not found                    | ProductDAO                             | Unit          | WB/ statement coverage      |
+| sellProduct - selling date before arrival date     | ProductDAO                             | Unit          | WB/ statement coverage      |
+| sellProduct - quantity more than available         | ProductDAO                             | Unit          | WB/ statement coverage      |
+| get products by category                           | ProductDAO                             | Unit          | WB/ statement coverage      |
+| get products by model                              | ProductDAO                             | Unit          | WB/ statement coverage      |
+| get available products by category                 | ProductDAO                             | Unit          | WB/ statement coverage      |
+| get available products by model                    | ProductDAO                             | Unit          | WB/ statement coverage      |
+| deleteAllProducts with success                     | ProductDAO                             | Unit          | WB/ statement coverage      |
+| deleteProduct with success                         | ProductDAO                             | Unit          | WB/ statement coverage      |
+| addReview with success                             | ReviewDAO                              | Unit          | WB/ statement coverage      |
+| getProductReviews with success                     | ReviewDAO                              | Unit          | WB/ statement coverage      |
+| deleteReview with success                          | ReviewDAO                              | Unit          | WB/ statement coverage      |
+| deleteReviewsOfProduct with success                | ReviewDAO                              | Unit          | WB/ statement coverage      |
+| deleteAllReviews with success                      | ReviewDAO                              | Unit          | WB/ statement coverage      |
+| register products - 200                            | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| register products - 503                            | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| change product quantity- 200                       | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| sell product -200                                  | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| get all products - 200                             | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| delete all products - 200                          | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| delete product - 200                               | ProductController, ProductRoute        | API           | BB/ eq partitioning         |
+| add review - 200                                   | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
+| get all reviews -200                               | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
+| delete a review-200                                | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
+| delete all reviews of a product - 200              | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
+| delete all reviews - 200                           | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
+| POST /products - 200                               | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| POST /products - 422                               | ProductController, ProductDAO, API     | Integration   | BB/ boundary                |
+| POST /products - 409                               | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| PATCH /products/:model - 200                       | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| PATCH /products/:model - 404                       | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| PATCH /products/:model/sell - 200                  | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| PATCH /products/:model/sell - 404                  | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| GET /products - 200                                | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| DELETE /products/:model - 200                      | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| DELETE /products/:model - 404                      | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
+| POST /reviews/:model - 200                         | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| POST /reviews/:model - 422                         | ReviewController, ReviewDAO, API       | Integration   | BB/ boundary                |
+| POST /reviews/:model - 404                         | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| POST /reviews/:model - 409                         | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| GET /reviews/:model - 200                          | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| DELETE /reviews/:model - 200                       | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| DELETE /reviews/:model - 404                       | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| DELETE /reviews/:model/all - 200                   | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| DELETE /reviews/:model/all - 404                   | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
+| DELETE /reviews - 200                              | ReviewController, ReviewDAO, API       | Integration   | BB/ eq partitioning         |
 
 
 
@@ -77,24 +175,6 @@
 
 <Report in the following table the coverage of functional requirements and scenarios(from official requirements) >
 
-| Functional Requirement or scenario | Test(s) |
-| :--------------------------------: | :-----: |
-FR3.1	|ProductControllerTest, ProductDaoTest
-FR3.2	|ProductControllerTest, ProductDaoTest
-FR3.3	|ProductControllerTest, ProductDaoTest
-FR3.4	|ProductRoutesTest, ProductControllerTest
-FR3.4.1|ProductRoutesTest, ProductControllerTest
-FR3.5	|ProductRoutesTest, ProductControllerTest
-FR3.5.1|	ProductRoutesTest, ProductControllerTest
-FR3.7	|ProductControllerTest, ProductDaoTest
-FR3.8	|ProductControllerTest, ProductDaoTest
-FR4.1	|ReviewControllerTest, ReviewDaoTest
-FR4.2	|ReviewRoutesTest, ReviewControllerTest
-FR4.3	|ReviewControllerTest, ReviewDaoTest
-FR4.4	|ReviewControllerTest, ReviewDaoTest
-FR4.5|	ReviewControllerTest, ReviewDaoTest
-
-/////////////////////////////////////////////////////////////////////
 
 | Functional Requirement or scenario       | Test(s)                                                                                  |
 | :--------------------------------------: | :-------------------------------------------------------------------------------------: |
@@ -108,8 +188,25 @@ FR4.5|	ReviewControllerTest, ReviewDaoTest
 | User login                               | `login`, `POST ezelectronics/sessions`                                                  |
 | Getting current user session             | `get current session`, `GET ezelectronics/sessions/current`                             |
 | Logging out                              | `logout`, `DELETE ezelectronics/sessions/current`                                       |
-
+| FR3: Manage products                                         |                                                                              |
+| FR3.1: Register a set of new products                        | registerProducts-success, POST /products - 200, POST /products - 422          |
+| FR3.2: Update the quantity of a product                      | change product quantity with success, PATCH /products/:model - 200, PATCH /products/:model - 404 |
+| FR3.3: Sell a product                                        | sell product with success, PATCH /products/:model/sell - 200, PATCH /products/:model/sell - 404 |
+| FR3.4: Show the list of all products                         | get all products by category with success, get products by model with success, GET /products - 200 |
+| FR3.4.1: Show the list of all available products             | get available products by category with success, get available products by model with success |
+| FR3.5: Show the list of all products with the same category  | get products by category with success                                         |
+| FR3.5.1: Show the list of all available products with the same category | get available products by category with success                               |
+| FR3.6: Show the list of all products with the same model     | get products by model with success                                            |
+| FR3.6.1: Show the list of all available products with the same model | get available products by model with success                                  |
+| FR3.7: Delete a product                                      | delete product with success, DELETE /products/:model - 200, DELETE /products/:model - 404 |
+| FR3.8: Delete all products                                   | delete all products with success, DELETE /products - 200                      |
+| FR4: Manage reviews                                          |                                                                              |
+| FR4.1: Add a new review to a product                         | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR4.2: Get the list of all reviews assigned to a product     | getProductReviews, get all reviews - 200, GET /reviews/:model - 200           |
+| FR4.3: Delete a review given to a product                    | deleteReview, delete a review - 200, DELETE /reviews/:model - 200, DELETE /reviews/:model - 404 |
+| FR4.4: Delete all reviews of a product                       | deleteReviewsOfProduct, delete all reviews of a product - 200, DELETE /reviews/:model/all - 200 |
+| FR4.5: Delete all reviews of all products                    | deleteAllReviews, delete all reviews - 200                                    |
 
 ## Coverage white box
 
-Report here the screenshot of coverage values obtained with jest-- coverage
+![Coverage](image/coverage.png)
