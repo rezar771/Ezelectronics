@@ -218,7 +218,7 @@ This integration sequence ensures that each component is individually tested for
 | FR4.2: Get the list of all reviews assigned to a product     | getProductReviews, get all reviews - 200, GET /reviews/:model - 200           |
 | FR4.3: Delete a review given to a product                    | deleteReview, delete a review - 200, DELETE /reviews/:model - 200, DELETE /reviews/:model - 404 |
 | FR4.4: Delete all reviews of a product                       | deleteReviewsOfProduct, delete all reviews of a product - 200, DELETE /reviews/:model/all - 200 |
-| FR4.5: Delete all reviews of all products                    | deleteAllReviews, delete all reviews - 200                                    |
+| FR4.5: Delete all reviews of all products                    | deleteAllReviews, delete all reviews - 200      prova                              |
 
 ## Coverage white box
 
