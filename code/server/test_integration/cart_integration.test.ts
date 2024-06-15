@@ -81,6 +81,77 @@ afterAll(() => {
 
 
 describe("cart routes integration test", ()=>{
+
+    describe("GET /history", ()=>{
+
+        test("It should return an empty array if there is no cart history", async () => {
+            const response = await request(app)
+                .get(`${routePath}/carts/history`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+
+            expect(response.body).toEqual([]);
+        });
+
+        test("It should not include the current unpaid cart in the history", async () => {
+            // Aggiungi un prodotto al carrello
+            await request(app)
+                .post(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .send({ model: product.model })
+                .expect(200);
+
+            const response = await request(app)
+                .get(`${routePath}/carts/history`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+
+            expect(response.body).toEqual([]);
+
+            await request(app)
+                .delete(`${routePath}/carts/products/iPhone14`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+        });
+        test("It should return the cart history of the logged in customer", async () => {
+            // Aggiungi un prodotto al carrello
+            await request(app)
+                .post(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .send({ model: product.model })
+                .expect(200);
+
+            // Checkout del carrello
+            await request(app)
+                .patch(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+
+            const response = await request(app)
+                .get(`${routePath}/carts/history`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+
+            expect(response.body).toHaveLength(1);
+            expect(response.body[0].customer).toBe("customer");
+            expect(response.body[0].paid).toBe("true");
+            expect(response.body[0].products).toHaveLength(1);
+            expect(response.body[0].products[0].model).toBe(product.model);
+        });
+
+        test("It should return 401 if the user is not authenticated", async () => {
+            await request(app)
+                .get(`${routePath}/carts/history`)
+                .expect(401);
+        });
+
+        test("It should return 401 if the user is not a customer", async () => {
+            await request(app)
+                .get(`${routePath}/carts/history`)
+                .set("Cookie", adminCookie)
+                .expect(401);
+        });
+    })
     describe("GET /carts", ()=>{
 
         test("It should return the cart of the logged in customer and return 200", async () => {
@@ -164,9 +235,11 @@ describe("cart routes integration test", ()=>{
             const product2 = response.body.products.find((p: any) => p.model === "GalaxyS21");
 
             expect(product).toBeDefined();
+            expect(product.quantity).toBe(1);
             expect(product.price).toBe(999.99);
 
             expect(product2).toBeDefined();
+            expect(product2.quantity).toBe(1);
             expect(product2.price).toBe(799.99);
 
             expect(response.body.total).toBeCloseTo(999.99 + 799.99);
@@ -189,10 +262,25 @@ describe("cart routes integration test", ()=>{
             const response = await request(app)
                 .post(`${routePath}/carts`)
                 .set("Cookie", customerCookie)
-                .send({ model: "iPhone14" })
+                .send({ model: product.model })
                 .expect(200);
 
             expect(response.status).toBe(200);
+
+            const cartResponse = await request(app)
+                .get(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+
+            expect(cartResponse.body.customer).toBe("customer");
+            expect(cartResponse.body.products).toHaveLength(1);
+            expect(cartResponse.body.products[0].model).toBe(product.model);
+            expect(cartResponse.body.products[0].quantity).toBe(1);
+
+            await request(app)
+                .delete(`${routePath}/carts/products/iPhone14`)
+                .set("Cookie", customerCookie)
+                .expect(200);
         });
 
         test("It should return 422 if the model is missing", async () => {
@@ -223,6 +311,32 @@ describe("cart routes integration test", ()=>{
                 .set("Cookie", adminCookie)
                 .send({ model: "iPhone14" })
                 .expect(401);
+        });
+
+        test("It should increase product quantity in the cart if the product is already in the cart", async () => {
+            await request(app)
+                .post(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .send({ model: product.model })
+                .expect(200);
+
+            const response = await request(app)
+                .post(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .send({ model: product.model })
+                .expect(200);
+
+            expect(response.status).toBe(200);
+
+            const cartResponse = await request(app)
+                .get(`${routePath}/carts`)
+                .set("Cookie", customerCookie)
+                .expect(200);
+
+            expect(cartResponse.body.customer).toBe("customer");
+            expect(cartResponse.body.products).toHaveLength(1);
+            expect(cartResponse.body.products[0].model).toBe(product.model);
+            expect(cartResponse.body.products[0].quantity).toBe(2);
         });
     });
 
