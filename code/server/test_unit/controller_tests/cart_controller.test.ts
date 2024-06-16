@@ -25,7 +25,7 @@ afterAll(()=>{
 const mockAuthenticateUser = jest.fn()
 describe("CONTROLLER TEST",()=>{
     jest.mock("../../src/dao/cartDAO");
-    test("Adding product to empty cart with authenticated user - Success", async () => {
+    test("Adding product to empty cart with Success", async () => {
         const testUser = new User("test_user", "Test", "Test", Role.CUSTOMER, "test_address", "2001-12-14"); // Create User instance
         const testProduct = new Product(1, "test", Category.SMARTPHONE, "2024-04-05", "test", 10);
     
