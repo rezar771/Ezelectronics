@@ -186,9 +186,16 @@ This integration sequence ensures that each component is individually tested for
 | delete a review-200                                | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
 | delete all reviews of a product - 200              | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
 | delete all reviews - 200                           | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
-| delete all reviews - 200                           | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
-| delete all reviews - 200                           | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
-| delete all reviews - 200                           | ReviewController, ReviewRoute          | API           | BB/ eq partitioning         |
+| get cart - 200 - 401                               | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| Add product to cart - 200 - 401                    | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| Add product to cart - 422                          | CartController, CartRoute              | API           | BB/ boundary                |
+| checkoutcart - 200 - 401                           | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| customer cart history - 200 - 401                  | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| remove product from a cart - 200 - 401             | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| remove product from a cart - 404                   | CartController, CartRoute              | API           | BB/ boundary                |
+| Clear current cart - 200 - 401                     | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| Delete all carts - 200 - 401                       | CartController, CartRoute              | API           | BB/ eq partitioning         |
+| Get all carts - 200 - 401                          | CartController, CartRoute              | API           | BB/ eq partitioning         |
 | POST /products - 200                               | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
 | POST /products - 422                               | ProductController, ProductDAO, API     | Integration   | BB/ boundary                |
 | POST /products - 409                               | ProductController, ProductDAO, API     | Integration   | BB/ eq partitioning         |
@@ -260,7 +267,16 @@ This integration sequence ensures that each component is individually tested for
 | FR4.2: Get the list of all reviews assigned to a product     | getProductReviews, get all reviews - 200, GET /reviews/:model - 200           |
 | FR4.3: Delete a review given to a product                    | deleteReview, delete a review - 200, DELETE /reviews/:model - 200, DELETE /reviews/:model - 404 |
 | FR4.4: Delete all reviews of a product                       | deleteReviewsOfProduct, delete all reviews of a product - 200, DELETE /reviews/:model/all - 200 |
-| FR4.5: Delete all reviews of all products                    | deleteAllReviews, delete all reviews - 200      prova                              |
+| FR4.5: Delete all reviews of all products                    | deleteAllReviews, delete all reviews - 200                                    |
+| FR5: manage carts                                          |                                                                              |
+| FR5.1: Show the information of the current cart              | Retrieve Cart with element, Retrieve Cart with no element, getCart (dao & route), GET /carts |
+| FR5.2: Add a product to the current cart                     | Adding product to empty cart with Success, |
+| FR5.3: Checkout the current cart                             | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR5.4: Show the history of the paid carts                    | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR5.5: Remove a product from the current cart                | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR5.6: Delete the current cart                               | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR5.7: See the list of all carts of all users                | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR5.8: Delete all carts                                      | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
 
 ## Coverage white box
 
