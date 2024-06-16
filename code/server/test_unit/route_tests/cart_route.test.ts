@@ -29,7 +29,7 @@ describe("get cart", () => {
   
     test("It should return a 200 code with empty Cart", async () => {
       const cart = new Cart("user", false, "2024-6-10", 0, []);
-      const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-12-14");
+      const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
       jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
           req.user = testCustomer;
@@ -56,7 +56,7 @@ describe("get cart", () => {
 
   test("It should return a 200 code with full Cart", async () => {
        
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
     const product= new ProductInCart("Iphone13",10,Category.SMARTPHONE,10);
     const cart = new Cart("user", false, "2024-6-10", 0, [product]);
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
@@ -83,7 +83,7 @@ describe("get cart", () => {
   });
 
   test("It should return a 401 code if user not logged in", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -104,7 +104,7 @@ describe("get cart", () => {
   });
 
   test("It should return a 401 code if the user is not a customer", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -128,7 +128,7 @@ describe("get cart", () => {
 
 describe("Add product to cart", () => {
   test("It should return a 200 code if the product was added to the cart", async () => {
-      const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+      const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
       const model = "Iphone13";
 
       jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
@@ -155,7 +155,7 @@ describe("Add product to cart", () => {
   });
 
   test("It should return a 422 code if the model is missing", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -178,7 +178,7 @@ describe("Add product to cart", () => {
   });
 
   test("It should return a 422 code if the model is an empty string", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -213,7 +213,7 @@ describe("Add product to cart", () => {
   });
 
   test("It should return a 401 code if the user is not a customer", async () => {
-      const testAdmin = new User("admin", "admin", "surname", Role.ADMIN, "Via Verdi 8", "2001-12-14");
+      const testAdmin = new User("admin", "admin", "surname", Role.ADMIN, "Via Po 14", "2001-10-19");
       const model = "Iphone13";
 
       jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
@@ -242,7 +242,7 @@ describe("Add product to cart", () => {
 
 describe("checkoutcart", ()=>{
   test("It should return a 200 code for successful checkout", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -268,7 +268,7 @@ describe("checkoutcart", ()=>{
   });
 
   test("It should return a 401 code if user not logged in", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -289,7 +289,7 @@ describe("checkoutcart", ()=>{
   });
 
   test("It should return a 401 code if the user is not a customer", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -313,7 +313,7 @@ describe("checkoutcart", ()=>{
 
 describe("customer cart history", ()=> {
   test("It should return a 200 code with the cart history", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
     const cartHistory = [
         new Cart("user", true, "2024-6-10", 100, [new ProductInCart("Iphone13", 10, Category.SMARTPHONE, 10)]),
         new Cart("user", true, "2023-5-9", 50, [new ProductInCart("Samsung Galaxy", 5, Category.SMARTPHONE, 10)])
@@ -344,7 +344,7 @@ describe("customer cart history", ()=> {
   });
 
   test("It should return a 401 code if user not logged in", async () => {
-    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+    const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testCustomer;
@@ -365,7 +365,7 @@ describe("customer cart history", ()=> {
   });
 
   test("It should return a 401 code if the user is not a customer", async () => {
-    const testUser = new User("user", "user", "surname", Role.ADMIN, "Via Verdi 8", "2001-12-14");
+    const testUser = new User("user", "user", "surname", Role.ADMIN, "Via Po 14", "2001-10-19");
 
     jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
         req.user = testUser;
@@ -389,7 +389,7 @@ describe("customer cart history", ()=> {
 
 describe("remove product from a cart", ()=>{
     test("It should return a 200 code if the product was removed from the cart", async () => {
-        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
         const model = "Iphone13";
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
@@ -416,7 +416,7 @@ describe("remove product from a cart", ()=>{
     });
 
     test("It should return a 404 code if the model parameter is missing", async () => {
-        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testCustomer;
@@ -429,7 +429,7 @@ describe("remove product from a cart", ()=>{
     });
 
     test("It should return a 401 code if user not logged in", async () => {
-        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
         const model = "Iphone13";
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
@@ -447,7 +447,7 @@ describe("remove product from a cart", ()=>{
     });
 
     test("It should return a 401 code if the user is not a customer", async () => {
-        const testUser = new User("user", "user", "surname", Role.ADMIN, "Via Verdi 8", "2001-12-14");
+        const testUser = new User("user", "user", "surname", Role.ADMIN, "Via Po 14", "2001-10-19");
         const model = "Iphone13";
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
@@ -473,7 +473,7 @@ describe("remove product from a cart", ()=>{
 
 describe("Clear current cart", () => {
     test("It should return a 200 code if the cart was cleared successfully", async () => {
-        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testCustomer;
@@ -499,7 +499,7 @@ describe("Clear current cart", () => {
     });
 
     test("It should return a 401 code if user not logged in", async () => {
-        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Verdi 8", "2001-12-14");
+        const testCustomer = new User("user", "user", "surname", Role.CUSTOMER, "Via Po 14", "2001-10-19");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testCustomer;
@@ -520,7 +520,7 @@ describe("Clear current cart", () => {
     });
 
     test("It should return a 401 code if the user is not a customer", async () => {
-        const testUser = new User("user", "user", "surname", Role.ADMIN, "Via Verdi 8", "2001-12-14");
+        const testUser = new User("user", "user", "surname", Role.ADMIN, "Via Po 14", "2001-10-19");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testUser;
@@ -545,7 +545,7 @@ describe("Clear current cart", () => {
 describe("Delete all carts", () => {
  
     test("It should return a 200 code if all carts were deleted successfully", async () => {
-        const testAdmin = new User("admin", "admin", "surname", Role.ADMIN, "Via Verdi 8", "2000-01-01");
+        const testAdmin = new User("admin", "admin", "surname", Role.ADMIN, "Via Po 14", "2000-01-01");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testAdmin;
@@ -570,7 +570,7 @@ describe("Delete all carts", () => {
     });
 
     test("It should return a 401 code if user not logged in", async () => {
-        const testAdmin = new User("admin", "admin", "surname", Role.ADMIN, "Via Verdi 8", "2000-01-01");
+        const testAdmin = new User("admin", "admin", "surname", Role.ADMIN, "Via Po 14", "2000-01-01");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testAdmin;
@@ -587,7 +587,7 @@ describe("Delete all carts", () => {
     });
 
     test("It should return a 401 code if the user is not an admin or manager", async () => {
-        const testCustomer = new User("customer", "customer", "surname", Role.CUSTOMER, "Via Verdi 8", "2000-01-01");
+        const testCustomer = new User("customer", "customer", "surname", Role.CUSTOMER, "Via Po 14", "2000-01-01");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testCustomer;
@@ -612,7 +612,7 @@ describe("Delete all carts", () => {
 describe("Get all carts", () => {
 
     test("It should return a 200 code with all carts", async () => {
-        const testManager = new User("manager", "manager", "surname", Role.MANAGER, "Via Verdi 8", "2000-01-01");
+        const testManager = new User("manager", "manager", "surname", Role.MANAGER, "Via Po 14", "2000-01-01");
         const allCarts = [
             new Cart("user1", false, "2024-6-10", 100, [new ProductInCart("Iphone13", 10, Category.SMARTPHONE, 10)]),
             new Cart("user2", false, "2023-5-9", 50, [new ProductInCart("Samsung Galaxy", 5, Category.SMARTPHONE, 10)])
@@ -642,7 +642,7 @@ describe("Get all carts", () => {
     });
 
     test("It should return a 401 code if user not logged in", async () => {
-        const testManager = new User("manager", "manager", "surname", Role.MANAGER, "Via Verdi 8", "2000-01-01");
+        const testManager = new User("manager", "manager", "surname", Role.MANAGER, "Via Po 14", "2000-01-01");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testManager;
@@ -659,7 +659,7 @@ describe("Get all carts", () => {
     });
 
     test("It should return a 401 code if the user is not an admin or manager", async () => {
-        const testCustomer = new User("customer", "customer", "surname", Role.CUSTOMER, "Via Verdi 8", "2000-01-01");
+        const testCustomer = new User("customer", "customer", "surname", Role.CUSTOMER, "Via Po 14", "2000-01-01");
 
         jest.spyOn(ErrorHandler.prototype, "validateRequest").mockImplementationOnce((req, res, next) => {
             req.user = testCustomer;
