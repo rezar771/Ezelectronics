@@ -41,7 +41,8 @@ The integration testing approach adopted here follows a mixed strategy that comb
      - File: `review_dao.test.ts`
    - **UserDAO Unit Tests**: Verify the `UserDao` methods handle database operations correctly, such as creating users, getting users, deleting users and updating users.
      - File: `user_dao.test.ts`
-   -**CartDao Unit Tests**: Verify the `CartDao` methods handle database operations correctly, such as getting carts, adding products to a cart, removing products from a cart, checking out a cart and deleting a carts.     
+   - **CartDao Unit Tests**: Verify the `CartDao` methods handle database operations correctly, such as getting carts, adding products to a cart, removing products from a cart, checking out a cart and deleting a carts.   
+     - FILE: `cart_dao.test.ts`  
 
 2. **Step 2: Route Testing for API Endpoints**
    - **Product Routes Testing**: Test the API endpoints for product-related operations (`POST /products`, `PATCH /products/:model`, `PATCH /products/:model/sell`, `GET /products`, `DELETE /products`, etc.) to ensure correct integration with the `ProductController`.
@@ -50,7 +51,8 @@ The integration testing approach adopted here follows a mixed strategy that comb
      - File: `review_route.test.ts`
    - **User Routes Testing**: Test the API endpoints for user-related operations (`POST /users`, `GET /users`, `GET /users/roles/:role`, `GET /users/:username`, `DELETE /users/:username`, `DELETE /users`, `PATCH /users/:username`) to ensure correct integration with the `UserController`.
      - File: `user.test.ts`
-   -**Cart Routes Testing**: Test the API endpoints for cart-related operations (`GET /carts, `GET /carts/all, `GET /history`, `POST /carts`, `PATCH /carts/model`, `DELETE /carts`, `DELETE /carts/current`, `DELETE /carts/current/products/:model`) to ensure correct integration with the `CartController`.     
+   - **Cart Routes Testing**: Test the API endpoints for cart-related operations (`GET /carts, `GET /carts/all, `GET /history`, `POST /carts`, `PATCH /carts/model`, `DELETE /carts`, `DELETE /carts/current`, `DELETE /carts/current/products/:model`) to ensure correct integration with the `CartController`. 
+     - File: `cart_route.test.ts`    
 
 3. **Step 3: Full Integration Testing**
    - **Product Integration Tests**: Conduct full integration tests to validate the end-to-end functionality of product-related operations, starting from user creation and authentication to product creation, modification, and deletion.
