@@ -1,14 +1,10 @@
 import { test, expect, jest,beforeAll, afterAll,afterEach,describe } from "@jest/globals"
 import CartController from "../../src/controllers/cartController"
 import CartDAO from "../../src/dao/cartDAO"
-import UserDAO from "../../src/dao/userDAO";
-import UserController from "../../src/controllers/userController";
 import { Category, Product } from "../../src/components/product";
 import { User, Role } from "../../src/components/user";
 import { Cart, ProductInCart } from "../../src/components/cart";
-import { CartNotFoundError } from "../../src/errors/cartError";
-import { ProductNotFoundError } from "../../src/errors/productError";
-import { Database } from "sqlite3";
+
 
 afterEach(() => {
     jest.clearAllMocks();
