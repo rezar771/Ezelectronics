@@ -270,13 +270,13 @@ This integration sequence ensures that each component is individually tested for
 | FR4.5: Delete all reviews of all products                    | deleteAllReviews, delete all reviews - 200                                    |
 | FR5: manage carts                                          |                                                                              |
 | FR5.1: Show the information of the current cart              | Retrieve Cart with element, Retrieve Cart with no element, getCart (dao & route), GET /carts |
-| FR5.2: Add a product to the current cart                     | Adding product to empty cart with Success, |
-| FR5.3: Checkout the current cart                             | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
-| FR5.4: Show the history of the paid carts                    | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
-| FR5.5: Remove a product from the current cart                | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
-| FR5.6: Delete the current cart                               | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
-| FR5.7: See the list of all carts of all users                | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
-| FR5.8: Delete all carts                                      | addReview, add review - 200, POST /reviews/:model - 200, POST /reviews/:model - 422 |
+| FR5.2: Add a product to the current cart                     | Adding product to empty cart with Success, addToCart, Add product to cart, POST /carts |
+| FR5.3: Checkout the current cart                             | checkoutcart (Dao & route & controller), PATCH /carts/:model|
+| FR5.4: Show the history of the paid carts                    | customer cart history, GET /history|
+| FR5.5: Remove a product from the current cart                | Removing Product from Cart, Removing all Products from Cart, removeProductFromCart, remove product from a cart, DELETE /carts/products/:model|
+| FR5.6: Delete the current cart                               | cleancart, Clear current cart, DELETE /carts/current|
+| FR5.7: See the list of all carts of all users                | Retrieve all Carts, getAllCarts, Get all carts, GET /carts/all |
+| FR5.8: Delete all carts                                      | deleteAllCarts, Delete all carts (Route & controller), DELETE /carts|
 
 ## Coverage white box
 
