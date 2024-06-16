@@ -217,4 +217,4 @@ This integration sequence ensures that each component is individually tested for
 
 ## Coverage white box
 
-![Coverage](image/coverage.png)
+![coverage](image/TestReport/coverage.png)
