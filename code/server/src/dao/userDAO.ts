@@ -263,7 +263,7 @@ class UserDAO {
           return;
         }
         const sqlSelect = "SELECT role FROM users WHERE username = ?";
-        db.get(sqlSelect, [user.username], (err: Error | null, row: any) => {
+        db.get(sqlSelect, [username], (err: Error | null, row: any) => {
           if (err) {
             reject(err);
             return;
