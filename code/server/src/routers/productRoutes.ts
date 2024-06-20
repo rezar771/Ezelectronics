@@ -146,8 +146,7 @@ class ProductRoutes {
           .then((quantity: any /**number */) =>
             res.status(200).json({ quantity: quantity })
           )
-          .catch((err) => {
-            console.log(err);
+          .catch((err) => {;
             next(err);
           })
     );
@@ -169,7 +168,11 @@ class ProductRoutes {
         .notEmpty()
         .exists()
         .isIn(["Smartphone", "Laptop", "Appliance"]),
+      query("category").if(query("grouping").equals("model")).not().exists(),
+      query("category").if(query("grouping").isEmpty()).not().exists(),
       query("model").if(query("grouping").equals("model")).exists().notEmpty(),
+      query("model").if(query("grouping").equals("category")).not().exists(),
+      query("model").if(query("grouping").isEmpty()).not().exists(),
       this.authenticator.isLoggedIn,
       this.authenticator.isAdminOrManager,
       this.errorHandler.validateRequest,
@@ -178,7 +181,6 @@ class ProductRoutes {
           .getProducts(req.query.grouping, req.query.category, req.query.model)
           .then((products: any /*Product[]*/) => res.status(200).json(products))
           .catch((err) => {
-            console.log(err);
             next(err);
           })
     );
@@ -199,7 +201,11 @@ class ProductRoutes {
         .exists()
         .notEmpty()
         .isIn(["Smartphone", "Laptop", "Appliance"]),
-      query("model").if(query("grouping").equals("model")).exists().notEmpty(),
+        query("category").if(query("grouping").equals("model")).not().exists(),
+        query("category").if(query("grouping").isEmpty()).not().exists(),
+        query("model").if(query("grouping").equals("model")).exists().notEmpty(),
+        query("model").if(query("grouping").equals("category")).not().exists(),
+        query("model").if(query("grouping").isEmpty()).not().exists(),
       this.authenticator.isLoggedIn,
       this.errorHandler.validateRequest,
       (req: any, res: any, next: any) =>
