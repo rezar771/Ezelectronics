@@ -86,6 +86,20 @@ class ReviewDAO {
   getProductReviews(model: string): Promise<ProductReview[]> {
     return new Promise((resolve, reject) => {
       try {
+        // Check if the product exists
+      const productSql = `
+            SELECT model FROM products WHERE model = ?
+        `;
+      db.get(productSql, [model], (err: Error | null, row: any) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        if (!row) {
+          reject(new ProductNotFoundError());
+          return;
+        }
+        
         const sql = `
             SELECT * 
             FROM reviews 
@@ -97,7 +111,7 @@ class ReviewDAO {
             reject(err);
             return;
           }
-
+          
           const reviews: ProductReview[] = rows.map((row) => ({
             model: row.model,
             user: row.user,
@@ -108,6 +122,7 @@ class ReviewDAO {
 
           resolve(reviews);
         });
+      });
       } catch (error) {
         reject(error);
       }
