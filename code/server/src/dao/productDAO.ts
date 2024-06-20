@@ -219,7 +219,20 @@ class ProductDAO {
             reject(err);
           } else {
             if (grouping === "model" && model && rows.length === 0) {
-              reject(new ProductNotFoundError());
+               // Checks whether the product exists regardless of the quantity
+            let checkExistenceQuery = `SELECT * FROM products WHERE model = '${model}'`;
+
+            db.all(checkExistenceQuery, (existErr: Error | null, existRows: any) => {
+              if (existErr) {
+                reject(existErr);
+              } else {
+                if (existRows.length === 0) {
+                  reject(new ProductNotFoundError());
+                } else {
+                  resolve([]); // The product exists but is not available
+                }
+              }
+            });
             } else {
               resolve(rows);
             }
