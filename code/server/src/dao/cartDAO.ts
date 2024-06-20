@@ -42,7 +42,7 @@ class CartDAO {
           } else {
             const cart: Cart = {
               customer: rows[0].customer,
-              paid: rows[0].paid,
+              paid: JSON.parse(rows[0].paid),
               paymentDate: rows[0].paymentDate,
               total: 0,
               products: [],
@@ -331,7 +331,7 @@ class CartDAO {
               return new Promise<void>((resolve, reject) => {
                 const cart: Cart = {
                   customer: cartRow.customer,
-                  paid: cartRow.paid,
+                  paid: JSON.parse(cartRow.paid),
                   paymentDate: cartRow.paymentDate,
                   total: 0,
                   products: [],
@@ -550,7 +550,7 @@ class CartDAO {
     return new Promise<Cart[]>((resolve, reject) => {
       try {
         const customerCarts: Cart[] = [];
-        // Query to retrieve paid carts for the customer
+        // Query to retrieve all carts 
         const getCustomerCartsSql = `
                 SELECT cartId, customer, paid, paymentDate, SUM(cost*amount) as totalCost
             FROM carts
@@ -567,7 +567,7 @@ class CartDAO {
             return new Promise<void>((resolve, reject) => {
               const cart: Cart = {
                 customer: cartRow.customer,
-                paid: cartRow.paid,
+                paid: JSON.parse(cartRow.paid),
                 paymentDate: cartRow.paymentDate,
                 total: 0,
                 products: [],
@@ -624,6 +624,7 @@ class CartDAO {
 
           Promise.all(cartPromises)
             .then(() => {
+              customerCarts.sort((a, b) => (a.customer < b.customer ? -1 : a.customer > b.customer ? 1 : 0));
               resolve(customerCarts);
             })
             .catch((err) => {
